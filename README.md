@@ -1,3 +1,9 @@
+# Team Members
+Khandaker Sultana  
+Brian Bachow  
+Alen Diaz  
+Nathaniel Mata  
+
 # AnimationStation
 
 Name: AnimationStation  
