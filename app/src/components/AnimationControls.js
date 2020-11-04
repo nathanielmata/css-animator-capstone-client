@@ -16,13 +16,20 @@ function AnimationControls() {
 		void document.querySelector('#animation__obj').offsetWidth;
 
 		document.querySelector('#animation__obj').style.animation = css;
-	};
-
-	const handleClick = (e) => {
-		e.preventDefault();
-
+  };
+  
+  const clearCSS = () => {
     document.querySelector('#animation__obj').style.animation = '';
     void document.querySelector('#animation__obj').offsetWidth;
+  }
+
+  const setCSS = (str) => {
+    document.querySelector('#animation__obj').style.animation = str;
+  }
+
+	const handleClick = (e) => {
+    e.preventDefault();
+    clearCSS();
 
 		const {
 			name,
@@ -44,12 +51,8 @@ function AnimationControls() {
 			name.value,
 		].join(' ');
 
-		setAnimation(str);
-		str = str + 'object-spin';
-
-		console.log(str);
-
-		document.querySelector('#animation__obj').style.animation = str;
+    setAnimation(str);
+    setCSS(str + 'object-spin');
 	};
 
 	return (
