@@ -2,7 +2,17 @@ import React, { useState } from 'react';
 import { Square } from './SvgObjects';
 
 function AnimationControls() {
-	const [animation, setAnimation] = useState('');
+	// const [animation, setAnimation] = useState('');
+	const [animation, setAnimation] = useState({});
+
+	const clearCss = () => {
+		document.querySelector('#animation__obj').style.animation = '';
+		void document.querySelector('#animation__obj').offsetWidth;
+	};
+
+	const setCss = (str) => {
+		document.querySelector('#animation__obj').style.animation = str;
+	};
 
 	const handleStop = (e) => {
 		document
@@ -16,20 +26,11 @@ function AnimationControls() {
 		void document.querySelector('#animation__obj').offsetWidth;
 
 		document.querySelector('#animation__obj').style.animation = css;
-  };
-  
-  const clearCSS = () => {
-    document.querySelector('#animation__obj').style.animation = '';
-    void document.querySelector('#animation__obj').offsetWidth;
-  }
-
-  const setCSS = (str) => {
-    document.querySelector('#animation__obj').style.animation = str;
-  }
+	};
 
 	const handleClick = (e) => {
-    e.preventDefault();
-    clearCSS();
+		e.preventDefault();
+		clearCss();
 
 		const {
 			name,
@@ -51,90 +52,111 @@ function AnimationControls() {
 			name.value,
 		].join(' ');
 
-    setAnimation(str);
-    setCSS(str + 'object-spin');
+		// setAnimation(str);
+		setAnimation({
+			name: name.value,
+			delay: delay.value,
+			direction: direction.value,
+			timing: timing.value,
+			duration: duration.value,
+			fill: fill.value,
+			iteration: iteration.value,
+		});
+		setCss(str + 'object-spin');
+	};
+
+	const handleSubmit = () => {
+		console.log(animation);
 	};
 
 	return (
-		<>
-			<form id='controls' className='controls' onSubmit={(e) => handleClick(e)}>
-				<label for='name'>
-					<div>Name</div>
-					<input type='text' id='name' name='name' />
-				</label>
+		<div className='editor__container'>
+			<div className='editor__controls'>
+				<form
+					id='editor__form--controls'
+					className='editor__form--controls'
+					onSubmit={(e) => handleClick(e)}
+				>
+          
+          <div className="editor__form--controls-inner">
+            <div className="editor__form--left">
+              <label for='delay'>
+                <div className="label__title">Delay</div>
+                <input type='number' id='delay' name='delay' className="input__num" value='500' />
+              </label>
 
-				<label for='delay'>
-					<div>Delay</div>
-					<input type='range' id='delay' name='delay' min='0' max='6000' />
-				</label>
+              <label for='duration'>
+                <div className="label__title">Duration</div>
+                <input type='number' id='duration' name='duration' className="input__num" value='2000' />
+              </label>
 
-				<label for='direction'>
-					<div>Direction</div>
-					<select name='direction' id='direction'>
-						<option value='normal'>normal</option>
-						<option value='reverse'>reverse</option>
-						<option value='alternate'>alternate</option>
-						<option value='alternate-reverse'>alternate-reverse</option>
-					</select>
-				</label>
+              <label for='iteration'>
+                <div className="label__title">Iteration</div>
+                <input type='number' id='iteration' name='iteration' className="input__num" value='1' />
+              </label>
+            </div>
 
-				<label for='timing'>
-					<div>Timing Function</div>
-					<select name='timing' id='timing'>
-						<option value='ease'>ease</option>
-						<option value='linear'>linear</option>
-						<option value='ease-in'>ease-in</option>
-						<option value='ease-out'>ease-out</option>
-						<option value='ease-in-out'>ease-in-out</option>
-					</select>
-				</label>
+            <div className="editor__form--right">
 
-				<label for='duration'>
-					<div>Duration</div>
-					<input
-						type='range'
-						id='duration'
-						name='duration'
-						min='0'
-						max='6000'
-					/>
-				</label>
+              <label for='direction'>
+                <div className="label__title">Direction</div>
+                <div className='select__wrapper'>
+                  <select name='direction' id='direction' className="editor__form--select">
+                    <option value='normal'>normal</option>
+                    <option value='reverse'>reverse</option>
+                    <option value='alternate'>alternate</option>
+                    <option value='alternate-reverse'>alternate-reverse</option>
+                  </select>
+                </div>
+              </label>
 
-				<label for='fill'>
-					<div>Fill</div>
-					<select name='fill' id='fill'>
-						<option value='forwards'>forwards</option>
-						<option value='backwards'>backwards</option>
-						<option value='both' selected='selected'>
-							both
-						</option>
-						<option value='none'>none</option>
-					</select>
-				</label>
+              <label for='timing'>
+                <div className="label__title">Timing Function</div>
+                <div className='select__wrapper'>
+                  <select name='timing' id='timing' className="editor__form--select">
+                    <option value='ease'>ease</option>
+                    <option value='linear'>linear</option>
+                    <option value='ease-in'>ease-in</option>
+                    <option value='ease-out'>ease-out</option>
+                    <option value='ease-in-out'>ease-in-out</option>
+                  </select>
+                </div>
+              </label>
 
-				<label for='iteration'>
-					<div>Iteration</div>
-					<input
-						type='number'
-						id='iteration'
-						name='iteration'
-						min='1'
-						value='1'
-					/>
-				</label>
-				<button type='submit'>RUN</button>
+              <label for='fill'>
+                <div className="label__title">Fill</div>
+                <div className='select__wrapper'>
+                  <select name='fill' id='fill' className="editor__form--select">
+                    <option value='forwards'>forwards</option>
+                    <option value='backwards'>backwards</option>
+                    <option value='both' selected='selected'>
+                      both
+                    </option>
+                    <option value='none'>none</option>
+                  </select>
+                </div>
+              </label>
 
-				<div>{animation}</div>
-			</form>
-			<div id='preview' class='preview'>
-				<div id='animation__obj'>
+            </div>
+
+          </div>
+
+					<button type='submit' className="form__submit">RUN</button>
+
+					{/* <div>{animation}</div> */}
+				</form>
+
+				{/* <button onClick={handleStart}>Start</button>
+        <button onClick={handleStop}>Stop</button>
+        <button onClick={handleSubmit}>Save</button> */}
+			</div>
+
+			<div id='editor__preview' className='editor__preview'>
+				<div id='animation__obj' className='animation__obj'>
 					<Square classVariant='svg__obj' />
 				</div>
 			</div>
-
-			<button onClick={handleStart}>Start</button>
-			<button onClick={handleStop}>Stop</button>
-		</>
+		</div>
 	);
 }
 

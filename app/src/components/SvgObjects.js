@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 const SvgIcon = (props) => (
   <svg 
     version="1.1"
-    viewBox={props.viewBox}
-    aria-labelledby={props.ariaLabel ?? "empty"}
-    fill="none"
+    width={props.width}
+    height={props.height}
+    fill={props.fill}
+    aria-labelledby={props.ariaLabel ?? ""}
     className={props.classVariant.filter(cv => cv && cv).join(" ")}
     role="img"
   >
@@ -21,9 +22,13 @@ SvgIcon.propTypes = {
 
 const Square = ({classVariant}) => (
   <SvgIcon 
-    viewBox="0 0 20 20"
+    width="100"
+    height="100"
+    fill="#847A59"
+    title="square"
+    ariaLabel="square"
     classVariant={[classVariant]}>
-    <rect fill="#000000" width="20" height="20"/>
+      <rect width="100%" height="100%"/>
   </SvgIcon>
 );
 
