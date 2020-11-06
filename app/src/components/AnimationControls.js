@@ -114,7 +114,7 @@ function AnimationControls() {
 						<input
 							className='editor__title-input'
 							title='Untitled'
-							value={title}
+							defaultValue={title}
 							onChange={(e) => handleTitleChange(e)}
 							type='text'
 						/>
@@ -130,12 +130,12 @@ function AnimationControls() {
 									name='delay'
 									className='input__num'
                   min='0'
-									value={delay}
+									defaultValue={delay}
 									onChange={(e) => handleDelayChange(e)}
 								/>
 							</label>
 
-							<label for='duration'>
+							<label htmlFor='duration'>
 								<div className='label__title'>Duration</div>
 								<input
 									type='number'
@@ -143,12 +143,12 @@ function AnimationControls() {
 									name='duration'
 									className='input__num'
                   min='0'
-									value={duration}
+									defaultValue={duration}
                   onChange={(e) => handleDurationChange(e)}
 								/>
 							</label>
 
-							<label for='iteration'>
+							<label htmlFor='iteration'>
 								<div className='label__title'>Iteration</div>
 								<input
 									type='number'
@@ -156,21 +156,21 @@ function AnimationControls() {
 									name='iteration'
 									className='input__num'
                   min='0'
-									value={iteration}
+									defaultValue={iteration}
                   onChange={(e) => handleIterationChange(e)}
 								/>
 							</label>
 						</div>
 
 						<div className='editor__form--right'>
-							<label for='direction'>
+							<label htmlFor='direction'>
 								<div className='label__title'>Direction</div>
 								<div className='select__wrapper'>
 									<select
 										name='direction'
 										id='direction'
 										className='editor__form--select'
-                    value={direction}
+                    defaultValue={direction}
                     onChange={(e) => handleDirectionChange(e)}
 									>
 										<option value='normal'>normal</option>
@@ -181,14 +181,14 @@ function AnimationControls() {
 								</div>
 							</label>
 
-							<label for='timing'>
+							<label htmlFor='timing'>
 								<div className='label__title'>Timing Function</div>
 								<div className='select__wrapper'>
 									<select
 										name='timing'
 										id='timing'
 										className='editor__form--select'
-                    value={timing}
+                    defaultValue={timing}
                     onChange={(e) => handleTimingChange(e)}
 									>
 										<option value='ease'>ease</option>
@@ -200,14 +200,14 @@ function AnimationControls() {
 								</div>
 							</label>
 
-							<label for='fill'>
+							<label htmlFor='fill'>
 								<div className='label__title'>Fill</div>
 								<div className='select__wrapper'>
 									<select
 										name='fill'
 										id='fill'
 										className='editor__form--select'
-                    value={fill}
+                    defaultValue={fill}
                     onChange={(e) => handleFillChange(e)}
 									>
 										<option value='forwards'>forwards</option>
