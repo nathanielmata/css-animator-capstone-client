@@ -2,11 +2,29 @@ import React, { useState } from 'react';
 import svgObjs from './SvgObjects';
 
 function AnimationControls() {
+  const [title, setTitle] = useState('Untitled');
+  const [delay, setDelay] = useState('500');
+  const [duration, setDuration] = useState('2000');
+  const [iteration, setIteration] = useState('1');
+
+  const [direction, setDirection] = useState('normal');
+  const [timing, setTiming] = useState('ease');
+  const [fill, setFill] = useState('forwards');
+
   const [animation, setAnimation] = useState({});
   const [animationObj, setAnimationObj] = useState({
     obj: svgObjs.hotdog.obj,
     bg: svgObjs.hotdog.bg
   });
+
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDelayChange = (e) => setDelay(e.target.value);
+  const handleDurationChange = (e) => setDuration(e.target.value);
+  const handleIterationChange = (e) => setIteration(e.target.value);
+
+  const handleDirectionChange = (e) => setDirection(e.target.value);
+  const handleTimingChange = (e) => setTiming(e.target.value);
+  const handleFillChange = (e) => setFill(e.target.value);
 
 	const clearCss = () => {
 		document.querySelector('#animation__obj').style.animation = '';
@@ -29,7 +47,11 @@ function AnimationControls() {
 		void document.querySelector('#animation__obj').offsetWidth;
 
 		document.querySelector('#animation__obj').style.animation = css;
-	};
+  };
+  
+  const handleSave = (e) => {
+    // document.querySelector('#editor__form--controls').for
+  }
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -80,85 +102,124 @@ function AnimationControls() {
 					className='editor__form--controls'
 					onSubmit={(e) => handleClick(e)}
 				>
-          
-          <div className="editor__form--title">
-              <h5 className="editor__title-label">TITLE</h5>
-              <input
-                className="editor__title-input"
-                title="Untitled"
-                type="text"
-              />
-            </div>
+					<div className='editor__form--title'>
+						<h5 className='editor__title-label'>TITLE</h5>
+						<input
+							className='editor__title-input'
+							title='Untitled'
+							value={title}
+							onChange={(e) => handleTitleChange(e)}
+							type='text'
+						/>
+					</div>
 
-          <div className="editor__form--controls-inner">
+					<div className='editor__form--controls-inner'>
+						<div className='editor__form--left'>
+							<label for='delay'>
+								<div className='label__title'>Delay</div>
+								<input
+									type='number'
+									id='delay'
+									name='delay'
+									className='input__num'
+                  min='0'
+									value={delay}
+									onChange={(e) => handleDelayChange(e)}
+								/>
+							</label>
 
-            <div className="editor__form--left">
-              <label for='delay'>
-                <div className="label__title">Delay</div>
-                <input type='number' id='delay' name='delay' className="input__num" value='500' />
-              </label>
+							<label for='duration'>
+								<div className='label__title'>Duration</div>
+								<input
+									type='number'
+									id='duration'
+									name='duration'
+									className='input__num'
+                  min='0'
+									value={duration}
+                  onChange={(e) => handleDurationChange(e)}
+								/>
+							</label>
 
-              <label for='duration'>
-                <div className="label__title">Duration</div>
-                <input type='number' id='duration' name='duration' className="input__num" value='2000' />
-              </label>
+							<label for='iteration'>
+								<div className='label__title'>Iteration</div>
+								<input
+									type='number'
+									id='iteration'
+									name='iteration'
+									className='input__num'
+                  min='0'
+									value={iteration}
+                  onChange={(e) => handleIterationChange(e)}
+								/>
+							</label>
+						</div>
 
-              <label for='iteration'>
-                <div className="label__title">Iteration</div>
-                <input type='number' id='iteration' name='iteration' className="input__num" value='1' />
-              </label>
-            </div>
+						<div className='editor__form--right'>
+							<label for='direction'>
+								<div className='label__title'>Direction</div>
+								<div className='select__wrapper'>
+									<select
+										name='direction'
+										id='direction'
+										className='editor__form--select'
+                    value={direction}
+                    onChange={(e) => handleDirectionChange(e)}
+									>
+										<option value='normal'>normal</option>
+										<option value='reverse' selected>reverse</option>
+										<option value='alternate'>alternate</option>
+										<option value='alternate-reverse'>alternate-reverse</option>
+									</select>
+								</div>
+							</label>
 
-            <div className="editor__form--right">
+							<label for='timing'>
+								<div className='label__title'>Timing Function</div>
+								<div className='select__wrapper'>
+									<select
+										name='timing'
+										id='timing'
+										className='editor__form--select'
+                    value={timing}
+                    onChange={(e) => handleTimingChange(e)}
+									>
+										<option value='ease'>ease</option>
+										<option value='linear'>linear</option>
+										<option value='ease-in'>ease-in</option>
+										<option value='ease-out'>ease-out</option>
+										<option value='ease-in-out'>ease-in-out</option>
+									</select>
+								</div>
+							</label>
 
-              <label for='direction'>
-                <div className="label__title">Direction</div>
-                <div className='select__wrapper'>
-                  <select name='direction' id='direction' className="editor__form--select">
-                    <option value='normal'>normal</option>
-                    <option value='reverse'>reverse</option>
-                    <option value='alternate'>alternate</option>
-                    <option value='alternate-reverse'>alternate-reverse</option>
-                  </select>
-                </div>
-              </label>
+							<label for='fill'>
+								<div className='label__title'>Fill</div>
+								<div className='select__wrapper'>
+									<select
+										name='fill'
+										id='fill'
+										className='editor__form--select'
+                    value={fill}
+                    onChange={(e) => handleFillChange(e)}
+									>
+										<option value='forwards'>forwards</option>
+										<option value='backwards'>backwards</option>
+										<option value='both' selected='selected'>both</option>
+										<option value='none'>none</option>
+									</select>
+								</div>
+							</label>
+						</div>
+					</div>
 
-              <label for='timing'>
-                <div className="label__title">Timing Function</div>
-                <div className='select__wrapper'>
-                  <select name='timing' id='timing' className="editor__form--select">
-                    <option value='ease'>ease</option>
-                    <option value='linear'>linear</option>
-                    <option value='ease-in'>ease-in</option>
-                    <option value='ease-out'>ease-out</option>
-                    <option value='ease-in-out'>ease-in-out</option>
-                  </select>
-                </div>
-              </label>
-
-              <label for='fill'>
-                <div className="label__title">Fill</div>
-                <div className='select__wrapper'>
-                  <select name='fill' id='fill' className="editor__form--select">
-                    <option value='forwards'>forwards</option>
-                    <option value='backwards'>backwards</option>
-                    <option value='both' selected='selected'>
-                      both
-                    </option>
-                    <option value='none'>none</option>
-                  </select>
-                </div>
-              </label>
-
-            </div>
-
-          </div>
-
-          <div className="editor__form--buttons">
-            <button className="form__button">PAUSE</button>
-            <button className="form__button">STOP</button>
-            <button type='submit' className="form__button form__submit">PLAY</button>
-          </div>
+					<div className='editor__form--buttons'>
+						<button>PAUSE</button>
+						<button>STOP</button>
+						<button type='submit' className='form__submit'>
+							PLAY
+						</button>
+					</div>
 
 					{/* <div>{animation}</div> */}
 				</form>
@@ -168,10 +229,19 @@ function AnimationControls() {
         <button onClick={handleSubmit}>Save</button> */}
 			</div>
 
-			<div id='editor__preview' className='editor__preview' style={{backgroundColor: animationObj.bg}}>
+			<div
+				id='editor__preview'
+				className='editor__preview'
+				style={{ backgroundColor: animationObj.bg }}
+			>
+				<div className='editor__preview--controls'>
+					<button>DELETE</button>
+					<button>SAVE</button>
+				</div>
+
 				<div id='animation__obj' className='animation__obj'>
-          {/* This is the svg component to be animated passed in from state */}
-          {<animationObj.obj />}
+					{/* This is the svg component to be animated passed in from state */}
+					{<animationObj.obj />}
 				</div>
 			</div>
 		</div>

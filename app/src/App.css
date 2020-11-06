@@ -150,7 +150,7 @@ select:focus {
 .editor__form--controls label > .input__num {
 	position: absolute;
 	right: 0;
-	width: 60px;
+	min-width: 150px;
 	height: 100%;
 }
 
@@ -184,13 +184,6 @@ select:focus {
   width: 100%;
 }
 
-.editor__form--controls .form__button {
-	display: flex;
-  width: 100%;
-  margin-top: 4px;
-	justify-content: center;
-}
-
 .editor__preview {
 	display: flex;
 	align-items: center;
@@ -199,6 +192,27 @@ select:focus {
 	height: 100%;
   /* background-color: var(--main-bg-two); */
   /* background-color: #d752a8; */
+}
+
+.editor__preview--controls {
+  position: absolute;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  top: 0;
+  right: 0;
+  margin: 40px;
+}
+
+.editor__preview button {
+  border: 1px solid var(--main-bg-one);
+  color: var(--main-bg-one);
+}
+
+.editor__preview button:hover {
+  background-color: var(--main-bg-one);
+  color: var(--main-highlight-one);
+  border: 1px solid var(--main-highlight-one);
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
