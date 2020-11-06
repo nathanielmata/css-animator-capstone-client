@@ -50,7 +50,14 @@ function AnimationControls() {
   };
   
   const handleSave = (e) => {
-    // document.querySelector('#editor__form--controls').for
+    const data = {};
+
+    let formData = new FormData(document.querySelector('#editor__form--controls'));
+    for(const [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+    
+    console.log(data);
   }
 
 	const handleClick = (e) => {
@@ -236,7 +243,7 @@ function AnimationControls() {
 			>
 				<div className='editor__preview--controls'>
 					<button>DELETE</button>
-					<button>SAVE</button>
+					<button onClick={(e) => handleSave(e)}>SAVE</button>
 				</div>
 
 				<div id='animation__obj' className='animation__obj'>
