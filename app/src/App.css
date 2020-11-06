@@ -105,6 +105,22 @@ select:focus {
 	background-color: var(--main-bg-one);
 }
 
+.editor__title-label {
+  margin: 0;
+  font-weight: 400;
+}
+
+.editor__form--title input {
+  margin-bottom: 40px;
+  background: transparent;
+  border-bottom: 1px solid var(--main-highlight-one);
+  width: 100%;
+  color: var(--main-highlight-one);
+  text-align: left;
+  font-size: 20px;
+  padding-left: 0;
+}
+
 .editor__form--controls {
 	width: 100%;
 	padding: 40px;
@@ -161,9 +177,17 @@ select:focus {
 	direction: rtl;
 }
 
-.editor__form--controls .form__submit {
+.editor__form--buttons {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4px;
+  width: 100%;
+}
+
+.editor__form--controls .form__button {
 	display: flex;
-	width: 100%;
+  width: 100%;
+  margin-top: 4px;
 	justify-content: center;
 }
 
@@ -173,7 +197,8 @@ select:focus {
 	justify-content: center;
 	width: 100%;
 	height: 100%;
-	background-color: var(--main-bg-two);
+  /* background-color: var(--main-bg-two); */
+  /* background-color: #d752a8; */
 }
 
 /* @media (prefers-reduced-motion: no-preference) {

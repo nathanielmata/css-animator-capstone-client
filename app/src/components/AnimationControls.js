@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Square } from './SvgObjects';
+import svgObjs from './SvgObjects';
 
 function AnimationControls() {
-	// const [animation, setAnimation] = useState('');
-	const [animation, setAnimation] = useState({});
+  const [animation, setAnimation] = useState({});
+  const [animationObj, setAnimationObj] = useState({
+    obj: svgObjs.hotdog.obj,
+    bg: svgObjs.hotdog.bg
+  });
 
 	const clearCss = () => {
 		document.querySelector('#animation__obj').style.animation = '';
@@ -78,7 +81,17 @@ function AnimationControls() {
 					onSubmit={(e) => handleClick(e)}
 				>
           
+          <div className="editor__form--title">
+              <h5 className="editor__title-label">TITLE</h5>
+              <input
+                className="editor__title-input"
+                title="Untitled"
+                type="text"
+              />
+            </div>
+
           <div className="editor__form--controls-inner">
+
             <div className="editor__form--left">
               <label for='delay'>
                 <div className="label__title">Delay</div>
@@ -141,7 +154,11 @@ function AnimationControls() {
 
           </div>
 
-					<button type='submit' className="form__submit">RUN</button>
+          <div className="editor__form--buttons">
+            <button className="form__button">PAUSE</button>
+            <button className="form__button">STOP</button>
+            <button type='submit' className="form__button form__submit">PLAY</button>
+          </div>
 
 					{/* <div>{animation}</div> */}
 				</form>
@@ -151,9 +168,10 @@ function AnimationControls() {
         <button onClick={handleSubmit}>Save</button> */}
 			</div>
 
-			<div id='editor__preview' className='editor__preview'>
+			<div id='editor__preview' className='editor__preview' style={{backgroundColor: animationObj.bg}}>
 				<div id='animation__obj' className='animation__obj'>
-					<Square classVariant='svg__obj' />
+          {/* This is the svg component to be animated passed in from state */}
+          {<animationObj.obj />}
 				</div>
 			</div>
 		</div>
