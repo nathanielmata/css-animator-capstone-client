@@ -122,7 +122,7 @@ function AnimationControls() {
 
 					<div className='editor__form--controls-inner'>
 						<div className='editor__form--left'>
-							<label for='delay'>
+							<label htmlFor='delay'>
 								<div className='label__title'>Delay</div>
 								<input
 									type='number'
@@ -173,8 +173,8 @@ function AnimationControls() {
                     defaultValue={direction}
                     onChange={(e) => handleDirectionChange(e)}
 									>
-										<option value='normal'>normal</option>
-										<option value='reverse' selected>reverse</option>
+										<option defaultValue='normal'>normal</option>
+										<option value='reverse'>reverse</option>
 										<option value='alternate'>alternate</option>
 										<option value='alternate-reverse'>alternate-reverse</option>
 									</select>
@@ -191,7 +191,7 @@ function AnimationControls() {
                     defaultValue={timing}
                     onChange={(e) => handleTimingChange(e)}
 									>
-										<option value='ease'>ease</option>
+										<option defaultValue='ease'>ease</option>
 										<option value='linear'>linear</option>
 										<option value='ease-in'>ease-in</option>
 										<option value='ease-out'>ease-out</option>
@@ -210,9 +210,9 @@ function AnimationControls() {
                     defaultValue={fill}
                     onChange={(e) => handleFillChange(e)}
 									>
-										<option value='forwards'>forwards</option>
+										<option defaultValue='forwards'>forwards</option>
 										<option value='backwards'>backwards</option>
-										<option value='both' selected='selected'>both</option>
+										<option value='both'>both</option>
 										<option value='none'>none</option>
 									</select>
 								</div>
