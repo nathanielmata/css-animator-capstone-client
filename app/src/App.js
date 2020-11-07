@@ -1,39 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router-dom'
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+import LandingPage from "./routes/LandingPage";
+import Header from "./components/Header/Header";
+import LoginPage from "./routes/LoginPage";
+import Dashboard from "./components/Dashboard";
+import NotFound from "./components/NotFound";
+import Registration from './components/RegistrationPage/RegistrationPage'
 import './App.css';
 
 class App extends React.Component {
+  state = { hasError: false }
 
-  handlePlay = (e) => {
-    document.querySelector('.App-logo').classList.remove('slide-top');
-    void document.querySelector('.App-logo').offsetWidth;
 
-    document.querySelector('.App-logo').classList.add('slide-top');
-  }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <button onClick={(e) => this.handlePlay(e)}>play</button>
-  
-          <img src={logo} className="App-logo slide-top" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          
-        </header>
+        <Header />
+        <main id="main__container" className="main__container">
+          <Switch>
+
+            <Route exact path="/" render={(props) =>
+              <PublicRoute
+                {...props}
+                component={LandingPage} />
+            } />
+
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={Registration} />
+
+            <Route exact path="/dashboard" render={(props) =>
+              <PrivateRoute
+                {...props}
+                component={Dashboard} />
+            } />
+            <Route component={NotFound} />
+
+          </Switch>
+        </main>
+        {/* <footer>Contact details</footer> */}
       </div>
     );
   }
 }
+
 
 export default App;
