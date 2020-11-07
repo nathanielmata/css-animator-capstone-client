@@ -2,26 +2,32 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-import LandingPage from "./routes/LandingPage";
 import Header from "./components/Header/Header";
-import LoginPage from "./routes/LoginPage";
 import Dashboard from "./components/Dashboard";
 import NotFound from "./components/NotFound";
-import Registration from './components/RegistrationPage/RegistrationPage'
+import RegistrationPage from './routes/RegistrationPage/RegistrationPage'
+import Menu from "./components/menu/Menu";
+import LandingPage from "./routes/LandingPage/LandingPage";
+import LoginPage from "./routes/LoginPage/LoginPage"
 import './App.css';
+
 
 class App extends React.Component {
   state = { hasError: false }
 
-
-
+  static getDerivedStateFromError(error) {
+    console.error(error)
+    return { hasError: true }
+  }
   render() {
     return (
       <div className="App">
-        <Header />
+        <header className='App_header'>
+          <Header />
+        </header>
         <main id="main__container" className="main__container">
+          {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
           <Switch>
-
             <Route exact path="/" render={(props) =>
               <PublicRoute
                 {...props}
@@ -29,7 +35,7 @@ class App extends React.Component {
             } />
 
             <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={Registration} />
+            <Route path="/register" component={RegistrationPage} />
 
             <Route exact path="/dashboard" render={(props) =>
               <PrivateRoute
@@ -37,7 +43,7 @@ class App extends React.Component {
                 component={Dashboard} />
             } />
             <Route component={NotFound} />
-
+            <Menu />
           </Switch>
         </main>
         {/* <footer>Contact details</footer> */}
