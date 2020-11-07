@@ -4,6 +4,7 @@ import "./App.css";
 import Menu from "./components/menu/Menu";
 import LandingPage from "./routes/landingPage/LandingPage";
 import LoginPage from "./routes/loginPage/LoginPage"
+import ProfilePage from './routes/ProfilePage/ProfilePage'
 
 class App extends React.Component {
   // handlePlay = (e) => {
@@ -17,7 +18,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <LoginPage></LoginPage>
+        <ProfilePage></ProfilePage>
       </div>
     );
   }

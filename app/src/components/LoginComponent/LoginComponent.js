@@ -14,7 +14,7 @@ const LoginComponent = props =>{
           <input className="user-input" />
           <label className="login-input-label">Password</label>
           <input className="user-input" />
-          <CustomButton color={colors.primaryColor} styles={{marginTop: 50}}>Login</CustomButton>
+          <CustomButton color={colors.purple} styles={{marginTop: 50}}>Login</CustomButton>
         </form>
       </div>
     )
