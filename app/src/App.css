@@ -41,7 +41,7 @@ button {
 	text-decoration: none;
 	letter-spacing: normal;
 	cursor: pointer;
-	padding: 10px 20px;
+	padding: 10px;
 	font-weight: 600;
 	font-size: 13px;
 	border: 1px solid var(--main-highlight-one);
@@ -98,27 +98,27 @@ select:focus {
 .editor__controls {
 	display: flex;
 	flex-direction: row;
+	flex-grow: 1;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 100%;
 	background-color: var(--main-bg-one);
 }
 
 .editor__title-label {
-  margin: 0;
-  font-weight: 400;
+	margin: 0;
+	font-weight: 400;
 }
 
 .editor__form--title input {
-  margin-bottom: 40px;
-  background: transparent;
-  border-bottom: 1px solid var(--main-highlight-one);
-  width: 100%;
-  color: var(--main-highlight-one);
-  text-align: left;
-  font-size: 20px;
-  padding-left: 0;
+	margin-bottom: 40px;
+	background: transparent;
+	border-bottom: 1px solid var(--main-highlight-one);
+	width: 100%;
+	color: var(--main-highlight-one);
+	text-align: left;
+	font-size: 20px;
+	padding-left: 0;
 }
 
 .editor__form--controls {
@@ -178,41 +178,54 @@ select:focus {
 }
 
 .editor__form--buttons {
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 4px;
-  width: 100%;
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 4px;
+	width: 100%;
 }
 
 .editor__preview {
+	position: relative;
 	display: flex;
+	flex-grow: 2;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 100%;
-  /* background-color: var(--main-bg-two); */
-  /* background-color: #d752a8; */
+}
+
+.animation__obj {
+	display: flex;
+	flex-direction: row;
+	width: 6em;
+	height: auto;
+}
+
+.animation__obj svg {
+	width: auto;
+	height: auto;
 }
 
 .editor__preview--controls {
-  position: absolute;
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 8px;
-  top: 0;
-  right: 0;
-  margin: 40px;
+	position: absolute;
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 8px;
+	bottom: -20px;
+	right: 0;
+	left: 0;
+	margin: 0 40px;
 }
 
 .editor__preview button {
-  border: 1px solid var(--main-bg-one);
-  color: var(--main-bg-one);
+	background-color: var(--main-bg-two);
+	border: 1px solid var(--main-bg-one);
+	color: var(--main-bg-one);
 }
 
 .editor__preview button:hover {
-  background-color: var(--main-bg-one);
-  color: var(--main-highlight-one);
-  border: 1px solid var(--main-highlight-one);
+	background-color: var(--main-bg-one);
+	color: var(--main-highlight-one);
+	border: 1px solid var(--main-highlight-one);
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
@@ -227,6 +240,12 @@ select:focus {
 	}
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@media screen and (min-width: 360px) {
+	.animation__obj {
+		width: 10em;
 	}
 }
 
@@ -245,6 +264,28 @@ select:focus {
 
 	.editor__preview {
 		width: 60%;
+	}
+
+	.editor__preview--controls {
+		top: 0;
+		bottom: unset;
+		right: 0;
+		left: unset;
+		margin: 40px;
+	}
+
+	.editor__preview button {
+		background-color: unset;
+	}
+
+	.animation__obj {
+		width: unset;
+		height: unset;
+	}
+
+	.animation__obj svg {
+		width: unset;
+		height: unset;
 	}
 }
 
