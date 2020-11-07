@@ -1,9 +1,10 @@
 import React from 'react'
 import './loginComponent.css'
-import CustomButton from '../customButton/CustomButton'
-import colors from '../../constants/colors'
+import CustomButton from '../src/components/customButton/CustomButton'
+import colors from '../src/constants/colors'
 
-const LoginComponent = props =>{
+const LoginComponent = props => {
+  
     return(
         <div className="header-form-container">
         <h1 className="title">Animation Station</h1>

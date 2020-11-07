@@ -1,27 +1,56 @@
-import React from "react";
-import "./App.css";
-
+import React from 'react';
+import { Route, Switch } from 'react-router-dom'
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+import Header from "./components/Header/Header";
+import Dashboard from "./components/Dashboard";
+import NotFound from "./components/NotFound";
+import RegistrationPage from './routes/RegistrationPage/RegistrationPage'
 import Menu from "./components/menu/Menu";
-import LandingPage from "./routes/landingPage/LandingPage";
-import LoginPage from "./routes/loginPage/LoginPage"
-import ProfilePage from './routes/ProfilePage/ProfilePage'
+import LandingPage from "./routes/LandingPage/LandingPage";
+import LoginPage from "./routes/LoginPage/LoginPage"
+import './App.css';
+
 
 class App extends React.Component {
-  // handlePlay = (e) => {
-  //   document.querySelector('.App-logo').classList.remove('slide-top');
-  //   void document.querySelector('.App-logo').offsetWidth;
+  state = { hasError: false }
 
-  //   document.querySelector('.App-logo').classList.add('slide-top');
-  // }
-
+  static getDerivedStateFromError(error) {
+    console.error(error)
+    return { hasError: true }
+  }
   render() {
     return (
       <div className="App">
-        <Menu />
-        <ProfilePage></ProfilePage>
+        <header className='App_header'>
+          <Header />
+        </header>
+        <main id="main__container" className="main__container">
+          {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
+          <Switch>
+            <Route exact path="/" render={(props) =>
+              <PublicRoute
+                {...props}
+                component={LandingPage} />
+            } />
+
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegistrationPage} />
+
+            <Route exact path="/dashboard" render={(props) =>
+              <PrivateRoute
+                {...props}
+                component={Dashboard} />
+            } />
+            <Route component={NotFound} />
+            <Menu />
+          </Switch>
+        </main>
+        {/* <footer>Contact details</footer> */}
       </div>
     );
   }
 }
+
 
 export default App;

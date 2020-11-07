@@ -1,7 +1,7 @@
 import React from "react";
 import "./registerComponent.css";
-import CustomButton from "../customButton/CustomButton";
-import colors from "../../constants/colors";
+import CustomButton from "../src/components/customButton/CustomButton";
+import colors from "../src/constants/colors";
 
 const RegisterComponent = (props) => {
   return (

@@ -10,7 +10,7 @@ export default class RegistrationForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        const { full_name, user_name, email,password } = ev.target
+        const { full_name, user_name, email, password } = ev.target
 
         /* console.log('registration form submitted')
         console.log({ full_name, nick_name, user_name, password }) */

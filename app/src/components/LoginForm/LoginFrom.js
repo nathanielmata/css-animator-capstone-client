@@ -8,7 +8,7 @@ export default class LoginForm extends Component {
 
 	state = { error: null };
 
-	/* handleSubmitBasicAuth = ev => {
+	 /* handleSubmitBasicAuth = ev => {
         ev.preventDefault()
         const { email, password } = ev.target
 
@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
         email.value = ''
         password.value = ''
         this.props.onLoginSuccess()
-    } */
+    }  */
 	handleSubmitJwtAuth = (ev) => {
 		ev.preventDefault();
 		this.setState({ error: null });
