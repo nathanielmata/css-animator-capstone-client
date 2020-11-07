@@ -35,7 +35,8 @@ input:focus {
 }
 
 button {
-	appearance: button;
+  appearance: button;
+  outline: none;
 	border: none;
 	border-radius: 0;
 	text-decoration: none;
@@ -49,10 +50,6 @@ button {
 	background-color: transparent;
 }
 
-button:hover {
-	color: var(--main-bg-one);
-	background-color: var(--main-highlight-one);
-}
 
 label {
 	display: block;
@@ -222,12 +219,6 @@ select:focus {
 	color: var(--main-bg-one);
 }
 
-.editor__preview button:hover {
-	background-color: var(--main-bg-one);
-	color: var(--main-highlight-one);
-	border: 1px solid var(--main-highlight-one);
-}
-
 /* @media (prefers-reduced-motion: no-preference) {
   .animation__obj {
     animation: object-spin infinite 20s linear;
@@ -241,6 +232,19 @@ select:focus {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+@media (hover: hover) {
+  button:hover {
+    color: var(--main-bg-one);
+    background-color: var(--main-highlight-one);
+  }
+
+  .editor__preview button:hover {
+    background-color: var(--main-bg-one);
+    color: var(--main-highlight-one);
+    border: 1px solid var(--main-highlight-one);
+  }
 }
 
 @media screen and (min-width: 360px) {
