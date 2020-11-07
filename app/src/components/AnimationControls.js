@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import svgObjs from './SvgObjects';
 
 function AnimationControls() {
-  const [title, setTitle] = useState('Untitled');
-  const [delay, setDelay] = useState('500');
-  const [duration, setDuration] = useState('2000');
-  const [iteration, setIteration] = useState('1');
+	const [title, setTitle] = useState('Untitled');
+	const [delay, setDelay] = useState('500');
+	const [duration, setDuration] = useState('2000');
+	const [iteration, setIteration] = useState('1');
 
-  const [direction, setDirection] = useState('normal');
-  const [timing, setTiming] = useState('ease');
-  const [fill, setFill] = useState('forwards');
+	const [direction, setDirection] = useState('normal');
+	const [timing, setTiming] = useState('ease');
+	const [fill, setFill] = useState('forwards');
 
-  const [animation, setAnimation] = useState({});
-  const [animationObj, setAnimationObj] = useState({
-    obj: svgObjs.hotdog.obj,
-    bg: svgObjs.hotdog.bg
-  });
+	const [animation, setAnimation] = useState({});
+	const [animationObj, setAnimationObj] = useState({
+		obj: svgObjs.hotdog.obj,
+		bg: svgObjs.hotdog.bg,
+	});
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleDelayChange = (e) => setDelay(e.target.value);
-  const handleDurationChange = (e) => setDuration(e.target.value);
-  const handleIterationChange = (e) => setIteration(e.target.value);
+	const handleTitleChange = (e) => setTitle(e.target.value);
+	const handleDelayChange = (e) => setDelay(e.target.value);
+	const handleDurationChange = (e) => setDuration(e.target.value);
+	const handleIterationChange = (e) => setIteration(e.target.value);
 
-  const handleDirectionChange = (e) => setDirection(e.target.value);
-  const handleTimingChange = (e) => setTiming(e.target.value);
-  const handleFillChange = (e) => setFill(e.target.value);
+	const handleDirectionChange = (e) => setDirection(e.target.value);
+	const handleTimingChange = (e) => setTiming(e.target.value);
+	const handleFillChange = (e) => setFill(e.target.value);
 
 	const clearCss = () => {
 		document.querySelector('#animation__obj').style.animation = '';
@@ -47,18 +47,20 @@ function AnimationControls() {
 		void document.querySelector('#animation__obj').offsetWidth;
 
 		document.querySelector('#animation__obj').style.animation = css;
-  };
-  
-  const handleSave = (e) => {
-    const data = {};
+	};
 
-    let formData = new FormData(document.querySelector('#editor__form--controls'));
-    for(const [key, value] of formData.entries()) {
-      data[key] = value;
-    }
-    
-    console.log(data);
-  }
+	const handleSave = (e) => {
+		const data = {};
+
+		let formData = new FormData(
+			document.querySelector('#editor__form--controls')
+		);
+		for (const [key, value] of formData.entries()) {
+			data[key] = value;
+		}
+
+		console.log(data);
+	};
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -107,9 +109,8 @@ function AnimationControls() {
 				<form
 					id='editor__form--controls'
 					className='editor__form--controls'
-					onSubmit={(e) => handleClick(e)}
-				>
-					<div className='editor__form--title'>
+					onSubmit={(e) => handleClick(e)}>
+					{/* <div className='editor__form--title'>
 						<h5 className='editor__title-label'>TITLE</h5>
 						<input
 							className='editor__title-input'
@@ -118,7 +119,7 @@ function AnimationControls() {
 							onChange={(e) => handleTitleChange(e)}
 							type='text'
 						/>
-					</div>
+					</div> */}
 
 					<div className='editor__form--controls-inner'>
 						<div className='editor__form--left'>
@@ -129,7 +130,7 @@ function AnimationControls() {
 									id='delay'
 									name='delay'
 									className='input__num'
-                  min='0'
+									min='0'
 									defaultValue={delay}
 									onChange={(e) => handleDelayChange(e)}
 								/>
@@ -142,12 +143,11 @@ function AnimationControls() {
 									id='duration'
 									name='duration'
 									className='input__num'
-                  min='0'
+									min='0'
 									defaultValue={duration}
-                  onChange={(e) => handleDurationChange(e)}
+									onChange={(e) => handleDurationChange(e)}
 								/>
 							</label>
-
 							<label htmlFor='iteration'>
 								<div className='label__title'>Iteration</div>
 								<input
@@ -155,9 +155,9 @@ function AnimationControls() {
 									id='iteration'
 									name='iteration'
 									className='input__num'
-                  min='0'
+									min='0'
 									defaultValue={iteration}
-                  onChange={(e) => handleIterationChange(e)}
+									onChange={(e) => handleIterationChange(e)}
 								/>
 							</label>
 						</div>
@@ -170,9 +170,8 @@ function AnimationControls() {
 										name='direction'
 										id='direction'
 										className='editor__form--select'
-                    defaultValue={direction}
-                    onChange={(e) => handleDirectionChange(e)}
-									>
+										defaultValue={direction}
+										onChange={(e) => handleDirectionChange(e)}>
 										<option defaultValue='normal'>normal</option>
 										<option value='reverse'>reverse</option>
 										<option value='alternate'>alternate</option>
@@ -180,7 +179,6 @@ function AnimationControls() {
 									</select>
 								</div>
 							</label>
-
 							<label htmlFor='timing'>
 								<div className='label__title'>Timing Function</div>
 								<div className='select__wrapper'>
@@ -188,9 +186,8 @@ function AnimationControls() {
 										name='timing'
 										id='timing'
 										className='editor__form--select'
-                    defaultValue={timing}
-                    onChange={(e) => handleTimingChange(e)}
-									>
+										defaultValue={timing}
+										onChange={(e) => handleTimingChange(e)}>
 										<option defaultValue='ease'>ease</option>
 										<option value='linear'>linear</option>
 										<option value='ease-in'>ease-in</option>
@@ -207,9 +204,8 @@ function AnimationControls() {
 										name='fill'
 										id='fill'
 										className='editor__form--select'
-                    defaultValue={fill}
-                    onChange={(e) => handleFillChange(e)}
-									>
+										defaultValue={fill}
+										onChange={(e) => handleFillChange(e)}>
 										<option defaultValue='forwards'>forwards</option>
 										<option value='backwards'>backwards</option>
 										<option value='both'>both</option>
@@ -239,8 +235,7 @@ function AnimationControls() {
 			<div
 				id='editor__preview'
 				className='editor__preview'
-				style={{ backgroundColor: animationObj.bg }}
-			>
+				style={{ backgroundColor: animationObj.bg }}>
 				<div className='editor__preview--controls'>
 					<button>DELETE</button>
 					<button onClick={(e) => handleSave(e)}>SAVE</button>
