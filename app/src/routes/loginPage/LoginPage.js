@@ -1,7 +1,7 @@
 import React, { Component}from "react";
 import "./loginPage.css";
 import LoginForm from "../../components/LoginForm/LoginFrom";
-
+import Menu from '../../components/menu/Menu'
 
 export default class LoginPage extends Component {
   static defaultProps = {
@@ -20,7 +20,11 @@ export default class LoginPage extends Component {
   render() {
     return (
       <section className='LoginPage'>
-        <h2>Login</h2>
+        <Menu />
+        <h2>Welcome Back!</h2>
+        <h3>
+          Sign in to get back to work.
+        </h3>
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
         />

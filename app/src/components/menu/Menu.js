@@ -1,7 +1,44 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./menu.css";
+import TokenService from "../../services/token-service";
 
 const Menu = (props) => {
+  const handleLogoutClick = () => {
+    TokenService.clearAuthToken();
+  };
+
+  const renderNotAuthOptions = (props) => {
+    return (
+      <ul>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+      </ul>
+    );
+  };
+
+  const renderAuthOptions = () => {
+    return (
+      <ul>
+        <li>
+          <Link to="/login">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/register">Editor</Link>
+        </li>
+        <li>
+          <Link onClick={() => handleLogoutClick()} to="/">
+            Logout
+          </Link>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <div className="menu-wrap">
       <input type="checkbox" className="toggler" />
@@ -11,12 +48,9 @@ const Menu = (props) => {
       <div className="menu">
         <div>
           <div>
-            <ul>
-              <li>Home</li>
-              <li>Editor</li>
-              <li>Profile</li>
-              <li>Login</li>
-            </ul>
+            {TokenService.hasAuthToken()
+              ? renderAuthOptions()
+              : renderNotAuthOptions()}
           </div>
         </div>
       </div>

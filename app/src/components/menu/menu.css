@@ -22,7 +22,7 @@
     width: 60px;
     height: 60px;
     padding: 1rem;
-    background: var(--primary-color);
+    background: #fdb06a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,7 +101,7 @@
 }
 
 .menu-wrap .menu > div{
-    background: var(--overlay-color);
+    background: #45274ac0;
     border-radius: 50%;
     width: 200vw;
     height: 200vh;
