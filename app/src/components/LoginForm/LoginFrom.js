@@ -3,7 +3,7 @@ import AuthApiService from "../../services/auth-api-service";
 import "./loginForm.css";
 import { Link } from "react-router-dom";
 import Menu from '../../components/menu/Menu'
-
+import TokenService from '../../services/token-service'
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {},
@@ -11,7 +11,7 @@ export default class LoginForm extends Component {
 
   state = { error: null };
 
-  /* handleSubmitBasicAuth = ev => {
+   handleSubmitBasicAuth = ev => {
         ev.preventDefault()
         const { email, password } = ev.target
 
@@ -23,7 +23,7 @@ export default class LoginForm extends Component {
         email.value = ''
         password.value = ''
         this.props.onLoginSuccess()
-    }  */
+    }  
   handleSubmitJwtAuth = (ev) => {
     ev.preventDefault();
     this.setState({ error: null });
@@ -35,9 +35,11 @@ export default class LoginForm extends Component {
     })
       .then((res) => {
         email.value = "";
-        password.value = "";
-        /* TokenService.saveAuthToken(res.authToken); */
+				password.value = "";
+				this.context.setUser(email.value)
+         TokenService.saveAuthToken(res.authToken); 
         this.props.onLoginSuccess();
+        
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -48,7 +50,7 @@ export default class LoginForm extends Component {
     const { error } = this.state;
     return (
       <div>
-        <h1></h1>
+        <h1> Login</h1>
         <form
           className="form__login"
           //onSubmit={this.handleSubmitBasicAuth}

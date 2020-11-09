@@ -69,6 +69,21 @@ export default class RegistrationForm extends Component {
             id="RegistrationForm__user_name"
           ></input>
         </div>
+        <div className="email">
+          <label
+            className="login-input-label"
+            htmlFor="RegistrationForm__email"
+          >
+            Email
+            <input
+              className="user-input"
+              name="email"
+              type="email"
+              required
+              id="RegistrationForm__email"
+            ></input>
+          </label>
+        </div>
         <div className="password-reg">
           <label
             className="login-input-label"
@@ -82,21 +97,6 @@ export default class RegistrationForm extends Component {
             type="password"
             required
             id="RegistrationForm__password"
-          ></input>
-        </div>
-        <div className="email">
-          <label
-            className="login-input-label"
-            htmlFor="RegistrationForm__email"
-          >
-            Email
-          </label>
-          <input
-            className="user-input"
-            name="email"
-            type="email"
-            required
-            id="RegistrationForm__email"
           ></input>
         </div>
         <button className="btn" type="submit">Register</button>
