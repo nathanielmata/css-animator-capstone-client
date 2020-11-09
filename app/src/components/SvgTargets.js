@@ -1,32 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-const SvgIcon = (props) => (
-  <svg 
-    version="1.1"
-    viewBox={props.viewBox}
-    width={props.width}
-    height={props.height}
-    fill={props.fill}
-    aria-labelledby={props.ariaLabel ?? ""}
-    className={
-      props.classVariant[0]
-      ? props.classVariant.filter(cv => cv && cv).join(" ").concat(" svg__obj")
-      : "svg__obj"
-      }
-    role="img"
-  >
-    <title id={props.ariaLabel}>{props.title}</title>
-    {props.children}
-  </svg>
-);
-
-SvgIcon.propTypes = {
-  classVariant: PropTypes.arrayOf(PropTypes.string)
-};
+import SvgElement from './SvgElement';
 
 const Square = ({classVariant}) => (
-  <SvgIcon 
+  <SvgElement 
     viewBox="0 0 100 100"
     width="240"
     height="240"
@@ -35,11 +11,11 @@ const Square = ({classVariant}) => (
     ariaLabel="square"
     classVariant={[classVariant]}>
       <rect width="100%" height="100%"/>
-  </SvgIcon>
+  </SvgElement>
 );
 
 const HotDog = ({classVariant}) => (
-  <SvgIcon 
+  <SvgElement 
     viewBox="0 0 400 128.8"
     width="240"
     height="77.3"
@@ -58,12 +34,12 @@ const HotDog = ({classVariant}) => (
       c8.1,0,16.6-5.7,25.7-11.7c10.3-6.9,20.9-14,32.9-14c12.5,0,22.4,7.2,31.2,13.6c6.9,5,13.4,9.7,19.6,9.7c11.1,0,23.1-18.7,26.8-25.8
       c1-2,3.5-2.8,5.6-1.8c2,1,2.8,3.5,1.8,5.6c-1.6,3.1-16,30.3-34.2,30.3c-8.9,0-16.5-5.5-24.5-11.3c-8.1-5.9-16.5-12-26.3-12
       c-9.4,0-19,6.4-28.3,12.6C198.7,51.3,188.7,58,178.1,58z"/>
-  </SvgIcon>
+  </SvgElement>
 );
 
-const svgObjs = {
-  square: {obj: Square, bg: "#fdb06a"},
-  hotdog: {obj: HotDog, bg: "#d752a8"}
+const svgTarget = {
+  square: {target: Square, bg: "#fdb06a"},
+  hotdog: {target: HotDog, bg: "#d752a8"},
 }
 
-export default svgObjs;
+export default svgTarget;
