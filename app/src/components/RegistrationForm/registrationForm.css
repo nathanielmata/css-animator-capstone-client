@@ -1,0 +1,10 @@
+.RegistrationForm{
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+.RegistrationForm > div {
+    text-align: left;
+    margin-top: 20px;
+}
