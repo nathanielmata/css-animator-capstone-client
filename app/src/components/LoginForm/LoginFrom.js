@@ -4,7 +4,11 @@ import "./loginForm.css";
 import { Link } from "react-router-dom";
 import Menu from '../../components/menu/Menu'
 import TokenService from '../../services/token-service'
+import UserContext from "../../context/UserContext";
+
 export default class LoginForm extends Component {
+  static contextType = UserContext
+  
   static defaultProps = {
     onLoginSuccess: () => {},
   };
@@ -34,14 +38,19 @@ export default class LoginForm extends Component {
       password: password.value,
     })
       .then((res) => {
+        console.log('hello world')
         email.value = "";
-				password.value = "";
-				this.context.setUser(email.value)
-         TokenService.saveAuthToken(res.authToken); 
+				password.value = ""; 
+        this.context.setUser(res.authToken)
+        TokenService.saveAuthToken(res.authToken); 
+        const user = TokenService.readJwtToken()
+        console.log(user)
+       this.context.setUserName(user.user_name) 
         this.props.onLoginSuccess();
         
       })
       .catch((res) => {
+        console.log(res)
         this.setState({ error: res.error });
       });
   };

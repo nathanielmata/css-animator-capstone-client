@@ -4,12 +4,15 @@ import UserInfo from "../../components/UserInfo";
 import AnimationList from "../../components/AnimationList";
 import CustomButton from '../../components/customButton/CustomButton'
 import colors from "../../constants/colors"
+import UserContext from "../../context/UserContext";
 
 class ProfilePage extends React.Component {
+  static contextType = UserContext
+  
   render() {
     return (
       <section id="profile-page">
-        <UserInfo username={"Alen Diaz"}></UserInfo>
+        <UserInfo username={`${this.context.user_name}`}></UserInfo>
         <div className='buttons-container'>
           <CustomButton styles={{width: 140, fontSize: 17}} color={colors.yellow}  >Invite</CustomButton>
           <CustomButton styles={{width: 140, fontSize: 17}} color={colors.yellow} >New Project</CustomButton>

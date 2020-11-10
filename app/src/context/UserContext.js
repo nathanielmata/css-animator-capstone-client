@@ -1,4 +1,5 @@
 import React from 'react';
+import TokenService from '../services/token-service'
 
 const UserContext = React.createContext({
   setSignIn: () => {},
@@ -7,7 +8,7 @@ const UserContext = React.createContext({
   setUserEmail: () => {},
   setUserId: () => {},
   setUser: () => {},
-  user: {},
+  user: TokenService.getAuthToken(),
   user_name: '',
   user_email:'',
   user_id: null,
@@ -50,8 +51,9 @@ export class UserProvider extends React.Component {
   setUserEmail = user_email => {
     this.setState({ user_email });
   };
-  setUser = (user_name, user_id,user_email) => {
-    this.setState({ user: { user_name, user_id ,user_email} });
+  setUser = (user) => {
+    this.setState({ user });
+    console.log(user)
   };
 
   render() {

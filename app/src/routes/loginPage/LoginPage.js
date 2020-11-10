@@ -4,6 +4,7 @@ import LoginForm from "../../components/LoginForm/LoginFrom";
 import Menu from '../../components/menu/Menu'
 
 export default class LoginPage extends Component {
+  
   static defaultProps = {
     location: {},
     history: {
@@ -15,6 +16,7 @@ export default class LoginPage extends Component {
     const { location, history } = this.props
     const destination = (location.state || {}).from || '/'
     history.push(destination)
+    
   }
 
   render() {

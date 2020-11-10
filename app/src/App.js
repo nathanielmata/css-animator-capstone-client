@@ -10,7 +10,7 @@ import Menu from './components/menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
-import UserContext from './context/UserContext';
+import UserContext,{UserProvider} from './context/UserContext';
 import TokenService from './services/token-service';
 import './App.css';
 
@@ -34,14 +34,15 @@ class App extends React.Component {
 			let user_name = decodedValue.sub;
 			let user_email = decodedValue.sub;
 
-			this.context.setUserName(user_name);
+			/* this.context.setUserName(user_name);
 			this.context.setUserId(decodedValue.user_id);
 			this.context.setUserEmail(user_email);
-			this.context.setUser(user_name, decodedValue.user_id, user_email);
+			this.context.setUser(user_name, decodedValue.user_id, user_email); */
 		}
 	}
 	render() {
-		return (
+    return (
+      <UserProvider>
 			<div className='App'>
 				<header className='App_header'>
 					<Header />
@@ -88,7 +89,8 @@ class App extends React.Component {
 					</Switch>
 				</main>
         {/*  <footer>&#169; animation-station 2020</footer>  */}
-			</div>
+        </div>
+        </UserProvider>
 		);
 	}
 }
