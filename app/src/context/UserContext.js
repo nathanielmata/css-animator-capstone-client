@@ -10,7 +10,8 @@ const UserContext = React.createContext({
   setUser: () => {},
   user: TokenService.getAuthToken(),
   user_name: '',
-  user_email:'',
+  user_email: '',
+  full_name:'',
   user_id: null,
   error: null,
   setError: () => {},
@@ -51,6 +52,9 @@ export class UserProvider extends React.Component {
   setUserEmail = user_email => {
     this.setState({ user_email });
   };
+  setUserFullName = full_name => {
+    this.setState({full_name})
+  }
   setUser = (user) => {
     this.setState({ user });
     console.log(user)
@@ -70,6 +74,8 @@ export class UserProvider extends React.Component {
       user_email: this.state.user_email,
       setUserId: this.setUserId,
       user_id: this.state.user_id,
+      setUserFullName: this.setUserFullName,
+      full_name: this.state.full_name,
       setUser: this.setUser,
       user: this.state.user,
     };

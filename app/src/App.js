@@ -10,8 +10,7 @@ import Menu from './components/menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
-import UserContext,{UserProvider} from './context/UserContext';
-import TokenService from './services/token-service';
+import UserContext, { UserProvider } from './context/UserContext';
 import './App.css';
 
 class App extends React.Component {
@@ -26,55 +25,42 @@ class App extends React.Component {
 		console.error(error);
 		return { hasError: true };
 	}
-	componentDidMount() {
-		const jwt = TokenService.getAuthToken();
-		if (jwt) {
-			let base64Url = jwt.split('.')[1];
-			let decodedValue = JSON.parse(window.atob(base64Url));
-			let user_name = decodedValue.sub;
-			let user_email = decodedValue.sub;
 
-			/* this.context.setUserName(user_name);
-			this.context.setUserId(decodedValue.user_id);
-			this.context.setUserEmail(user_email);
-			this.context.setUser(user_name, decodedValue.user_id, user_email); */
-		}
-	}
 	render() {
-    return (
-      <UserProvider>
-			<div className='App'>
-				<header className='App_header'>
-					<Header />
-				</header>
-				{/* <Menu/> */}
-				<main id='main__container' className='main__container'>
-					{this.state.hasError && (
-						<p className='red'>There was an error! Oh no!</p>
-					)}
-					<Switch>
-						<PublicRoute exact path={'/login'} component={LoginPage} />
-						<PublicRoute
-							exact
-							path={'/register'}
-							component={RegistrationPage}
-						/>
-						<Route exact path={'/'} component={LandingPage} />
-						{/* <Route
+		return (
+			<UserProvider>
+				<div className='App'>
+					<header className='App_header'>
+						<Header />
+					</header>
+					<Menu />
+					<main id='main__container' className='main__container'>
+						{this.state.hasError && (
+							<p className='red'>There was an error! Oh no!</p>
+						)}
+						<Switch>
+							<PublicRoute exact path={'/login'} component={LoginPage} />
+							<PublicRoute
+								exact
+								path={'/register'}
+								component={RegistrationPage}
+							/>
+							<Route exact path={'/'} component={LandingPage} />
+							{/* <Route
               exact
               path="/"
               render={(props) => (
                 <PublicRoute {...props} component={LandingPage} />
               )} /> */}
 
-						<Route
-							exact
-							path='/dashboard'
-							render={(props) => (
-								<PrivateRoute {...props} component={ProfilePage} />
-							)}
-						/>
-            {/* <PrivateRoute
+							<Route
+								exact
+								path='/dashboard'
+								render={(props) => (
+									<PrivateRoute {...props} component={ProfilePage} />
+								)}
+							/>
+							{/* <PrivateRoute
 							exact
 							path={'/:user_name/animationss'}
 							component={UserAnimationsPage}
@@ -84,13 +70,13 @@ class App extends React.Component {
 							component={EditorPage}
             /> */}
 
-						<Route component={NotFound} />
-						<Menu />
-					</Switch>
-				</main>
-        {/*  <footer>&#169; animation-station 2020</footer>  */}
-        </div>
-        </UserProvider>
+							<Route component={NotFound} />
+							<Menu />
+						</Switch>
+					</main>
+					{/*  <footer>&#169; animation-station 2020</footer>  */}
+				</div>
+			</UserProvider>
 		);
 	}
 }

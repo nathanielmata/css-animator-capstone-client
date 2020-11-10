@@ -5,18 +5,17 @@ import './Header.css';
 import UserContext from '../../context/UserContext';
 
 export default class Header extends Component {
-  
-  static contextType = UserContext;
+	static contextType = UserContext;
 	handleLogoutClick = () => {
 		TokenService.clearAuthToken();
 		this.context.setUser(null);
-    console.log(this.context)
 	};
 
 	renderLogoutLink() {
 		return (
 			<div className='Header__logged-in'>
-				 <Link to={`/${this.context.user_name}`}>{`${this.context.user_name}`}</Link> 
+				<Link to={`/${this.context.user_name}`}>{`${this.context
+					.user_name}`}</Link>
 				<Link onClick={this.handleLogoutClick} to='/'>
 					Logout
 				</Link>
@@ -41,11 +40,7 @@ export default class Header extends Component {
 				</h1>
 				{/*  <span className="Header__tagline--wide">Animation Station.</span> */}
 				<Link to='/editor'>New Animation</Link>
-				{this.context.user ? (
-					this.renderLogoutLink()
-				) : (
-					this.renderLoginLink()
-				)}
+				{this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
 
 				<span className='Header__tagline--narrow'>
 					Lets be creative, make some animation.
