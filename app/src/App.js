@@ -59,8 +59,8 @@ class App extends React.Component {
 								render={(props) => (
 									<PrivateRoute {...props} component={Dashboard} />
 								)}
-              />
-              <Route
+							/>
+							<Route
 								exact
 								path='/profile'
 								render={(props) => (

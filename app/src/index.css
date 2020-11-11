@@ -11,18 +11,20 @@
   --select-focus: var(--main-highlight-two);
   --select-arrow: var(--select-border);
 }
+
 html{
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   font-family: "Roboto";
 }
+
+*, *:before, *:after {
+  s
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -31,6 +33,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
