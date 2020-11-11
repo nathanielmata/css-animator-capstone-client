@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import svgTargets from './SvgTargets';
 import svgIcons from './SvgIcons';
+import './AnimationControls.css';
 
 function AnimationControls() {
 	const [title, setTitle] = useState('Untitled');
@@ -36,26 +37,24 @@ function AnimationControls() {
 		document.querySelector('#animation__target').style.animation = str;
 	};
 
-	const handleStop = (e) => {
-		document
-			.querySelector('#animation__target')
-			.classList.remove('animation__target');
-	};
+	// const handleStop = (e) => {
+	// 	document
+	// 		.querySelector('#animation__target')
+	// 		.classList.remove('animation__target');
+	// };
 
-	const handleStart = (e) => {
-		let css = animation + 'target-spin';
-		document.querySelector('#animation__target').style.animation = '';
-		void document.querySelector('#animation__target').offsetWidth;
+	// const handleStart = (e) => {
+	// 	let css = animation + 'target-spin';
+	// 	document.querySelector('#animation__target').style.animation = '';
+	// 	void document.querySelector('#animation__target').offsetWidth;
 
-		document.querySelector('#animation__target').style.animation = css;
-	};
+	// 	document.querySelector('#animation__target').style.animation = css;
+	// };
 
 	const handleSave = (e) => {
 		const data = {};
 
-		let formData = new FormData(
-			document.querySelector('#editor__form')
-		);
+		let formData = new FormData(document.querySelector('#editor__form'));
 		for (const [key, value] of formData.entries()) {
 			data[key] = value;
 		}
@@ -76,7 +75,6 @@ function AnimationControls() {
 			fill,
 			iteration,
 		} = e.target;
-
 		let str = [
 			duration.value + 'ms',
 			timing.value,
@@ -100,9 +98,9 @@ function AnimationControls() {
 		setCss(str + 'target-spin');
 	};
 
-	const handleSubmit = () => {
-		console.log(animation);
-	};
+	// const handleSubmit = () => {
+	// 	console.log(animation);
+	// };
 
 	return (
 		<div className='editor__container'>
@@ -110,15 +108,15 @@ function AnimationControls() {
 				<form
 					id='editor__form'
 					className='editor__form'
-					onSubmit={(e) => handleClick(e)}>
-
+					onSubmit={(e) => handleClick(e)}
+				>
 					<div className='editor__form--title'>
 						<label htmlFor='title'>TITLE</label>
 						<input
 							type='text'
-              id='title'
-              name='title'
-              className='input__text'
+							id='title'
+							name='title'
+							className='input__text'
 							defaultValue={title}
 							onChange={(e) => handleTitleChange(e)}
 						/>
@@ -174,7 +172,8 @@ function AnimationControls() {
 										name='direction'
 										className='editor__form--select'
 										defaultValue={direction}
-										onChange={(e) => handleDirectionChange(e)}>
+										onChange={(e) => handleDirectionChange(e)}
+									>
 										<option defaultValue='normal'>normal</option>
 										<option value='reverse'>reverse</option>
 										<option value='alternate'>alternate</option>
@@ -190,7 +189,8 @@ function AnimationControls() {
 										name='timing'
 										className='editor__form--select'
 										defaultValue={timing}
-										onChange={(e) => handleTimingChange(e)}>
+										onChange={(e) => handleTimingChange(e)}
+									>
 										<option defaultValue='ease'>ease</option>
 										<option value='linear'>linear</option>
 										<option value='ease-in'>ease-in</option>
@@ -208,7 +208,8 @@ function AnimationControls() {
 										name='fill'
 										className='editor__form--select'
 										defaultValue={fill}
-										onChange={(e) => handleFillChange(e)}>
+										onChange={(e) => handleFillChange(e)}
+									>
 										<option defaultValue='forwards'>forwards</option>
 										<option value='backwards'>backwards</option>
 										<option value='both'>both</option>
@@ -236,16 +237,17 @@ function AnimationControls() {
 			<div
 				id='editor__preview'
 				className='editor__preview'
-				style={{ backgroundColor: animationTarget.bg }}>
+				style={{ backgroundColor: animationTarget.bg }}
+			>
 				<div className='editor__preview--controls'>
-          <div className="editor__preview--controls-one">
-            <button>DELETE</button>
-            <button onClick={(e) => handleSave(e)}>SAVE</button>
-          </div>
+					<div className='editor__preview--controls-one'>
+						<button>DELETE</button>
+						<button onClick={(e) => handleSave(e)}>SAVE</button>
+					</div>
 				</div>
-        <div className="editor__preview--controls-two">
-          <div className="icon">{<svgIcons.css.icon />}</div>
-        </div>
+				<div className='editor__preview--controls-two'>
+					<div className='icon'>{<svgIcons.css.icon />}</div>
+				</div>
 				<div id='animation__target' className='animation__target'>
 					{/* This is the svg component to be animated passed in from state */}
 					{<animationTarget.target />}
