@@ -1,10 +1,10 @@
 import React from 'react';
-import './ProfilePage.css';
 import UserInfo from '../../components/UserInfo';
 import AnimationList from '../../components/AnimationList';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
+import './ProfilePage.css';
 
 class ProfilePage extends React.Component {
 	static contextType = UserContext;

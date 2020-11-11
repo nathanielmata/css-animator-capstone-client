@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LoginPage.css';
-import LoginForm from '../../components/LoginForm/LoginFrom';
+import LoginForm from '../../components/LoginForm/LoginForm';
 import Menu from '../../components/Menu/Menu';
 
 export default class LoginPage extends Component {
@@ -13,8 +13,8 @@ export default class LoginPage extends Component {
 
 	handleLoginSuccess = () => {
 		const { location, history } = this.props;
-    /* const destination = (location.state || {}).from || '/profile'; */
-    const destination = (location.state || {}).from || '/dashboard';
+		/* const destination = (location.state || {}).from || '/profile'; */
+		const destination = (location.state || {}).from || '/dashboard';
 		history.push(destination);
 	};
 
