@@ -66,15 +66,9 @@ function AnimationControls() {
 		e.preventDefault();
 		clearCss();
 
-		const {
-			name,
-			delay,
-			direction,
-			timing,
-			duration,
-			fill,
-			iteration,
-		} = e.target;
+		// prettier-ignore
+		const {name, delay, direction, timing, duration, fill, iteration } = e.target;
+
 		let str = [
 			duration.value + 'ms',
 			timing.value,
@@ -85,7 +79,6 @@ function AnimationControls() {
 			name.value,
 		].join(' ');
 
-		// setAnimation(str);
 		setAnimation({
 			name: name.value,
 			delay: delay.value,
