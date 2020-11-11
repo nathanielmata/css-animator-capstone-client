@@ -25,10 +25,10 @@ export default class Header extends Component {
 	renderLogoutLink() {
 		return (
       <div className='Header__logged-in'>
-        <Link to='/profile'>{`${this.context
-					.user_name}`}</Link>
+           <Link to='/profile'>{`${this.context
+       .user_name}`}</Link> 
         {/* <Link onClick={ this.handleProfilePage} to={`/${this.context.user_name}`}>{`${this.context
-        .user_name}`}</Link> */}
+         .user_name}`}</Link>  */}
 				<Link onClick={this.handleLogoutClick} to='/'>
 					Logout
 				</Link>
