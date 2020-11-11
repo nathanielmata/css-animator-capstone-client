@@ -5,6 +5,7 @@ import AnimationList from '../../components/AnimationList';
 import CustomButton from '../../components/customButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
+import Menu from '../../components/menu/Menu'
 
 class ProfilePage extends React.Component {
 	static contextType = UserContext;
@@ -12,6 +13,7 @@ class ProfilePage extends React.Component {
 	render() {
 		return (
 			<section id='profile-page'>
+				<Menu />
 				<UserInfo
 					username={`${this.context.user_name}`}
 					fullname={`${this.context.full_name}`}

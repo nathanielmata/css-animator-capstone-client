@@ -1,28 +1,24 @@
-import React, { Component } from 'react'
-import Menu from '../../components/menu/Menu'
-import RegistrationForm from '../../components/RegistrationForm/RegistrationForm'
+import React, { Component } from "react";
+import Menu from "../../components/menu/Menu";
+import { useHistory } from "react-router-dom";
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 
-export default class RegistrationPage extends Component {
-  static defaultProps = {
-    history: {
-      push: () => {},
-    },
-  }
+const RegistrationPage = () => {
+  const history = useHistory();
 
-  handleRegistrationSuccess = user => {
-    const { history } = this.props
-    history.push('/login')
-  }
+  const handleRegistrationSuccess = (user) => {
+    history.push("/login");
+  };
 
-  render() {
-    return (
-      <section className='RegistrationPage'>
-        <Menu />
-        <h2>Get started for free.</h2>
-        <RegistrationForm
-          onRegistrationSuccess={this.handleRegistrationSuccess}
-        />
-      </section>
-    )
-  }
-}
+  return (
+    <section className="RegistrationPage">
+      <Menu />
+      <h2>Get started for free.</h2>
+      <RegistrationForm
+        onRegistrationSuccess={handleRegistrationSuccess}
+      />
+    </section>
+  );
+};
+
+export default RegistrationPage;

@@ -1,17 +1,21 @@
 import React from 'react'
-/* import './landingPage.css' */
+import './landingPage.css'
 import CustomButton from '../../components/customButton/CustomButton'
 import colors from '../../constants/colors'
+import { useHistory } from 'react-router-dom'
+
 
 const LandingPage = props =>{
+    const history = useHistory()
     return(
         <section>
-            <CustomButton onClickDo={() => {}} color={colors.primaryColor} >Animate</CustomButton>
+            
             <div className="landing">
                 <h1>Animation Station</h1>
                 <h4>Lets be creative.....
                 Create and save CSS animatons right in your browser</h4>
-                <button onClick={() => this.props.history.push("/login")}>Try for free</button>
+                {/* <button onClick={() => history.push("/login")}>Try for free</button> */}
+                <CustomButton onClickDo={() => history.push("/login") } color={colors.purple} >Animate</CustomButton>
             </div>
         </section>
         
