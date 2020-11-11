@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import svgTargets from './SvgTargets';
-import svgIcons from './SvgIcons';
+import svgTargets from '../SvgTargets';
+import svgIcons from '../SvgIcons';
 import './AnimationControls.css';
 
 function AnimationControls() {

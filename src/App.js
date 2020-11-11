@@ -10,6 +10,7 @@ import Menu from './components/Menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
+import AnimationControls from './components/AnimationControls/AnimationControls'
 import UserContext, { UserProvider } from './context/UserContext';
 import './App.css';
 
@@ -65,6 +66,13 @@ class App extends React.Component {
 								path='/profile'
 								render={(props) => (
 									<PrivateRoute {...props} component={ProfilePage} />
+								)}
+							/>
+							<Route
+								exact
+								path='/editor'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
 								)}
 							/>
 							{/* <PrivateRoute
