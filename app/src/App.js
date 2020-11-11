@@ -6,9 +6,15 @@ import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
 import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
+<<<<<<< HEAD
 import Menu from './components/Menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
 import LoginPage from './routes/LoginPage/LoginPage';
+=======
+import Menu from './components/menu/Menu';
+import LandingPage from './routes/landingPage/LandingPage';
+import LoginPage from './routes/loginPage/LoginPage';
+>>>>>>> animation-station-auth
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import UserContext, { UserProvider } from './context/UserContext';
 import './App.css';
@@ -30,10 +36,10 @@ class App extends React.Component {
 		return (
 			<UserProvider>
 				<div className='App'>
-					<header className='App_header'>
+					{/* <header className='App_header'>
 						<Header />
 					</header>
-					<Menu />
+					<Menu /> */}
 					<main id='main__container' className='main__container'>
 						{this.state.hasError && (
 							<p className='red'>There was an error! Oh no!</p>
