@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
-import './loginForm.css';
 import { Link } from 'react-router-dom';
-import Menu from '../../components/menu/Menu';
+import Menu from '../Menu/Menu';
 import TokenService from '../../services/token-service';
 import UserContext from '../../context/UserContext';
+import './LoginForm.css';
 
 export default class LoginForm extends Component {
 	static contextType = UserContext;

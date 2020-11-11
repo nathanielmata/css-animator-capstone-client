@@ -1,6 +1,6 @@
 import React from 'react'
 /* import './landingPage.css' */
-import CustomButton from '../../components/customButton/CustomButton'
+import CustomButton from '../../components/CustomButton/CustomButton'
 import colors from '../../constants/colors'
 
 const LandingPage = props =>{

@@ -1,8 +1,8 @@
 import React from 'react';
-import './profilePage.css';
+import './ProfilePage.css';
 import UserInfo from '../../components/UserInfo';
 import AnimationList from '../../components/AnimationList';
-import CustomButton from '../../components/customButton/CustomButton';
+import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
 

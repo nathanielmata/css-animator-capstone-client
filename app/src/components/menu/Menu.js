@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./menu.css";
 import TokenService from "../../services/token-service";
+import "./Menu.css";
 
 const Menu = (props) => {
   const handleLogoutClick = () => {

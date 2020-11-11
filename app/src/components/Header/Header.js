@@ -5,17 +5,30 @@ import './Header.css';
 import UserContext from '../../context/UserContext';
 
 export default class Header extends Component {
-	static contextType = UserContext;
+  static contextType = UserContext;
+  
+  static defaultProps = {
+		location: {},
+		history: {
+			push: () => {},
+		},
+	};
 	handleLogoutClick = () => {
 		TokenService.clearAuthToken();
 		this.context.setUser(null);
 	};
-
+  handleProfilePage = ()=>{ 
+   const { location, history } = this.props;
+    const destination = (location.state || {}).from || '/profile';
+		history.push(destination); 
+  }
 	renderLogoutLink() {
 		return (
-			<div className='Header__logged-in'>
-				<Link to={`/${this.context.user_name}`}>{`${this.context
+      <div className='Header__logged-in'>
+        <Link to='/profile'>{`${this.context
 					.user_name}`}</Link>
+        {/* <Link onClick={ this.handleProfilePage} to={`/${this.context.user_name}`}>{`${this.context
+        .user_name}`}</Link> */}
 				<Link onClick={this.handleLogoutClick} to='/'>
 					Logout
 				</Link>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './loginPage.css';
+import './LoginPage.css';
 import LoginForm from '../../components/LoginForm/LoginFrom';
-import Menu from '../../components/menu/Menu';
+import Menu from '../../components/Menu/Menu';
 
 export default class LoginPage extends Component {
 	static defaultProps = {
@@ -13,7 +13,8 @@ export default class LoginPage extends Component {
 
 	handleLoginSuccess = () => {
 		const { location, history } = this.props;
-		const destination = (location.state || {}).from || '/dashboard';
+    /* const destination = (location.state || {}).from || '/profile'; */
+    const destination = (location.state || {}).from || '/dashboard';
 		history.push(destination);
 	};
 

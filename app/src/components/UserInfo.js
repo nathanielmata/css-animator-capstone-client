@@ -1,5 +1,5 @@
 import Avatar from 'react-avatar';
-import CustomButton from '../components/customButton/CustomButton';
+import CustomButton from './CustomButton/CustomButton';
 
 import React, { Component } from 'react';
 import UserContext from '../context/UserContext';

@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
 import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
-import Menu from './components/menu/Menu';
+import Menu from './components/Menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
@@ -56,6 +56,13 @@ class App extends React.Component {
 							<Route
 								exact
 								path='/dashboard'
+								render={(props) => (
+									<PrivateRoute {...props} component={Dashboard} />
+								)}
+              />
+              <Route
+								exact
+								path='/profile'
 								render={(props) => (
 									<PrivateRoute {...props} component={ProfilePage} />
 								)}
