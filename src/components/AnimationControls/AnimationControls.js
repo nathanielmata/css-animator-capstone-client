@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import './AnimationControls.css';
-
+import AnimationService from '../../services/animation-api-services'
 function AnimationControls() {
 	const [title, setTitle] = useState('Untitled');
 	const [delay, setDelay] = useState('500');
@@ -58,7 +58,7 @@ function AnimationControls() {
 		for (const [key, value] of formData.entries()) {
 			data[key] = value;
 		}
-
+		AnimationService.postAnimation(data)
 		console.log(data);
 	};
 
