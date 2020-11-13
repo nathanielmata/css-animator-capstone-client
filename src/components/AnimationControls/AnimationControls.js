@@ -1,108 +1,87 @@
 import React, { useState } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
+import AnimationApiService from '../../services/animation-api-services';
 import './AnimationControls.css';
 
 function AnimationControls() {
-	const [title, setTitle] = useState('Untitled');
-	const [delay, setDelay] = useState('500');
-	const [duration, setDuration] = useState('2000');
-	const [iteration, setIteration] = useState('1');
+	const [animation, setAnimation] = useState({
+    title: 'Untitled',
+    delay: '100',
+    duration: '1000',
+    iteration: '1',
+    direction: 'normal',
+    timing: 'ease',
+    fill: 'forwards',
+  });
 
-	const [direction, setDirection] = useState('normal');
-	const [timing, setTiming] = useState('ease');
-	const [fill, setFill] = useState('forwards');
-
-	const [animation, setAnimation] = useState({});
 	const [animationTarget, setAnimationTarget] = useState({
 		target: svgTargets.hotdog.target,
 		bg: svgTargets.hotdog.bg,
-	});
+  });
+  
+  const getTarget = () => {
+    return document.querySelector('#animation__target');
+  }
 
-	const handleTitleChange = (e) => setTitle(e.target.value);
-	const handleDelayChange = (e) => setDelay(e.target.value);
-	const handleDurationChange = (e) => setDuration(e.target.value);
-	const handleIterationChange = (e) => setIteration(e.target.value);
-
-	const handleDirectionChange = (e) => setDirection(e.target.value);
-	const handleTimingChange = (e) => setTiming(e.target.value);
-	const handleFillChange = (e) => setFill(e.target.value);
-
-	const clearCss = () => {
-		document.querySelector('#animation__target').style.animation = '';
-		void document.querySelector('#animation__target').offsetWidth;
+	const clearTargetCss = () => {
+		getTarget().style.animation = '';
+		void getTarget().offsetWidth;
 	};
 
-	const setCss = (str) => {
-		document.querySelector('#animation__target').style.animation = str;
-	};
+	const setTargetCss = (str) => {
+		getTarget().style.animation = str;
+  };
 
-	// const handleStop = (e) => {
-	// 	document
-	// 		.querySelector('#animation__target')
-	// 		.classList.remove('animation__target');
-	// };
+  const setTargetKeyframes = () => {
+    const css = '@keyframes target-spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }',
+    style = document.querySelector('#keyframes');
+    style.innerHTML = css;
+  }
+  
+  const handleInputChange = (e) => {
+    setAnimation({
+      ...animation,
+      [e.target.name]: e.target.value
+    })
+  };
+  
+	const handlePause = (e) => {
+    e.preventDefault();
+    let playState = getTarget().style.animationPlayState;
+    playState = playState === 'running' ? 'paused' : 'running';
+    getTarget().style.animationPlayState = playState;
+  };
 
-	// const handleStart = (e) => {
-	// 	let css = animation + 'target-spin';
-	// 	document.querySelector('#animation__target').style.animation = '';
-	// 	void document.querySelector('#animation__target').offsetWidth;
+  const handleStop = (e) =>  {
+    e.preventDefault();
+    setTargetCss("")
+  };
 
-	// 	document.querySelector('#animation__target').style.animation = css;
-	// };
+	const handlePlay = (e) => {
+    // prettier-ignore
+    e.preventDefault();
 
-	const handleSave = (e) => {
-		const data = {};
+		clearTargetCss();
+		const { name, delay, direction, timing, duration, fill, iteration } = animation;
+		const inlineCss = [
+      duration + 'ms', timing, delay + 'ms', iteration, direction, fill, name,
+    ].join(' ');
 
-		let formData = new FormData(document.querySelector('#editor__form'));
-		for (const [key, value] of formData.entries()) {
-			data[key] = value;
-		}
-
-		console.log(data);
-	};
-
-	const handleClick = (e) => {
-		e.preventDefault();
-		clearCss();
-
-		// prettier-ignore
-		const {name, delay, direction, timing, duration, fill, iteration } = e.target;
-
-		let str = [
-			duration.value + 'ms',
-			timing.value,
-			delay.value + 'ms',
-			iteration.value,
-			direction.value,
-			fill.value,
-			name.value,
-		].join(' ');
-
-		setAnimation({
-			name: name.value,
-			delay: delay.value,
-			direction: direction.value,
-			timing: timing.value,
-			duration: duration.value,
-			fill: fill.value,
-			iteration: iteration.value,
-		});
-		setCss(str + 'target-spin');
-	};
-
-	// const handleSubmit = () => {
-	// 	console.log(animation);
-	// };
+    setTargetKeyframes();
+		setTargetCss(inlineCss + 'target-spin');
+  };
+  
+  const handleSave = () => {
+    AnimationApiService.postAnimation(animation);
+  };
 
 	return (
 		<div className='editor__container'>
 			<div className='editor__controls'>
 				<form
 					id='editor__form'
-					className='editor__form'
-					onSubmit={(e) => handleClick(e)}
-				>
+					className='editor__form'>
 					<div className='editor__form--title'>
 						<label htmlFor='title'>TITLE</label>
 						<input
@@ -110,8 +89,8 @@ function AnimationControls() {
 							id='title'
 							name='title'
 							className='input__text'
-							defaultValue={title}
-							onChange={(e) => handleTitleChange(e)}
+							value={animation.title}
+							onChange={(e) => handleInputChange(e)}
 						/>
 					</div>
 
@@ -125,8 +104,8 @@ function AnimationControls() {
 									name='delay'
 									className='input__num'
 									min='0'
-									defaultValue={delay}
-									onChange={(e) => handleDelayChange(e)}
+									value={animation.delay}
+									onChange={(e) => handleInputChange(e)}
 								/>
 							</label>
 
@@ -138,8 +117,8 @@ function AnimationControls() {
 									name='duration'
 									className='input__num'
 									min='0'
-									defaultValue={duration}
-									onChange={(e) => handleDurationChange(e)}
+									value={animation.duration}
+									onChange={(e) => handleInputChange(e)}
 								/>
 							</label>
 							<label htmlFor='iteration'>
@@ -150,8 +129,8 @@ function AnimationControls() {
 									name='iteration'
 									className='input__num'
 									min='0'
-									defaultValue={iteration}
-									onChange={(e) => handleIterationChange(e)}
+									value={animation.iteration}
+									onChange={(e) => handleInputChange(e)}
 								/>
 							</label>
 						</div>
@@ -164,10 +143,10 @@ function AnimationControls() {
 										id='direction'
 										name='direction'
 										className='editor__form--select'
-										defaultValue={direction}
-										onChange={(e) => handleDirectionChange(e)}
+										value={animation.direction}
+										onChange={(e) => handleInputChange(e)}
 									>
-										<option defaultValue='normal'>normal</option>
+										<option value='normal'>normal</option>
 										<option value='reverse'>reverse</option>
 										<option value='alternate'>alternate</option>
 										<option value='alternate-reverse'>alternate-reverse</option>
@@ -181,10 +160,10 @@ function AnimationControls() {
 										id='timing'
 										name='timing'
 										className='editor__form--select'
-										defaultValue={timing}
-										onChange={(e) => handleTimingChange(e)}
+										value={animation.timing}
+										onChange={(e) => handleInputChange(e)}
 									>
-										<option defaultValue='ease'>ease</option>
+										<option value='ease'>ease</option>
 										<option value='linear'>linear</option>
 										<option value='ease-in'>ease-in</option>
 										<option value='ease-out'>ease-out</option>
@@ -200,10 +179,10 @@ function AnimationControls() {
 										id='fill'
 										name='fill'
 										className='editor__form--select'
-										defaultValue={fill}
-										onChange={(e) => handleFillChange(e)}
+										value={animation.fill}
+										onChange={(e) => handleInputChange(e)}
 									>
-										<option defaultValue='forwards'>forwards</option>
+										<option value='forwards'>forwards</option>
 										<option value='backwards'>backwards</option>
 										<option value='both'>both</option>
 										<option value='none'>none</option>
@@ -214,17 +193,11 @@ function AnimationControls() {
 					</div>
 
 					<div className='editor__form--buttons'>
-						<button>PAUSE</button>
-						<button>STOP</button>
-						<button type='submit' className='editor__form--submit'>
-							PLAY
-						</button>
+						<button onClick={(e) => handlePause(e)}>PAUSE</button>
+						<button onClick={(e) => handleStop(e)}>STOP</button>
+						<button onClick={(e) => handlePlay(e)}>PLAY</button>
 					</div>
 				</form>
-
-				{/* <button onClick={handleStart}>Start</button>
-        <button onClick={handleStop}>Stop</button>
-        <button onClick={handleSubmit}>Save</button> */}
 			</div>
 
 			<div
@@ -235,17 +208,19 @@ function AnimationControls() {
 				<div className='editor__preview--controls'>
 					<div className='editor__preview--controls-one'>
 						<button>DELETE</button>
-						<button onClick={(e) => handleSave(e)}>SAVE</button>
+						<button onClick={() => handleSave()}>SAVE</button>
 					</div>
 				</div>
 				<div className='editor__preview--controls-two'>
 					<div className='icon'>{<svgIcons.css.icon />}</div>
 				</div>
 				<div id='animation__target' className='animation__target'>
-					{/* This is the svg component to be animated passed in from state */}
 					{<animationTarget.target />}
 				</div>
 			</div>
+
+      {/* we apply the animation keyframes here */}
+      <style id="keyframes"></style>
 		</div>
 	);
 }
