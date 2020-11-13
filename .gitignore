@@ -3,6 +3,7 @@
 # dependencies
 app/node_modules
 node_modules
+package-lock.json
 
 # testing
 /coverage
