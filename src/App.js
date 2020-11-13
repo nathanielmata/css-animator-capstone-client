@@ -8,9 +8,11 @@ import NotFound from './components/NotFound';
 import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
 import Menu from './components/Menu/Menu';
 import LandingPage from './routes/LandingPage/LandingPage';
+import MainPage from './components/Main/MainPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
-import AnimationControls from './components/AnimationControls/AnimationControls'
+import ContactPage from './components/Contact/ContactPage';
+import AnimationControls from './components/AnimationControls/AnimationControls';
 import UserContext, { UserProvider } from './context/UserContext';
 import './App.css';
 
@@ -39,19 +41,22 @@ class App extends React.Component {
 							<p className='red'>There was an error! Oh no!</p>
 						)}
 						<Switch>
-						<Route exact path={'/'} component={LandingPage} /> 
+							<Route exact path={'/'} component={MainPage} />
+							{/* <Route exact path={'/'} component={LandingPage} /> */}
 							<PublicRoute exact path={'/login'} component={LoginPage} />
 							<PublicRoute
 								exact
 								path={'/register'}
 								component={RegistrationPage}
 							/>
-							 <Route
-              exact
-              path="/dashboard"
-              render={(props) => (
-                <PrivateRoute {...props} component={Dashboard} />
-              )} /> 
+							<PublicRoute exact path={'/contact'} component={ContactPage} />
+							<Route
+								exact
+								path='/dashboard'
+								render={(props) => (
+									<PrivateRoute {...props} component={Dashboard} />
+								)}
+							/>
 
 							<Route
 								exact

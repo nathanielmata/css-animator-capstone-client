@@ -1,5 +1,5 @@
 .Header {
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: normal;
   justify-content: space-between;
@@ -7,9 +7,10 @@
 
 .Header h1 {
   margin: 0;
+  font-size: 22px;
 }
 a{
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 .Header a {
@@ -17,21 +18,9 @@ a{
   text-decoration: none;
 }
 
-.Header__tagline--wide {
-  opacity: 0.35;
-  margin-left: 10px;
-}
-
-.Header__tagline--narrow {
-  opacity: 0.35;
-  display: block;
-  text-align: center;
-  display: none;
-  margin-top: 10px;
-}
 .header__container{
   display: flex;
-  width: 400px;
+  width: 360px;
 }
 .Header__not-logged-in {
   float: left;
@@ -43,36 +32,40 @@ a{
   justify-content: flex-end;
 }
 
-.Header__not-logged-in a:last-child {
-  background: rgb(255, 121, 121);
-  color: white;
-  padding: 5px 15px;
+.Home__not-logged-in a{
+  background: rgb(95, 148, 128);
+  color: rgb(34, 30, 30);
+  padding: 8px 15px;
   border-radius: 15px;
-  margin-left: 10px;
+  margin-left: 15px;
 }
-
+ a:hover{
+    border: 1px solid rgba(0, 0, 0, 0.25);
+  /* background-color: #83ce85;
+  color: white; */
+}
 .Header__logged-in a {
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  background-color: #b96f7f;
+  color: white;
+ 
   padding: 5px 15px;
   border-radius: 15px;
 }
 
 @media screen and (min-width: 450px) {
   .Header {
-    align-items: baseline;
+    justify-items: right;
   }
-
+.header__container{
+  width: 500px;
+}
+.Home__not-logged-in a{
+  padding: 2px 10px;
+  border-radius: 9px;
+  margin-left: 5px;
+}
   .Header h1 {
-    font-size: 22pt;
+    font-size: 18pt;
   }
 }
 
-@media screen and (max-width: 490px) {
-  .Header__tagline--wide {
-    display: none;
-  }
-
-  .Header__tagline--narrow {
-    display: inherit;
-  }
-}

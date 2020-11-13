@@ -8,11 +8,6 @@ const LandingPage = (props) => {
   return (
     <section>
       <div className="landing">
-        {/* <h1>Animation Station</h1> */}
-        <h4>
-          Lets be creative..... Create and save CSS animatons right in your
-          browser
-        </h4>
         <CustomButton onClickDo={() => {}} color={colors.yellow}>
           <Link style={{ textDecoration: "none", color: "black", padding: 0 }} to="/login">
             {" "}
