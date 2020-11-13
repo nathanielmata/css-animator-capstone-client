@@ -8,6 +8,9 @@
 .Header h1 {
   margin: 0;
 }
+a{
+  padding-left: 20px;
+}
 
 .Header a {
   color: #444;
@@ -26,8 +29,14 @@
   display: none;
   margin-top: 10px;
 }
-
+.header__container{
+  display: flex;
+  width: 400px;
+}
 .Header__not-logged-in {
+  float: left;
+}
+.Home__not-logged-in{
   display: flex;
   flex: 1;
   align-items: center;
