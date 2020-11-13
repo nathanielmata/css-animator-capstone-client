@@ -6,6 +6,7 @@ import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
 import './ProfilePage.css';
 import Menu from '../../components/Menu/Menu';
+import { Link } from 'react-router-dom'
 
 class ProfilePage extends React.Component {
 	static contextType = UserContext;
@@ -14,6 +15,7 @@ class ProfilePage extends React.Component {
 		return (
 			<section id='profile-page'>
 				<Menu />
+				<Link style={{backgroundColor: "white"}} to="/editor">New Animation</Link>
 				<UserInfo
 					username={`${this.context.user_name}`}
 					fullname={`${this.context.full_name}`}
@@ -25,9 +27,10 @@ class ProfilePage extends React.Component {
 						Invite
 					</CustomButton>
 					<CustomButton
+					onClickDo={() => {}}
 						styles={{ width: 140, fontSize: 17 }}
 						color={colors.yellow}>
-						New Project
+						<Link to="/editor">New Animation</Link>
 					</CustomButton>
 				</div>
 				<div
