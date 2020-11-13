@@ -40,25 +40,25 @@ class App extends React.Component {
 							<p className='red'>There was an error! Oh no!</p>
 						)}
 						<Switch>
+						<Route exact path={'/'} component={LandingPage} /> 
 							<PublicRoute exact path={'/login'} component={LoginPage} />
 							<PublicRoute
 								exact
 								path={'/register'}
 								component={RegistrationPage}
 							/>
-							<Route exact path={'/'} component={LandingPage} />
-							{/* <Route
+							 <Route
               exact
-              path="/"
+              path="/dashboard"
               render={(props) => (
-                <PublicRoute {...props} component={LandingPage} />
-              )} /> */}
+                <PrivateRoute {...props} component={Dashboard} />
+              )} /> 
 
 							<Route
 								exact
-								path='/dashboard'
+								path='/editor'
 								render={(props) => (
-									<PrivateRoute {...props} component={Dashboard} />
+									<PrivateRoute {...props} component={AnimationControls} />
 								)}
 							/>
 							<Route
@@ -68,13 +68,20 @@ class App extends React.Component {
 									<PrivateRoute {...props} component={ProfilePage} />
 								)}
 							/>
-							<Route
+							{/* 	<Route
 								exact
-								path='/editor'
+								path='/editor/new'
 								render={(props) => (
 									<PrivateRoute {...props} component={AnimationControls} />
 								)}
 							/>
+							<Route
+								exact
+								path='/editor/:id'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+								/> */}
 							{/* <PrivateRoute
 							exact
 							path={'/:user_name/animationss'}

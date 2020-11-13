@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import './AnimationControls.css';
-import AnimationService from '../../services/animation-api-services'
+import AnimationService from '../../services/animation-api-services';
 function AnimationControls() {
-	const [title, setTitle] = useState('Untitled');
-	const [delay, setDelay] = useState('500');
-	const [duration, setDuration] = useState('2000');
-	const [iteration, setIteration] = useState('1');
+	const [ title, setTitle ] = useState('Untitled');
+	const [ delay, setDelay ] = useState('500');
+	const [ duration, setDuration ] = useState('2000');
+	const [ iteration, setIteration ] = useState('1');
 
-	const [direction, setDirection] = useState('normal');
-	const [timing, setTiming] = useState('ease');
-	const [fill, setFill] = useState('forwards');
+	const [ direction, setDirection ] = useState('normal');
+	const [ timing, setTiming ] = useState('ease');
+	const [ fill, setFill ] = useState('forwards');
 
-	const [animation, setAnimation] = useState({});
-	const [animationTarget, setAnimationTarget] = useState({
+	const [ animation, setAnimation ] = useState({});
+	const [ animationTarget, setAnimationTarget ] = useState({
 		target: svgTargets.hotdog.target,
 		bg: svgTargets.hotdog.bg,
 	});
@@ -55,10 +55,13 @@ function AnimationControls() {
 		const data = {};
 
 		let formData = new FormData(document.querySelector('#editor__form'));
-		for (const [key, value] of formData.entries()) {
+		for (const [ key, value ] of formData.entries()) {
 			data[key] = value;
 		}
-		AnimationService.postAnimation(data)
+		AnimationService.postAnimation({
+			title: data.title,
+			content: JSON.stringify(data),
+		});
 		console.log(data);
 	};
 
@@ -67,7 +70,7 @@ function AnimationControls() {
 		clearCss();
 
 		// prettier-ignore
-		const {name, delay, direction, timing, duration, fill, iteration } = e.target;
+		const { name, delay, direction, timing, duration, fill, iteration } = e.target;
 
 		let str = [
 			duration.value + 'ms',
@@ -101,8 +104,7 @@ function AnimationControls() {
 				<form
 					id='editor__form'
 					className='editor__form'
-					onSubmit={(e) => handleClick(e)}
-				>
+					onSubmit={(e) => handleClick(e)}>
 					<div className='editor__form--title'>
 						<label htmlFor='title'>TITLE</label>
 						<input
@@ -165,8 +167,7 @@ function AnimationControls() {
 										name='direction'
 										className='editor__form--select'
 										defaultValue={direction}
-										onChange={(e) => handleDirectionChange(e)}
-									>
+										onChange={(e) => handleDirectionChange(e)}>
 										<option defaultValue='normal'>normal</option>
 										<option value='reverse'>reverse</option>
 										<option value='alternate'>alternate</option>
@@ -182,8 +183,7 @@ function AnimationControls() {
 										name='timing'
 										className='editor__form--select'
 										defaultValue={timing}
-										onChange={(e) => handleTimingChange(e)}
-									>
+										onChange={(e) => handleTimingChange(e)}>
 										<option defaultValue='ease'>ease</option>
 										<option value='linear'>linear</option>
 										<option value='ease-in'>ease-in</option>
@@ -201,8 +201,7 @@ function AnimationControls() {
 										name='fill'
 										className='editor__form--select'
 										defaultValue={fill}
-										onChange={(e) => handleFillChange(e)}
-									>
+										onChange={(e) => handleFillChange(e)}>
 										<option defaultValue='forwards'>forwards</option>
 										<option value='backwards'>backwards</option>
 										<option value='both'>both</option>
@@ -230,8 +229,7 @@ function AnimationControls() {
 			<div
 				id='editor__preview'
 				className='editor__preview'
-				style={{ backgroundColor: animationTarget.bg }}
-			>
+				style={{ backgroundColor: animationTarget.bg }}>
 				<div className='editor__preview--controls'>
 					<div className='editor__preview--controls-one'>
 						<button>DELETE</button>
