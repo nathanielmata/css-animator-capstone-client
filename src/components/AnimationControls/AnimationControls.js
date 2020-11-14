@@ -2,86 +2,93 @@ import React, { useState } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import AnimationApiService from '../../services/animation-api-services';
+import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
 function AnimationControls() {
 	const [animation, setAnimation] = useState({
-    title: 'Untitled',
-    delay: '100',
-    duration: '1000',
-    iteration: '1',
-    direction: 'normal',
-    timing: 'ease',
-    fill: 'forwards',
-  });
+		title: 'Untitled',
+		delay: '100',
+		duration: '1000',
+		iteration: '1',
+		direction: 'normal',
+		timing: 'ease',
+		fill: 'forwards',
+		keyframe: { 'rotate-center': AnimationKeyframes['rotate-center'] },
+		target: 'hotdog',
+	});
 
-	const [animationTarget, setAnimationTarget] = useState({
-		target: svgTargets.hotdog.target,
-		bg: svgTargets.hotdog.bg,
-  });
-  
-  const getTarget = () => {
-    return document.querySelector('#animation__target');
-  }
+	const [animationTarget, setAnimationTarget] = useState(
+		svgTargets[animation.target]
+	);
+
+	const getTarget = () => {
+		return document.querySelector('#animation__target');
+	};
 
 	const clearTargetCss = () => {
 		getTarget().style.animation = '';
 		void getTarget().offsetWidth;
 	};
 
-	const setTargetCss = (str) => {
-		getTarget().style.animation = str;
-  };
+	const setTargetCss = () => {
+		const an = animation;
+		const css = [
+			Object.keys(an.keyframe)[0],
+			an.duration + 'ms',
+			an.timing,
+			an.delay + 'ms',
+			an.iteration,
+			an.direction,
+			an.fill,
+		].join(' ');
 
-  const setTargetKeyframes = () => {
-    const css = '@keyframes target-spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }',
-    style = document.querySelector('#keyframes');
-    style.innerHTML = css;
-  }
-  
-  const handleInputChange = (e) => {
-    setAnimation({
-      ...animation,
-      [e.target.name]: e.target.value
-    })
-  };
-  
-	const handlePause = (e) => {
-    e.preventDefault();
-    let playState = getTarget().style.animationPlayState;
-    playState = playState === 'running' ? 'paused' : 'running';
-    getTarget().style.animationPlayState = playState;
-  };
+		getTarget().style.animation = css;
+	};
 
-  const handleStop = (e) =>  {
-    e.preventDefault();
-    setTargetCss("")
-  };
+	const setTargetKeyframesCss = (keyframeCss) => {
+		setAnimation({
+			...animation,
+			keyframe: keyframeCss,
+		});
+	};
 
-	const handlePlay = (e) => {
-    // prettier-ignore
-    e.preventDefault();
+	const handleTargetChange = (e) => {
+		const target = e.target.value;
+		setAnimation({ ...animation, target: target });
+		setAnimationTarget(svgTargets[target]);
+	};
 
+	const handleInputChange = (e) => {
+		setAnimation({
+			...animation,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handlePause = () => {
+		let playState = getTarget().style.animationPlayState;
+		playState = playState === 'running' ? 'paused' : 'running';
+		getTarget().style.animationPlayState = playState;
+	};
+
+	const handleStop = () => {
 		clearTargetCss();
-		const { name, delay, direction, timing, duration, fill, iteration } = animation;
-		const inlineCss = [
-      duration + 'ms', timing, delay + 'ms', iteration, direction, fill, name,
-    ].join(' ');
+	};
 
-    setTargetKeyframes();
-		setTargetCss(inlineCss + 'target-spin');
-  };
-  
-  const handleSave = () => {
-    AnimationApiService.postAnimation(animation);
-  };
+	const handlePlay = () => {
+		clearTargetCss();
+		setTargetCss();
+	};
+
+	const handleSave = () => {
+		AnimationApiService.postAnimation(animation);
+	};
 
 	return (
 		<div className='editor__container'>
 			<div className='editor__controls'>
-				<form
-					id='editor__form'
-					className='editor__form'>
+				<form id='editor__form' className='editor__form'>
 					<div className='editor__form--title'>
 						<label htmlFor='title'>TITLE</label>
 						<input
@@ -93,6 +100,29 @@ function AnimationControls() {
 							onChange={(e) => handleInputChange(e)}
 						/>
 					</div>
+
+          <div className='editor__form--target'>
+							<label htmlFor='target'>
+								<div className='label__title'>Target</div>
+								<div className='select__wrapper'>
+									<select
+										id='target'
+										name='target'
+										className='editor__form--select'
+										value={animation.target}
+										onChange={(e) => handleTargetChange(e)}
+									>
+										{Object.keys(svgTargets).map((target, idx) => {
+											return (
+												<option key={idx} value={target}>
+													{target}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+							</label>
+						</div>
 
 					<div className='editor__form--inner'>
 						<div className='editor__form--left'>
@@ -153,6 +183,7 @@ function AnimationControls() {
 									</select>
 								</div>
 							</label>
+
 							<label htmlFor='timing'>
 								<div className='label__title'>Timing Function</div>
 								<div className='select__wrapper'>
@@ -193,9 +224,9 @@ function AnimationControls() {
 					</div>
 
 					<div className='editor__form--buttons'>
-						<button onClick={(e) => handlePause(e)}>PAUSE</button>
-						<button onClick={(e) => handleStop(e)}>STOP</button>
-						<button onClick={(e) => handlePlay(e)}>PLAY</button>
+						<button type="button" onClick={(e) => handlePause()}>PAUSE</button>
+						<button type="button" onClick={(e) => handleStop()}>STOP</button>
+						<button type="button" onClick={(e) => handlePlay()}>PLAY</button>
 					</div>
 				</form>
 			</div>
@@ -219,8 +250,26 @@ function AnimationControls() {
 				</div>
 			</div>
 
+			
+			<div className='editor__keyframe--list'>
+        <ul>
+          {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
+            return (
+              <li
+                key={idx}
+                className={key === Object.keys(animation.keyframe)[0] ? "active": ""}
+                onClick={() => setTargetKeyframesCss({ [key]: value })}>
+                {key}
+              </li>
+            );
+          })}
+        </ul>
+			</div>
+
       {/* we apply the animation keyframes here */}
-      <style id="keyframes"></style>
+			<style id='keyframes__style'>
+				{Object.values(animation.keyframe)[0]}
+			</style>
 		</div>
 	);
 }
