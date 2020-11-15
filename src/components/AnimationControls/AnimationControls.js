@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import AnimationApiService from '../../services/animation-api-services';
@@ -20,7 +20,32 @@ function AnimationControls() {
 
 	const [animationTarget, setAnimationTarget] = useState(
 		svgTargets[animation.target]
-	);
+  );
+  
+  useEffect(() => {
+    let mockServerData = {
+      delay: "2000",
+      direction: "alternate-reverse",
+      duration: "5000",
+      fill: "both",
+      iteration: "5",
+      keyframe: { 'scale-out-center': '\n  @keyframes scale-out-center {\n    0% {\n      -webkit-transform: scale(1);\n              transform: scale(1);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: scale(0);\n              transform: scale(0);\n      opacity: 1;\n    }\n  } '},
+      target: "square",
+      timing: "linear",
+      title: "Untitled"
+    }
+
+    const key = Object.keys(mockServerData.keyframe)[0];
+    const value = Object.values(mockServerData.keyframe)[0];
+    mockServerData = {
+      ...mockServerData,
+      keyframe: {[key]: value},
+    }
+
+    setAnimation(mockServerData);
+    setAnimationTarget(svgTargets[mockServerData.target])
+
+  }, [])
 
 	const getTarget = () => {
 		return document.querySelector('#animation__target');
@@ -82,7 +107,8 @@ function AnimationControls() {
 	};
 
 	const handleSave = () => {
-		AnimationApiService.postAnimation(animation);
+    // console.log(animation);
+		console.log(AnimationApiService.postAnimation(animation.title, animation));
 	};
 
 	return (
@@ -100,31 +126,30 @@ function AnimationControls() {
 							onChange={(e) => handleInputChange(e)}
 						/>
 					</div>
-
-          <div className='editor__form--target'>
-							<label htmlFor='target'>
-								<div className='label__title'>Target</div>
-								<div className='select__wrapper'>
-									<select
-										id='target'
-										name='target'
-										className='editor__form--select'
-										value={animation.target}
-										onChange={(e) => handleTargetChange(e)}
-									>
-										{Object.keys(svgTargets).map((target, idx) => {
-											return (
-												<option key={idx} value={target}>
-													{target}
-												</option>
-											);
-										})}
-									</select>
-								</div>
-							</label>
-						</div>
-
+          
 					<div className='editor__form--inner'>
+            <div className='editor__form--target'>
+              <label htmlFor='target'>
+                <div className='label__title'>Target</div>
+                <div className='select__wrapper'>
+                  <select
+                    id='target'
+                    name='target'
+                    className='editor__form--select'
+                    value={animation.target}
+                    onChange={(e) => handleTargetChange(e)}
+                  >
+                    {Object.keys(svgTargets).map((target, idx) => {
+                      return (
+                        <option key={idx} value={target}>
+                          {target}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </label>
+            </div>
 						<div className='editor__form--left'>
 							<label htmlFor='delay'>
 								<div className='label__title'>Delay</div>
@@ -237,13 +262,14 @@ function AnimationControls() {
 				style={{ backgroundColor: animationTarget.bg }}
 			>
 				<div className='editor__preview--controls'>
+          <div className='editor__preview--controls-two'>
+            <button>FRAMES</button>
+            <button>CODE</button>
+          </div>
 					<div className='editor__preview--controls-one'>
 						<button>DELETE</button>
 						<button onClick={() => handleSave()}>SAVE</button>
 					</div>
-				</div>
-				<div className='editor__preview--controls-two'>
-					<div className='icon'>{<svgIcons.css.icon />}</div>
 				</div>
 				<div id='animation__target' className='animation__target'>
 					{<animationTarget.target />}
@@ -251,7 +277,7 @@ function AnimationControls() {
 			</div>
 
 			
-			<div className='editor__keyframe--list'>
+			<div className='editor__keyframe--list' style={{display: "none"}}>
         <ul>
           {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
             return (

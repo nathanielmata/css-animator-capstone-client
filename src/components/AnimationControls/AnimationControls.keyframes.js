@@ -110,7 +110,7 @@ const AnimationKeyframes = {
               transform: translateZ(0);
       opacity: 1;
     }
-  }`,
+  }`
 }
 
 export default AnimationKeyframes;
