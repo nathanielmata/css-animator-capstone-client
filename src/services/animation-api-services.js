@@ -39,7 +39,7 @@ const AnimationApiService = {
                     : res.json()
             )
     }, */
-    postAnimation(animationId, content, title) {
+    postAnimation(content, title) {
         return fetch(`${config.API_ENDPOINT}/animations`, {
             method: 'POST',
             headers: {
@@ -47,7 +47,6 @@ const AnimationApiService = {
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
             body: JSON.stringify({
-                animation_id: animationId,
                 title,
                 content,
             }),
