@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import "./Header.css";
 import UserContext from "../../context/UserContext";
-import Logo from "../Logo/Logo";
+
 
 export default class Header extends Component {
   static contextType = UserContext;

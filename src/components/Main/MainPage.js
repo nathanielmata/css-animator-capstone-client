@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import './Main.css';
 export default class MainPage extends Component {
