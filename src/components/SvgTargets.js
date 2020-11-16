@@ -37,9 +37,28 @@ const HotDog = ({classVariant}) => (
   </SvgElement>
 );
 
+const Paw = ({classVariant}) => (
+  <SvgElement 
+    viewBox="0 0 400 364.9"
+    width="240"
+    height="218.9"
+    fill="none"
+    title="paw"
+    ariaLabel="paw"
+    classVariant={[classVariant]}>
+    <path fill="#922990" d="M314.4,352.6c-39,31.2-84.6-7.4-127.6-2.2c-39.6,5.6-90.2,32.8-119-8c-32.6-46.4,7.4-94.4,41-124.8
+      c27.4-32.2,51-89.2,103-74c39.6,8.8,50.4,53.2,75.6,79.2C326,252.8,361.4,314,314.4,352.6z"/>
+    <path fill="#922990" d="M14.8,107.2C68,69,122,167.6,77,204C24.2,237.2-25.6,144,14.8,107.2z"/>
+    <path fill="#922990" d="M103.8,8.4c63.4-39.8,106.4,80,55,114.2C96.4,155.8,58.4,44,103.8,8.4z"/>
+    <path fill="#922990" d="M258.6,1c76-13.4,70.8,117.6,8.4,130.4C194.6,139,201.4,17.4,258.6,1z"/>
+    <path fill="#922990" d="M358.4,208C271.8,232.8,297.6,82,372,99.8C420.2,118,399.8,192,358.4,208z"/>
+  </SvgElement>
+);
+
 const svgTargets = {
   square: {target: Square, bg: "#fdb06a"},
   hotdog: {target: HotDog, bg: "#d752a8"},
+  paw: {target: Paw, bg: "#fdb06a"},
 }
 
 export default svgTargets;
