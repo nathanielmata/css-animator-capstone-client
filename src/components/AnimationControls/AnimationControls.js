@@ -109,9 +109,15 @@ function AnimationControls(props) {
 	const handlePlay = () => {
 		clearTargetCss();
 		setTargetCss();
-	};
-
-	const handleSave = () => {
+  };
+  
+  const handleDelete = (e) => {
+    // Delete code should go here
+    // remove console log below
+    console.log(e.target.value);
+  };
+  
+	const handleSave = (e) => {
     postAnimation(animation);
 	};
 
@@ -270,8 +276,8 @@ function AnimationControls(props) {
             <button>CODE</button>
           </div>
 					<div className='editor__preview--controls-one'>
-						<button>DELETE</button>
-						<button onClick={() => handleSave()}>SAVE</button>
+						<button onClick={(e) => handleDelete(e)}>DELETE</button>
+						<button onClick={(e) => handleSave(e)}>SAVE</button>
 					</div>
 				</div>
 				<div id='animation__target' className='animation__target'>
