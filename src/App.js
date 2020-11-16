@@ -35,50 +35,58 @@ class App extends React.Component {
         <div className="App">
           <Header />
 
-          {/* <main id='main__container' className='main__container'> */}
-          {this.state.hasError && (
-            <p className="red">There was an error! Oh no!</p>
-          )}
-          <Switch>
-            <Route exact path={"/"} component={MainPage} />
-            {/* <Route exact path={'/'} component={LandingPage} /> */}
-            <PublicRoute exact path={"/login"} component={LoginPage} />
-            <PublicRoute
-              exact
-              path={"/register"}
-              component={RegistrationPage}
-            />
-            <PublicRoute exact path={"/contact"} component={ContactPage} />
-            <Route
-              exact
-              path="/dashboard"
-              render={(props) => (
-                <PrivateRoute {...props} component={Dashboard} />
-              )}
-            />
+          <main id='main__container' className='main__container'>
+            {this.state.hasError && (
+              <p className="red">There was an error! Oh no!</p>
+            )}
+            <Switch>
+              <Route exact path={"/"} component={MainPage} />
+              {/* <Route exact path={'/'} component={LandingPage} /> */}
+              <PublicRoute exact path={"/login"} component={LoginPage} />
+              <PublicRoute
+                exact
+                path={"/register"}
+                component={RegistrationPage}
+              />
+              <PublicRoute exact path={"/contact"} component={ContactPage} />
+							<Route
+								exact
+								path='/dashboard'
+								render={(props) => (
+									<PrivateRoute {...props} component={Dashboard} />
+								)}
+							/>
+							<Route
+								exact
+								path='/profile'
+								render={(props) => (
+									<PrivateRoute {...props} component={ProfilePage} />
+								)}
+							/>
+							<Route
+								exact
+								path='/editor'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+							/>
+							<Route
+								exact
+								path='/editor/:id'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+							/>
 
-            <Route
-              exact
-              path="/editor"
-              render={(props) => (
-                <PrivateRoute {...props} component={AnimationControls} />
-              )}
-            />
-            <Route
-              exact
-              path="/profile"
-              render={(props) => (
-                <PrivateRoute {...props} component={ProfilePage} />
-              )}
-            />
-            <Route component={NotFound} />
-            <Menu />
-          </Switch>
-          {/*  <footer>&#169; animation-station 2020</footer>  */}
-        </div>
-      </UserProvider>
-    );
-  }
+							<Route component={NotFound} />
+							<Menu />
+						</Switch>
+					</main>
+					{/*  <footer>&#169; animation-station 2020</footer>  */}
+				</div>
+			</UserProvider>
+		);
+	}
 }
 
 export default App;
