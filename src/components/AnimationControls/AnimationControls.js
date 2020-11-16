@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
-import AnimationApiService from '../../services/animation-api-services';
+import AnimationApiService from '../../services/animation-api-service';
 import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 

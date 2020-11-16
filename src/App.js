@@ -35,21 +35,20 @@ class App extends React.Component {
         <div className="App">
           <Header />
 
-          {/* <main id='main__container' className='main__container'> */}
-          {this.state.hasError && (
-            <p className="red">There was an error! Oh no!</p>
-          )}
-          <Switch>
-            <Route exact path={"/"} component={MainPage} />
-            {/* <Route exact path={'/'} component={LandingPage} /> */}
-            <PublicRoute exact path={"/login"} component={LoginPage} />
-            <PublicRoute
-              exact
-              path={"/register"}
-              component={RegistrationPage}
-            />
-            <PublicRoute exact path={"/contact"} component={ContactPage} />
-
+          <main id='main__container' className='main__container'>
+            {this.state.hasError && (
+              <p className="red">There was an error! Oh no!</p>
+            )}
+            <Switch>
+              <Route exact path={"/"} component={MainPage} />
+              {/* <Route exact path={'/'} component={LandingPage} /> */}
+              <PublicRoute exact path={"/login"} component={LoginPage} />
+              <PublicRoute
+                exact
+                path={"/register"}
+                component={RegistrationPage}
+              />
+              <PublicRoute exact path={"/contact"} component={ContactPage} />
 							<Route
 								exact
 								path='/dashboard'
