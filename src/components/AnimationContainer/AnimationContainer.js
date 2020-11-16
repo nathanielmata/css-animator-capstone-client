@@ -3,7 +3,7 @@ import svgTargets from "../SvgTargets";
 import svgIcons from "../SvgIcons";
 import { useHistory } from "react-router-dom";
 import "./AnimationContainer.css";
-import AnimationService from "../../services/animation-api-services";
+import AnimationService from "../../services/animation-api-service";
 function AnimationContainer() {
   const history = useHistory();
   const [title, setTitle] = useState("Spinning HotDog");

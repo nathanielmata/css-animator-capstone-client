@@ -1,10 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
-export default {
+ /* export default {
     API_ENDPOINT: 'https://fast-temple-07151.herokuapp.com/api',
     TOKEN_KEY: 'animation-station-auth-token',
-}
-/* 
-export default {
+}  */
+
+ export default {
     API_ENDPOINT: 'http://localhost:8000/api',
     TOKEN_KEY: 'animation-station-auth-token',
-} */
+}  

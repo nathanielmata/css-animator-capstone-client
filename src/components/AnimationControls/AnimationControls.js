@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import './AnimationControls.css';
-import AnimationService from '../../services/animation-api-services';
+import AnimationService from '../../services/animation-api-service';
 function AnimationControls() {
 	const [ title, setTitle ] = useState('Untitled');
 	const [ delay, setDelay ] = useState('500');

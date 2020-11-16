@@ -1,5 +1,5 @@
 import config from '../config'
-import TokenService from '../services/token-service'
+import TokenService from './token-service'
 
 const AnimationApiService = {
     getAnimations() {
