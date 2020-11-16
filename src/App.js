@@ -49,36 +49,45 @@ class App extends React.Component {
               component={RegistrationPage}
             />
             <PublicRoute exact path={"/contact"} component={ContactPage} />
-            <Route
-              exact
-              path="/dashboard"
-              render={(props) => (
-                <PrivateRoute {...props} component={Dashboard} />
-              )}
-            />
 
-            <Route
-              exact
-              path="/editor"
-              render={(props) => (
-                <PrivateRoute {...props} component={AnimationControls} />
-              )}
-            />
-            <Route
-              exact
-              path="/profile"
-              render={(props) => (
-                <PrivateRoute {...props} component={ProfilePage} />
-              )}
-            />
-            <Route component={NotFound} />
-            <Menu />
-          </Switch>
-          {/*  <footer>&#169; animation-station 2020</footer>  */}
-        </div>
-      </UserProvider>
-    );
-  }
+							<Route
+								exact
+								path='/dashboard'
+								render={(props) => (
+									<PrivateRoute {...props} component={Dashboard} />
+								)}
+							/>
+							<Route
+								exact
+								path='/profile'
+								render={(props) => (
+									<PrivateRoute {...props} component={ProfilePage} />
+								)}
+							/>
+							<Route
+								exact
+								path='/editor'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+							/>
+							<Route
+								exact
+								path='/editor/:id'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+							/>
+
+							<Route component={NotFound} />
+							<Menu />
+						</Switch>
+					</main>
+					{/*  <footer>&#169; animation-station 2020</footer>  */}
+				</div>
+			</UserProvider>
+		);
+	}
 }
 
 export default App;
