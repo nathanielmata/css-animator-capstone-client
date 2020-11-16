@@ -25,28 +25,27 @@ export default class Header extends Component {
   };
   renderLogoutLink() {
     return (
-      <div className="Header__logged-in">
-        <Link to="/profile">{`${this.context.user_name}`}</Link>
-        {/* <Link onClick={ this.handleProfilePage} to={`/${this.context.user_name}`}>{`${this.context
-         .user_name}`}</Link>  */}
-        <Link onClick={this.handleLogoutClick} to="/">
-          Logout
-        </Link>
+      <div className="header__container">
+        <div className="Header__logged-in">
+          <Link id='user__name' to="/profile">{`${this.context.user_name}`}</Link>
+          <Link id='logout_button' onClick={this.handleLogoutClick} to="/">
+            Logout
+          </Link>
+        </div>
       </div>
     );
   }
 
   renderLoginLink() {
     return (
-      <div className='header__container'>
-        <div className="Home__not-logged-in">
-          <Link style={{float: "left"}} to="/">Home</Link>
-          <Link to="/register">Contact</Link>
-        </div>
-
+      <div className="header__container">
         <div className="Header__not-logged-in">
-          <Link to="/login">Log in</Link>
-          <Link to="/register">Register</Link>
+          <Link id="login__Button" to="/login">
+            Log in
+          </Link>
+          <Link id="register__button" to="/register">
+            Register
+          </Link>
         </div>
       </div>
     );
@@ -54,19 +53,29 @@ export default class Header extends Component {
 
   render() {
     return (
-      <nav className="Header">
-        <h1>
-          <Logo />
-          <Link to="/dashboard"> Animation Station</Link>
-        </h1>
-        {/*  <span className="Header__tagline--wide">Animation Station.</span> */}
-        {/* <Link to="/editor">New Animation</Link> */}
+      <div className="Header">
+        <div className="main__header_options">
+          <div style={{ paddingTop: 16 }}>
+            <h1>
+              <Link to="/dashboard"> Animation Station</Link>
+            </h1>
+          </div>
+          <div className="header__links">
+            <div>
+              <Link to="/">Home</Link>
+            </div>
+            <div>
+              <Link to="/contact">Contact</Link>
+            </div>
+          </div>
+        </div>
+
         {this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
 
         <span className="Header__tagline--narrow">
           Lets be creative, make some animation.
         </span>
-      </nav>
+      </div>
     );
   }
 }

@@ -1,19 +1,37 @@
 .Header {
-  height: 40px;
   display: flex;
   align-items: normal;
-  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 80px;
+  background-color: var(--main-bg-one);
+  z-index: 5;
+}
+.main__header_options {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  padding-left: 20px;
+}
+.main__header_options > h1 {
+  background-color: white;
+}
+.header__links {
+  width: 30%;
+  justify-content: space-evenly;
+  display: flex;
+  position: relative;
+  left: 1px;
+  padding-top: 30px;
 }
 
 .Header h1 {
   margin: 0;
 }
-a{
-  padding-left: 20px;
-}
 
 .Header a {
-  color: #444;
+  color: white;
   text-decoration: none;
 }
 
@@ -29,50 +47,67 @@ a{
   display: none;
   margin-top: 10px;
 }
-.header__container{
-  display: flex;
-  width: 400px;
+.header__container {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+#logout_button{
+  padding-right: 20px;
+}
+#logout_button:hover{
+  color: red;
+}
+#user__name {
+  color: white;
+  padding: 5px 15px;
+  border: 1px solid #45274a;
+  margin-left: 10px;
 }
 .Header__not-logged-in {
-  float: left;
+  position: relative;
+  right: 20px;
 }
-.Home__not-logged-in{
+.Home__not-logged-in {
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: flex-end;
 }
 
-.Header__not-logged-in a:last-child {
-  background: rgb(255, 121, 121);
+#login__Button {
+  background-color: #603768;
   color: white;
   padding: 5px 15px;
-  border-radius: 15px;
+  border: 1px solid #45274a;
   margin-left: 10px;
 }
 
-.Header__logged-in a {
-  border: 1px solid rgba(0, 0, 0, 0.25);
+#login__Button:hover {
+  background-color: #a87db1;
+}
+
+#register__button:hover {
+  background-color: #9e5fac;
+}
+
+#register__button {
+  background-color: #380f41;
+  color: white;
   padding: 5px 15px;
-  border-radius: 15px;
+  border: 1px solid #45274a;
+  margin-left: 10px;
 }
 
-@media screen and (min-width: 450px) {
-  .Header {
-    align-items: baseline;
-  }
-
-  .Header h1 {
-    font-size: 22pt;
-  }
-}
-
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 700px) {
   .Header__tagline--wide {
     display: none;
   }
 
   .Header__tagline--narrow {
     display: inherit;
+  }
+  .Header {
+    display: none;
   }
 }

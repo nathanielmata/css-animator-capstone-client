@@ -1,6 +1,5 @@
 .custom-button {
     position: relative;
-    border-radius: 8px;
     border: none;
     padding: 20px;
     -webkit-transition-duration: 0.4s; /* Safari */

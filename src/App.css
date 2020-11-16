@@ -14,4 +14,8 @@ section{
   vertical-align: auto;
 }
 
+section:nth-of-type(1) {
+  height: calc(100vh + 50px);
+  padding: 0;
+}
 
