@@ -8,8 +8,10 @@ import NotFound from "./components/NotFound";
 import RegistrationPage from "./routes/RegistrationPage/RegistrationPage";
 import Menu from "./components/Menu/Menu";
 import LandingPage from "./routes/LandingPage/LandingPage";
+import MainPage from "./components/Main/MainPage";
 import LoginPage from "./routes/LoginPage/LoginPage";
 import ProfilePage from "./routes/ProfilePage/ProfilePage";
+import ContactPage from "./components/Contact/ContactPage";
 import AnimationControls from "./components/AnimationControls/AnimationControls";
 import UserContext, { UserProvider } from "./context/UserContext";
 import "./App.css";
@@ -31,19 +33,22 @@ class App extends React.Component {
     return (
       <UserProvider>
         <div className="App">
-          <Menu /> 
-		  <Header />
+          <Header />
+
+          {/* <main id='main__container' className='main__container'> */}
           {this.state.hasError && (
             <p className="red">There was an error! Oh no!</p>
           )}
           <Switch>
-            <Route exact path={"/"} component={LandingPage} />
+            <Route exact path={"/"} component={MainPage} />
+            {/* <Route exact path={'/'} component={LandingPage} /> */}
             <PublicRoute exact path={"/login"} component={LoginPage} />
             <PublicRoute
               exact
               path={"/register"}
               component={RegistrationPage}
             />
+            <PublicRoute exact path={"/contact"} component={ContactPage} />
             <Route
               exact
               path="/dashboard"
@@ -66,30 +71,6 @@ class App extends React.Component {
                 <PrivateRoute {...props} component={ProfilePage} />
               )}
             />
-            {/* 	<Route
-								exact
-								path='/editor/new'
-								render={(props) => (
-									<PrivateRoute {...props} component={AnimationControls} />
-								)}
-							/>
-							<Route
-								exact
-								path='/editor/:id'
-								render={(props) => (
-									<PrivateRoute {...props} component={AnimationControls} />
-								)}
-								/> */}
-            {/* <PrivateRoute
-							exact
-							path={'/:user_name/animationss'}
-							component={UserAnimationsPage}
-						/>
-						<PrivateRoute
-							path={'/:user_name/animations/:animation_id'}
-							component={EditorPage}
-            /> */}
-
             <Route component={NotFound} />
             <Menu />
           </Switch>
