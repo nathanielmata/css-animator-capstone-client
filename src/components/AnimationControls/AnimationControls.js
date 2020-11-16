@@ -44,7 +44,7 @@ function AnimationControls(props) {
     .catch((err) => console.log(err));
   }
 
-  const postAnimation = () => {
+  const postAnimation = (animation) => {
     AnimationApiService.postAnimation(animation)
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -112,9 +112,7 @@ function AnimationControls(props) {
 	};
 
 	const handleSave = () => {
-    AnimationApiService.postAnimation(animation)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    postAnimation(animation);
 	};
 
 	return (
