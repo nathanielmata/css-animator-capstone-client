@@ -12,7 +12,7 @@ export default class MainPage extends Component {
 	//redirects the page clicked on
 	switchPage = (link) => {
 		if (link === 'login' && TokenService.hasAuthToken()) {
-			link = 'find';
+			link = 'dashboard';
 		}
 
 		this.setState({
