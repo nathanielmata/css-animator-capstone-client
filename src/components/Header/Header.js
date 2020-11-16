@@ -62,7 +62,7 @@ export default class Header extends Component {
           </div>
           <div className="header__links">
             <div>
-              <Link to="/">Home</Link>
+              <Link to="/" >Home</Link>
             </div>
             <div>
               <Link to="/contact">Contact</Link>

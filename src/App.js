@@ -41,14 +41,10 @@ class App extends React.Component {
           )}
           <Switch>
             <Route exact path={"/"} component={MainPage} />
-            {/* <Route exact path={'/'} component={LandingPage} /> */}
-            <PublicRoute exact path={"/login"} component={LoginPage} />
-            <PublicRoute
-              exact
-              path={"/register"}
-              component={RegistrationPage}
-            />
-            <PublicRoute exact path={"/contact"} component={ContactPage} />
+            <Route exact path={"/contact"} component={ContactPage} /> 
+            <Route exact path={"/login"} component={LoginPage} />
+            <Route exact path={"/registration"} component={RegistrationPage} />
+           { /* <PublicRoute exact path={"/contact"} component={ContactPage} /> */}
             <Route
               exact
               path="/dashboard"
@@ -74,7 +70,7 @@ class App extends React.Component {
             <Route component={NotFound} />
             <Menu />
           </Switch>
-          {/*  <footer>&#169; animation-station 2020</footer>  */}
+          <footer>&#169; animation-station 2020</footer>  
         </div>
       </UserProvider>
     );
