@@ -37,9 +37,9 @@ const HotDog = ({classVariant}) => (
   </SvgElement>
 );
 
-const svgTarget = {
+const svgTargets = {
   square: {target: Square, bg: "#fdb06a"},
   hotdog: {target: HotDog, bg: "#d752a8"},
 }
 
-export default svgTarget;
+export default svgTargets;

@@ -3,7 +3,7 @@ import svgTargets from "../SvgTargets";
 import svgIcons from "../SvgIcons";
 import { useHistory } from "react-router-dom";
 import "./AnimationContainer.css";
-import AnimationService from "../../services/animation-api-services";
+import AnimationService from "../../services/animation-api-service";
 function AnimationContainer() {
   const history = useHistory();
   const [title, setTitle] = useState("Spinning HotDog");
@@ -13,12 +13,12 @@ function AnimationContainer() {
   });
 
   const clearCss = () => {
-    document.querySelector("#animation__target").style.animation = "";
-    void document.querySelector("#animation__target").offsetWidth;
+    document.querySelector("#dashboard__animation--target").style.animation = "";
+    void document.querySelector("#dashboard__animation--target").offsetWidth;
   };
 
   const setCss = () => {
-    document.querySelector("#animation__target").style.animation =
+    document.querySelector("#dashboard__animation--target").style.animation =
       "2000ms ease 500ms 1 normal forwards target-spin";
   };
 
@@ -29,18 +29,18 @@ function AnimationContainer() {
   };
 
   return (
-    <div className="editor__container">
-      <div className="editor__controls">
+    <div className="dashboard__container">
+      <div className="dashboard__controls">
         <form
-          id="editor__form"
-          className="editor__form"
+          id="dashboard__form"
+          className="dashboard__form"
           onSubmit={(e) => handleClick(e)}
         >
           <p>{title}</p>
 
-          <div className="editor__form--buttons">
+          <div className="dashboard__form--buttons">
             <button onClick={() => history.push("/editor")}>EDIT</button>
-            <button type="submit" className="editor__form--submit">
+            <button type="submit" className="dashboard__form--submit">
               PLAY
             </button>
           </div>
@@ -48,11 +48,11 @@ function AnimationContainer() {
       </div>
 
       <div
-        id="editor__preview"
-        className="editor__preview"
+        id="dashboard__preview"
+        className="dashboard__preview"
         style={{ backgroundColor: animationTarget.bg }}
       >
-        <div id="animation__target" className="animation__target">
+        <div id="dashboard__animation--target" className="dashboard__animation--target">
           {/* This is the svg component to be animated passed in from state */}
           {<animationTarget.target />}
         </div>

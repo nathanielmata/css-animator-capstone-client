@@ -106,7 +106,7 @@
   }
 
   .Header__tagline--narrow {
-    display: inherit;
+    display: none;
   }
   .Header {
     display: none;

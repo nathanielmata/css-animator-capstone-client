@@ -43,8 +43,6 @@ export default class MainPage extends Component {
 						</button>
 					</div>
 				</section>
-
-				<footer>&#169; Animation Station 2020</footer>
 			</div>
 		);
 	}

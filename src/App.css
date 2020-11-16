@@ -1,21 +1,31 @@
 #root {
-  height: 100%;
-}
-.App {
-  text-align: center;
-  min-width: 320px;
-  width: 100%;
-  height: 100%;
-}
-section{
-  position: relative;
-  justify-content: center;
-  align-content: center;
-  vertical-align: auto;
+	height: 100%;
 }
 
+.App {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	min-width: 320px;
+	width: 100%;
+	height: 100%;
+}
+
+
+section {
+	position: relative;
+	justify-content: center;
+	align-content: center;
+	vertical-align: auto;
+}
+  
 section:nth-of-type(1) {
   height: calc(100vh + 50px);
   padding: 0;
 }
 
+.main__container {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}

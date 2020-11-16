@@ -1,13 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
 import Header from "./components/Header/Header";
 import Dashboard from "./components/Dashboard";
 import NotFound from "./components/NotFound";
 import RegistrationPage from "./routes/RegistrationPage/RegistrationPage";
 import Menu from "./components/Menu/Menu";
-import LandingPage from "./routes/LandingPage/LandingPage";
 import MainPage from "./components/Main/MainPage";
 import LoginPage from "./routes/LoginPage/LoginPage";
 import ProfilePage from "./routes/ProfilePage/ProfilePage";

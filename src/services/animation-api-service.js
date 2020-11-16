@@ -14,8 +14,8 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    getAnimation(animationId) {
-        return fetch(`${config.API_ENDPOINT}/animations/${animationId}`, {
+    getAnimationById(id) {
+        return fetch(`${config.API_ENDPOINT}/animations/${id}`, {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
 
@@ -27,19 +27,8 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    /* getThingReviews(thingId) {
-        return fetch(`${config.API_ENDPOINT}/things/${thingId}/reviews`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
-            },
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
-    }, */
-    postAnimation( newAnimation) {
+
+    postAnimation(newAnimation) {
         return fetch(`${config.API_ENDPOINT}/animations`, {
             method: 'POST',
             headers: {
