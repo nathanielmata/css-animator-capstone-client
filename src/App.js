@@ -75,6 +75,13 @@ class App extends React.Component {
 									<PrivateRoute {...props} component={AnimationControls} />
 								)}
 							/>
+							<Route
+								exact
+								path='/editor/:id'
+								render={(props) => (
+									<PrivateRoute {...props} component={AnimationControls} />
+								)}
+							/>
 							{/* <PrivateRoute
 							exact
 							path={'/:user_name/animationss'}

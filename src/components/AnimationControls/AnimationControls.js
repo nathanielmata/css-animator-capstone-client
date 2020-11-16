@@ -5,7 +5,7 @@ import AnimationApiService from '../../services/animation-api-services';
 import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
-function AnimationControls() {
+function AnimationControls(props) {
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
 		delay: '100',
@@ -21,31 +21,36 @@ function AnimationControls() {
 	const [animationTarget, setAnimationTarget] = useState(
 		svgTargets[animation.target]
   );
-  
+
   useEffect(() => {
-    let mockServerData = {
-      delay: "2000",
-      direction: "alternate-reverse",
-      duration: "5000",
-      fill: "both",
-      iteration: "5",
-      keyframe: { 'scale-out-center': '\n  @keyframes scale-out-center {\n    0% {\n      -webkit-transform: scale(1);\n              transform: scale(1);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: scale(0);\n              transform: scale(0);\n      opacity: 1;\n    }\n  } '},
-      target: "square",
-      timing: "linear",
-      title: "Untitled"
+    const id = props.match.params.id ?? null;
+    if (props.match.params.id) {
+      getAnimation(id);
     }
+  }, []);
 
-    const key = Object.keys(mockServerData.keyframe)[0];
-    const value = Object.values(mockServerData.keyframe)[0];
-    mockServerData = {
-      ...mockServerData,
-      keyframe: {[key]: value},
-    }
+  const getAnimation = (id) => {
+    AnimationApiService.getAnimationById(id)
+    .then(data => {
+      const { title, delay, duration, direction, iteration, timing, fill, keyframe, target } = data;
+      const res = {title, delay, duration, iteration, direction, timing, fill, keyframe, target};
+      console.log(res);
 
-    setAnimation(mockServerData);
-    setAnimationTarget(svgTargets[mockServerData.target])
+      // we need to parse the content from
+      // stringified json to json so we can use it
+      setAnimation(res);
+      setAnimationTarget(svgTargets[res.target]);
+    })
+    .catch((err) => console.log(err));
+  }
 
-  }, [])
+  const postAnimation = () => {
+    AnimationApiService.postAnimation(animation)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+
+  // const updateAnimation = () => {}
 
 	const getTarget = () => {
 		return document.querySelector('#animation__target');
@@ -107,8 +112,9 @@ function AnimationControls() {
 	};
 
 	const handleSave = () => {
-    // console.log(animation);
-		console.log(AnimationApiService.postAnimation(animation.title, animation));
+    AnimationApiService.postAnimation(animation)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
 	};
 
 	return (
@@ -277,7 +283,7 @@ function AnimationControls() {
 			</div>
 
 			
-			<div className='editor__keyframe--list' style={{display: "none"}}>
+			<div className='editor__keyframe--list'>
         <ul>
           {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
             return (
