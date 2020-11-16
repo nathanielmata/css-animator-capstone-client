@@ -265,8 +265,7 @@ function AnimationControls(props) {
 			<div
 				id='editor__preview'
 				className='editor__preview'
-				style={{ backgroundColor: animationTarget.bg }}
-			>
+				style={{ backgroundColor: animationTarget.bg }}>
 				<div className='editor__preview--controls'>
           <div className='editor__preview--controls-two'>
             <button>FRAMES</button>

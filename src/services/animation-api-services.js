@@ -27,26 +27,15 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    /* getThingReviews(thingId) {
-        return fetch(`${config.API_ENDPOINT}/things/${thingId}/reviews`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
-            },
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
-    }, */
-    postAnimation(content) {
+
+    postAnimation(newAnimation) {
         return fetch(`${config.API_ENDPOINT}/animations`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify(content),
+            body: JSON.stringify(newAnimation),
         })
             .then(res =>
                 (!res.ok)

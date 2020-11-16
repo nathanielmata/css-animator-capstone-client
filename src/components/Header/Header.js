@@ -1,64 +1,81 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import TokenService from '../../services/token-service';
-import './Header.css';
-import UserContext from '../../context/UserContext';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import TokenService from "../../services/token-service";
+import "./Header.css";
+import UserContext from "../../context/UserContext";
+import Logo from "../Logo/Logo";
 
 export default class Header extends Component {
   static contextType = UserContext;
-  
+
   static defaultProps = {
-		location: {},
-		history: {
-			push: () => {},
-		},
-	};
-	handleLogoutClick = () => {
-		TokenService.clearAuthToken();
-		this.context.setUser(null);
-	};
-  handleProfilePage = ()=>{ 
-   const { location, history } = this.props;
-    const destination = (location.state || {}).from || '/profile';
-		history.push(destination); 
+    location: {},
+    history: {
+      push: () => {},
+    },
+  };
+  handleLogoutClick = () => {
+    TokenService.clearAuthToken();
+    this.context.setUser(null);
+  };
+  handleProfilePage = () => {
+    const { location, history } = this.props;
+    const destination = (location.state || {}).from || "/profile";
+    history.push(destination);
+  };
+  renderLogoutLink() {
+    return (
+      <div className="header__container">
+        <div className="Header__logged-in">
+          <Link id='user__name' to="/profile">{`${this.context.user_name}`}</Link>
+          <Link id='logout_button' onClick={this.handleLogoutClick} to="/">
+            Logout
+          </Link>
+        </div>
+      </div>
+    );
   }
-	renderLogoutLink() {
-		return (
-      <div className='Header__logged-in'>
-           <Link to='/profile'>{`${this.context
-       .user_name}`}</Link> 
-        {/* <Link onClick={ this.handleProfilePage} to={`/${this.context.user_name}`}>{`${this.context
-         .user_name}`}</Link>  */}
-				<Link onClick={this.handleLogoutClick} to='/'>
-					Logout
-				</Link>
-			</div>
-		);
-	}
 
-	renderLoginLink() {
-		return (
-			<div className='Header__not-logged-in'>
-				<Link to='/login'>Log in</Link>
-				<Link to='/register'>Register</Link>
-			</div>
-		);
-	}
+  renderLoginLink() {
+    return (
+      <div className="header__container">
+        <div className="Header__not-logged-in">
+          <Link id="login__Button" to="/login">
+            Log in
+          </Link>
+          <Link id="register__button" to="/register">
+            Register
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
-	render() {
-		return (
-			<nav className='Header'>
-				<h1>
-					<Link to='/'> Animation Station</Link>
-				</h1>
-				{/*  <span className="Header__tagline--wide">Animation Station.</span> */}
-				<Link to='/editor'>New Animation</Link>
-				{this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
+  render() {
+    return (
+      <div className="Header">
+        <div className="main__header_options">
+          <div style={{ paddingTop: 16 }}>
+            <h1>
+              <Link to="/dashboard"> Animation Station</Link>
+            </h1>
+          </div>
+          <div className="header__links">
+            <div>
+              <Link to="/">Home</Link>
+            </div>
+            <div>
+              <Link to="/contact">Contact</Link>
+            </div>
+          </div>
+        </div>
 
-				<span className='Header__tagline--narrow'>
-					Lets be creative, make some animation.
-				</span>
-			</nav>
-		);
-	}
+        {this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
+
+        <span className="Header__tagline--narrow">
+          Lets be creative, make some animation.
+        </span>
+      </div>
+    );
+  }
 }
