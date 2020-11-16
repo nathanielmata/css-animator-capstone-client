@@ -10,7 +10,7 @@
 	--select-arrow: var(--select-border);
 }
 
-.editor__container {
+.dashboard__container {
 	display: flex;
 	flex-direction: column-reverse;
 	width: 100%;
@@ -21,7 +21,7 @@
   z-index: 1;
 }
 
-.editor__container input {
+.dashboard__container input {
 	background: none;
 	border: none;
 	border-radius: 0;
@@ -33,11 +33,11 @@
 	text-align: right;
 }
 
-.editor__container input:focus {
+.dashboard__container input:focus {
 	outline: 1px solid var(--main-bg-two);
 }
 
-.editor__container button {
+.dashboard__container button {
 	appearance: button;
 	outline: none;
 	border: none;
@@ -53,7 +53,7 @@
 	background-color: transparent;
 }
 
-.editor__container label {
+.dashboard__container label {
 	display: block;
 	font-size: 12px;
 	margin: 0 0 4px 0;
@@ -61,7 +61,7 @@
 	text-transform: uppercase;
 }
 
-.editor__container select:focus {
+.dashboard__container select:focus {
 	border-radius: none;
 }
 
@@ -84,7 +84,7 @@
 	pointer-events: none;
 }
 
-.editor__controls {
+.dashboard__controls {
 	display: flex;
 	flex-direction: row;
   flex-grow: 1;
@@ -93,7 +93,7 @@
 	background-color: var(--main-bg-one);
 }
 
-.editor__form {
+.dashboard__form {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -101,7 +101,7 @@
   padding: 12px 30px 24px;
 }
 
-.editor__form--title label {
+.dashboard__form--title label {
 	margin: 0;
   font-weight: 400;
   background-color: transparent;
@@ -109,7 +109,7 @@
   padding: 0;
 }
 
-.editor__form--title input {
+.dashboard__form--title input {
 	margin-bottom: 20px;
 	background: transparent;
 	border-bottom: 1px solid var(--main-highlight-one);
@@ -120,13 +120,13 @@
 	padding-left: 0;
 }
 
-.editor__form--inner {
+.dashboard__form--inner {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
 
-.editor__form--inner label {
+.dashboard__form--inner label {
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -136,19 +136,19 @@
 	padding: 4px 8px;
 }
 
-.editor__form--inner .label__title {
+.dashboard__form--inner .label__title {
 	margin: 4px 0;
 	font-weight: 600;
 }
 
-.editor__form--inner .input__num {
+.dashboard__form--inner .input__num {
 	position: absolute;
 	right: 0;
 	max-width: 100px;
 	height: 100%;
 }
 
-.editor__form--select {
+.dashboard__form--select {
   appearance: none;
   direction: rtl;
 	background-color: transparent;
@@ -168,18 +168,18 @@
 	text-align-last: right;
 }
 
-.editor__form--select option {
+.dashboard__form--select option {
 	direction: rtl;
 }
 
-.editor__form--buttons {
+.dashboard__form--buttons {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 4px;
 	width: 100%;
 }
 
-.editor__preview {
+.dashboard__preview {
 	position: relative;
 	display: flex;
 	flex-grow: 2;
@@ -188,7 +188,7 @@
 	width: 100%;
 }
 
-.editor__preview--controls {
+.dashboard__preview--controls {
 	position: absolute;
 	display: inline-grid;
 	grid-gap: 8px;
@@ -198,19 +198,19 @@
 	margin: 0 30px;
 }
 
-.editor__preview--controls-one {
+.dashboard__preview--controls-one {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 8px;
 }
 
-.editor__preview--controls-one button {
+.dashboard__preview--controls-one button {
 	background-color: var(--main-bg-two);
 	border: 1px solid var(--main-bg-one);
 	color: var(--main-bg-one);
 }
 
-.editor__preview--controls-two {
+.dashboard__preview--controls-two {
 	position: absolute;
 	display: inline-flex;
 	flex-direction: row;
@@ -218,31 +218,31 @@
   bottom: 0;
 }
 
-.editor__preview--controls-two .icon {
+.dashboard__preview--controls-two .icon {
 	margin: 0 40px;
 	padding: 6px 10px;
 	border: 1px solid transparent;
 }
 
-.editor__preview--controls-two .icon:hover {
+.dashboard__preview--controls-two .icon:hover {
 	border: 1px solid var(--main-bg-one);
 	cursor: pointer;
 }
 
-.animation__target {
+.dashboard__animation--target {
 	display: flex;
 	flex-direction: row;
 	width: 6em;
 	height: auto;
 }
 
-.animation__target svg {
+.dashboard__animation--target svg {
 	width: auto;
 	height: auto;
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
-  .animation__target {
+  .dashboard__animation--target {
     animation: target-spin infinite 20s linear;
   }
 } */
@@ -262,7 +262,7 @@
 		background-color: var(--main-highlight-one);
 	}
 
-	.editor__preview button:hover {
+	.dashboard__preview button:hover {
 		background-color: var(--main-bg-one);
 		color: var(--main-highlight-one);
 		border: 1px solid var(--main-highlight-one);
@@ -270,7 +270,7 @@
 }
 
 @media screen and (min-width: 360px) {
-	.animation__target {
+	.dashboard__animation--target {
 		width: 10em;
 	}
 }
@@ -280,32 +280,32 @@
 		font-size: 15px;
 	}
 
-	.editor__container {
+	.dashboard__container {
 		flex-direction: row;
 	}
 
-	.editor__controls {
+	.dashboard__controls {
     align-items: center;
 		width: 40%;
 	}
 
-	.editor__form {
+	.dashboard__form {
 		padding: 40px;
 	}
 
-	.editor__form--title input {
+	.dashboard__form--title input {
 		margin-bottom: 20px;
 	}
 
-	.editor__form--inner label {
+	.dashboard__form--inner label {
 		padding: 8px;
 	}
 
-	.editor__preview {
+	.dashboard__preview {
 		width: 60%;
   }
 
-	.editor__preview--controls {
+	.dashboard__preview--controls {
 		position: absolute;
 		display: flex;
 		top: 0;
@@ -319,40 +319,40 @@
     justify-content: flex-end;
 	}
 
-	.editor__preview button {
+	.dashboard__preview button {
 		background-color: unset;
 	}
 
-	.editor__preview--controls-one {
+	.dashboard__preview--controls-one {
 		display: inline-flex;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-gap: 8px;
 		margin: 40px;
   }
   
-  .editor__preview--controls-two {
+  .dashboard__preview--controls-two {
     top: 0;
     left: 0;
     bottom: unset;
   }
   
-	.editor__preview div.icon {
+	.dashboard__preview div.icon {
 		margin: 40px;
 	}
 
-	.animation__target {
+	.dashboard__animation--target {
 		width: unset;
 		height: unset;
 	}
 
-	.animation__target svg {
+	.dashboard__animation--target svg {
 		width: unset;
 		height: unset;
 	}
 }
 
 @media screen and (min-width: 1280px) {
-	.editor__form--inner {
+	.dashboard__form--inner {
 		display: inline-grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 4px;
