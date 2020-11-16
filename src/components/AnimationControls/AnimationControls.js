@@ -4,23 +4,6 @@ import svgIcons from '../SvgIcons';
 import AnimationApiService from '../../services/animation-api-service';
 import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
-<<<<<<< HEAD
-import AnimationService from '../../services/animation-api-service';
-function AnimationControls() {
-	const [ title, setTitle ] = useState('Untitled');
-	const [ delay, setDelay ] = useState('500');
-	const [ duration, setDuration ] = useState('2000');
-	const [ iteration, setIteration ] = useState('1');
-
-	const [ direction, setDirection ] = useState('normal');
-	const [ timing, setTiming ] = useState('ease');
-	const [ fill, setFill ] = useState('forwards');
-
-	const [ animation, setAnimation ] = useState({});
-	const [ animationTarget, setAnimationTarget ] = useState({
-		target: svgTargets.hotdog.target,
-		bg: svgTargets.hotdog.bg,
-=======
 
 function AnimationControls(props) {
 	const [animation, setAnimation] = useState({
@@ -33,7 +16,6 @@ function AnimationControls(props) {
 		fill: 'forwards',
 		keyframe: { 'rotate-center': AnimationKeyframes['rotate-center'] },
 		target: 'hotdog',
->>>>>>> 1726fcdc42b9245405a9678fbb8514751dedbdd7
 	});
 
 	const [animationTarget, setAnimationTarget] = useState(
