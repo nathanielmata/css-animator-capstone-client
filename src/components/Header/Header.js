@@ -43,7 +43,7 @@ export default class Header extends Component {
           <Link id="login__Button" to="/login">
             Log in
           </Link>
-          <Link id="register__button" to="/register">
+          <Link id="register__button" to="/registration">
             Register
           </Link>
         </div>

@@ -23,6 +23,8 @@ export default UserContext;
 export class UserProvider extends React.Component {
   state = {
     error: null,
+    user: TokenService.getAuthToken(),
+    user_name: localStorage.user_name,
   };
 
   setError = error => {
