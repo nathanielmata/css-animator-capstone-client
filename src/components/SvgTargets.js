@@ -55,10 +55,45 @@ const Paw = ({classVariant}) => (
   </SvgElement>
 );
 
+const Heart = ({classVariant}) => (
+  <SvgElement 
+    viewBox="0 0 400 339"
+    width="240"
+    height="203.4"
+    fill="none"
+    title="heart"
+    ariaLabel="heart"
+    classVariant={[classVariant]}>
+    <path fill="#FF4446" d="M200,64.2c0,0-65.7-96.8-146.4-52.7C-125,130,200,339,200,339S525,130,346.4,11.5C265.7-32.6,200,64.2,200,64.2
+	L200,64.2z"/>
+  </SvgElement>
+);
+
+const Logo = ({classVariant}) => (
+  <SvgElement 
+    viewBox="0 0 400 382.2"
+    width="240"
+    height="229.3"
+    fill="none"
+    title="logo"
+    ariaLabel="logo"
+    classVariant={[classVariant]}>
+    <path fill="#45274A" d="M296.2,189.4l-95.6,92.2l-97.1-92.2l97.1-92.8L296.2,189.4z"/>
+    <path fill="#45274A" d="M76.4,162.9L227.8,18.5L381.4,166v32.5L227.8,51.9l-135,127.3L76.4,162.9z"/>
+    <path fill="#45274A" d="M343.2,216.4L190.9,364.2h34.2l152.3-147.8l-148.6-146l-18.6,16.2L343.2,216.4z"/>
+    <path fill="#45274A" d="M172.1,328L19.8,181.1v34.2l152.3,144.2l152.3-144.2l-18-16.9L172.1,328z"/>
+    <path fill="#45274A" d="M59.5,163L210.3,13.4h-32.8L22.5,163l149.6,145.1l18.8-17.1L59.5,163z"/>
+    <path fill="#45274A" d="M230.3,382.2h-64.1L0,218.7v-59.4L166.2,0h64L400,161.9v56.8L230.3,382.2z M169,375.4h58.6l165.7-159.6v-51
+      L227.6,6.8h-58.6L6.8,162.2v53.7L169,375.4z"/>
+  </SvgElement>
+);
+
 const svgTargets = {
   square: {target: Square, bg: "#fdb06a"},
   hotdog: {target: HotDog, bg: "#d752a8"},
   paw: {target: Paw, bg: "#fdb06a"},
+  heart: {target: Heart, bg: "#fdb06a"},
+  logo: {target: Logo, bg: "#fdb06a"},
 }
 
 export default svgTargets;
