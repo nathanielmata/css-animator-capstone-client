@@ -1,5 +1,7 @@
 import React from 'react';
 import UserInfo from '../../components/UserInfo';
+import TokenService from '../../services/token-service';
+import AnimationService from '../../services/animation-api-service';
 import AnimationList from '../../components/AnimationList';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
@@ -10,6 +12,39 @@ import { Link } from 'react-router-dom'
 
 class ProfilePage extends React.Component {
 	static contextType = UserContext;
+	state = {
+		user: {
+			fullname: '',
+			user_name: '',
+			id: null,
+		},
+	};
+	componentDidMount() {
+		AnimationService.getProfile().then((resJSON) => {
+			this.setState({
+				user: resJSON,
+			});
+			TokenService.saveUserId(this.state.user.id);
+			this.setCards();
+		});
+	}
+	setCards = () => {
+		AnimationService.getAnimations().then((resJSON) => {
+			// eslint-disable-next-line eqeqeq
+			const userAnimations = resJSON.filter((animation) => {
+				if (animation.owner === this.state.user.id) {
+					return animation;
+				}
+
+				// eslint-disable-next-line array-callback-return
+				return;
+			});
+			this.setState({
+				userPost: userAnimations,
+			});
+		});
+	};
+
 
 	render() {
 		return (

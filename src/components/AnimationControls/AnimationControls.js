@@ -6,6 +6,9 @@ import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
 function AnimationControls(props) {
+
+	const [message, setMessage] = useState('')
+	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
 		delay: '100',
@@ -46,7 +49,15 @@ function AnimationControls(props) {
 
   const postAnimation = (animation) => {
     AnimationApiService.postAnimation(animation)
-      .then(res => console.log(res))
+      .then(res => {
+				setTimeout(function () {
+				setMessage('')	
+				},5000)
+				setMessage
+
+					('Animation saved successfully')
+				
+			})
       .catch(err => console.log(err));
   }
 
@@ -111,10 +122,11 @@ function AnimationControls(props) {
 		setTargetCss();
   };
   
-  const handleDelete = (e) => {
+	const handleDelete = (animationId) => {
+		AnimationApiService.deleteAnimation(animationId)
     // Delete code should go here
     // remove console log below
-    console.log(e.target.value);
+    
   };
   
 	const handleSave = (e) => {
