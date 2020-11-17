@@ -43,7 +43,8 @@ export default class LoginForm extends Component {
 				this.context.setUser(res.authToken);
 				TokenService.saveAuthToken(res.authToken);
 				const user = TokenService.readJwtToken();
-				console.log(user);
+        console.log(user);
+        localStorage.user_name = user.user_name;
 				this.context.setUserName(user.user_name);
 				this.context.setUserFullName(user.full_name);
 				this.props.onLoginSuccess();

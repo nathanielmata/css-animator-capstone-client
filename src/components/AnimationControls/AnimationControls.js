@@ -290,6 +290,7 @@ function AnimationControls(props) {
 					<div className='editor__preview--controls-one'>
 						<button onClick={(e) => handleDelete(e)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
+            {message}
 					</div>
 				</div>
 				<div id='animation__target' className='animation__target'>

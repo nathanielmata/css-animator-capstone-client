@@ -1,7 +1,7 @@
 import React from 'react';
 import UserInfo from '../../components/UserInfo';
 import TokenService from '../../services/token-service';
-import AnimationService from '../../services/animation-api-service';
+import AnimationApiService from '../../services/animation-api-service';
 import AnimationList from '../../components/AnimationList';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
@@ -17,30 +17,18 @@ class ProfilePage extends React.Component {
 			fullname: '',
 			user_name: '',
 			id: null,
-		},
+    },
+    userAnimation: [],
 	};
 	componentDidMount() {
-		AnimationService.getProfile().then((resJSON) => {
-			this.setState({
-				user: resJSON,
-			});
-			TokenService.saveUserId(this.state.user.id);
-			this.setCards();
-		});
-	}
+		this.setCards();
+  }
+  
 	setCards = () => {
-		AnimationService.getAnimations().then((resJSON) => {
-			// eslint-disable-next-line eqeqeq
-			const userAnimations = resJSON.filter((animation) => {
-				if (animation.owner === this.state.user.id) {
-					return animation;
-				}
-
-				// eslint-disable-next-line array-callback-return
-				return;
-			});
-			this.setState({
-				userPost: userAnimations,
+    AnimationApiService.getAnimations()
+    .then((res) => {
+      this.setState({
+				userAnimation: res,
 			});
 		});
 	};
@@ -69,11 +57,11 @@ class ProfilePage extends React.Component {
 					</CustomButton>
 				</div>
 				<div
-					className='animation-container'
+					className='profile__animation--container'
 					style={{ backgroundColor: colors.yellow }}>
-					<div className='animation-title'>
-						<p>Animation Title</p>
-					</div>
+					{this.state.userAnimation.map(animation => {
+            return <Link to={`editor/${animation.id}`}>{animation.title}</Link>
+          })}
 				</div>
 				{/* <AnimationList></AnimationList> */}
 			</section>
