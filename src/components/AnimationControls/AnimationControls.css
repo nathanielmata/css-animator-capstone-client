@@ -120,7 +120,7 @@
 	text-align: left;
 	font-size: 18px;
 	text-indent: 8px;
-  padding: 4px 0;
+	padding: 4px 0;
 }
 
 .editor__form--inner {
@@ -152,7 +152,7 @@
 }
 
 .editor__form--target {
-  grid-column: 1 / span 2;
+	grid-column: 1 / span 2;
 }
 
 .editor__form--select {
@@ -198,38 +198,39 @@
 }
 
 .editor__preview button {
-  padding: 10px 0;
-  border: none;
+	padding: 10px 0;
+	border: none;
 }
 
 .editor__preview--controls {
 	position: absolute;
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  /* grid-gap: 8px; */
-  grid-gap: 1px;
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	/* grid-gap: 8px; */
+	grid-gap: 1px;
 	top: 100%;
 	right: 0;
 	left: 0;
-  /* margin: 0 30px; */
-  margin-top: 1px;
+	/* margin: 0 30px; */
+	margin-top: 1px;
 }
 
 .editor__preview--controls-one,
 .editor__preview--controls-two {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr;
-  /* grid-gap: 8px; */
-  grid-gap: 1px;
+	/* grid-gap: 8px; */
+	grid-gap: 1px;
 }
 
 .editor__preview--controls-one button,
 .editor__preview--controls-two button {
-  background-color: var(--main-bg-two);
-  color: var(--main-bg-one);
+	background-color: var(--main-bg-two);
+	color: var(--main-bg-one);
 }
 
-.editor__keyframe--list {
+.editor__keyframe--list,
+.editor__css {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -238,12 +239,16 @@
 	justify-content: center;
 	top: 0;
 	bottom: 0;
-	right: 0;
+	right: 0%;
 	min-width: 320px;
 	text-transform: uppercase;
 	font-size: 12px;
 	font-weight: bolder;
 	background-color: var(--main-bg-one);
+}
+
+.editor__css {
+	right: -50%;
 }
 
 .editor__keyframe--list ul {
@@ -328,56 +333,57 @@
 
 	.editor__form {
 		padding: 40px;
-	} 
+	}
 
-  .editor__form--title input {
-    padding: 8px 0;
-    font-size: 20px;
-  }
+	.editor__form--title input {
+		padding: 8px 0;
+		font-size: 20px;
+	}
 
 	.editor__form--inner label {
 		padding: 8px;
-  }
-  
+	}
+
 	.editor__preview {
 		width: 60%;
-  }
+	}
 
 	.editor__preview--controls {
 		position: absolute;
 		display: flex;
 		justify-content: flex-end;
-		top: 0;
+		top: unset;
+		bottom: 0;
 		right: 0;
 		left: unset;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 8px;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 8px;
 		width: 100%;
 		margin: 0;
 	}
 
 	.editor__preview button {
-    background-color: unset;
-    border: 1px solid var(--main-bg-one);
-    min-width: 80px;
-    padding: 10px;
-  }
-  
-  .editor__preview--controls-two {
-    position: absolute;
-    left: 0;
-  }
+		background-color: unset;
+		border: 1px solid var(--main-bg-one);
+		min-width: 80px;
+		padding: 10px;
+	}
+
+	.editor__preview--controls-two {
+		position: absolute;
+		left: 0;
+	}
 
 	.editor__preview--controls-one,
 	.editor__preview--controls-two {
-    grid-gap: 8px;
+		grid-gap: 8px;
 		margin: 40px;
-  }
-  
-	.editor__keyframe--list {
+	}
+
+	.editor__keyframe--list,
+	.editor__css {
 		top: 15%;
 		bottom: 15%;
-		right: 0;
 	}
 
 	.animation__target {
