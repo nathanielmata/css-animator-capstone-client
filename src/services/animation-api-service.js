@@ -1,5 +1,5 @@
 import config from '../config'
-import TokenService from '../services/token-service'
+import TokenService from './token-service'
 
 const AnimationApiService = {
     getAnimations() {
@@ -14,8 +14,8 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    getAnimation(animationId) {
-        return fetch(`${config.API_ENDPOINT}/animations/${animationId}`, {
+    getAnimationById(id) {
+        return fetch(`${config.API_ENDPOINT}/animations/${id}`, {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
 
@@ -27,30 +27,15 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    /* getThingReviews(thingId) {
-        return fetch(`${config.API_ENDPOINT}/things/${thingId}/reviews`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
-            },
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
-    }, */
-    postAnimation(animationId, content, title) {
+
+    postAnimation(newAnimation) {
         return fetch(`${config.API_ENDPOINT}/animations`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify({
-                animation_id: animationId,
-                title,
-                content,
-            }),
+            body: JSON.stringify(newAnimation),
         })
             .then(res =>
                 (!res.ok)
@@ -70,6 +55,30 @@ const AnimationApiService = {
                 title,
                 content,
             }),
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+    getProfile() {
+        return fetch(`${config.API_ENDPOINT}/profile/${TokenService.getUserName()}`, {
+            headers: { 'authorization': `bearer ${TokenService.getAuthToken()}` },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+    deleteAnimation(animationId) {
+        return fetch(`${config.API_ENDPOINT}/animations/${animationId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
         })
             .then(res =>
                 (!res.ok)

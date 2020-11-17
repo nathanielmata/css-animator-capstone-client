@@ -28,7 +28,7 @@
 /* .animation-list-container{
     display: flex;
 } */
-.animation-container{
+.profile__animation--container {
     height: 240px;
     width: 90%;
     margin: 0 auto;

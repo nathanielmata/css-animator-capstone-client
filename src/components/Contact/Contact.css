@@ -1,0 +1,11 @@
+#contact_container {
+  position: relative;
+  min-height: 80vh;
+}
+
+#contact_waraper {
+  padding-bottom: .1rem;    /* Footer height */
+}
+#contact_text{
+  color:black;
+}

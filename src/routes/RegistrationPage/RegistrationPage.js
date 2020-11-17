@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import Menu from "../../components/Menu/Menu";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 
@@ -17,6 +18,12 @@ const RegistrationPage = () => {
       <RegistrationForm
         onRegistrationSuccess={handleRegistrationSuccess}
       />
+      <div className='link-to-register'>
+					<p>Already have an account?</p>
+					<span>
+						<Link to='/login'>Login</Link>
+					</span>
+				</div>
     </section>
   );
 };
