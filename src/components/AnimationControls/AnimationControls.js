@@ -6,6 +6,9 @@ import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
 function AnimationControls(props) {
+
+	const [message, setMessage] = useState('')
+	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
 		delay: '100',
@@ -31,22 +34,30 @@ function AnimationControls(props) {
 
   const getAnimation = (id) => {
     AnimationApiService.getAnimationById(id)
-    .then(data => {
-      const { title, delay, duration, direction, iteration, timing, fill, keyframe, target } = data;
-      const res = {title, delay, duration, iteration, direction, timing, fill, keyframe, target};
-      console.log(res);
-
-      // we need to parse the content from
+    .then(res => {
+      // we need to parse the keyframe data from
       // stringified json to json so we can use it
-      setAnimation(res);
-      setAnimationTarget(svgTargets[res.target]);
+      const keyframe = JSON.parse(res.keyframe);
+
+      const { title, delay, duration, direction, iteration, timing, fill, target } = res;
+      const data = { title, delay, duration, iteration, direction, timing, fill, target, keyframe };
+      setAnimation(data);
+      setAnimationTarget(svgTargets[data.target]);
     })
     .catch((err) => console.log(err));
   }
 
-  const postAnimation = () => {
+  const postAnimation = (animation) => {
     AnimationApiService.postAnimation(animation)
-      .then(res => console.log(res))
+      .then(res => {
+				setTimeout(function () {
+				setMessage('')	
+				},5000)
+				setMessage
+
+					('Animation saved successfully')
+				
+			})
       .catch(err => console.log(err));
   }
 
@@ -109,12 +120,17 @@ function AnimationControls(props) {
 	const handlePlay = () => {
 		clearTargetCss();
 		setTargetCss();
-	};
-
-	const handleSave = () => {
-    AnimationApiService.postAnimation(animation)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+  };
+  
+	const handleDelete = (animationId) => {
+		AnimationApiService.deleteAnimation(animationId)
+    // Delete code should go here
+    // remove console log below
+    
+  };
+  
+	const handleSave = (e) => {
+    postAnimation(animation);
 	};
 
 	return (
@@ -268,12 +284,12 @@ function AnimationControls(props) {
 				style={{ backgroundColor: animationTarget.bg }}>
 				<div className='editor__preview--controls'>
           <div className='editor__preview--controls-two'>
-            <button>FRAMES</button>
+            <button>OPTIONS</button>
             <button>CODE</button>
           </div>
 					<div className='editor__preview--controls-one'>
-						<button>DELETE</button>
-						<button onClick={() => handleSave()}>SAVE</button>
+						<button onClick={(e) => handleDelete(e)}>DELETE</button>
+						<button onClick={(e) => handleSave(e)}>SAVE</button>
 					</div>
 				</div>
 				<div id='animation__target' className='animation__target'>
@@ -296,6 +312,8 @@ function AnimationControls(props) {
           })}
         </ul>
 			</div>
+
+      <div className='editor__css'></div>
 
       {/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>

@@ -40,6 +40,7 @@ const HotDog = ({classVariant}) => (
 const svgTargets = {
   square: {target: Square, bg: "#fdb06a"},
   hotdog: {target: HotDog, bg: "#d752a8"},
+  
 }
 
 export default svgTargets;
