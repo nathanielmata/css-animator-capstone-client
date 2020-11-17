@@ -52,6 +52,7 @@ export default class Header extends Component {
   }
 
   render() {
+    console.log(this.context)
     return (
       <div className="Header">
         <div className="main__header_options">

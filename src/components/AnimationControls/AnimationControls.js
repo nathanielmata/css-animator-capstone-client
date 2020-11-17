@@ -6,6 +6,9 @@ import AnimationKeyframes from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
 function AnimationControls(props) {
+	// add saved message
+	const [message, setMessage] = useState('')
+	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
 		delay: '100',
@@ -43,13 +46,25 @@ function AnimationControls(props) {
     })
     .catch((err) => console.log(err));
   }
-
+// add saved message
   const postAnimation = (animation) => {
     AnimationApiService.postAnimation(animation)
+			.then(res => {
+				setTimeout(function () {
+				setMessage('')	
+				},5000)
+				setMessage
+
+					('Animation saved successfully')
+				
+			})
+      .catch(err => console.log(err));
+  }
+const deleteAnimation = (animationId) => {
+    AnimationApiService.deleteAnimation(animationId)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
-
   // const updateAnimation = () => {}
 
 	const getTarget = () => {
@@ -111,10 +126,10 @@ function AnimationControls(props) {
 		setTargetCss();
   };
   
-  const handleDelete = (e) => {
-    // Delete code should go here
-    // remove console log below
-    console.log(e.target.value);
+  const handleDelete = (animationId) => {
+    deleteAnimation(animationId)
+		
+    console.log(animationId);
   };
   
 	const handleSave = (e) => {
@@ -278,6 +293,7 @@ function AnimationControls(props) {
 					<div className='editor__preview--controls-one'>
 						<button onClick={(e) => handleDelete(e)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
+						{message}
 					</div>
 				</div>
 				<div id='animation__target' className='animation__target'>

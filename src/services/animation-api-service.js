@@ -4,9 +4,9 @@ import TokenService from '../services/token-service'
 const AnimationApiService = {
     getAnimations() {
         return fetch(`${config.API_ENDPOINT}/animations`, {
-             headers: {
-             'authorization': `bearer ${TokenService.getAuthToken()}`,
-           }, 
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
         })
             .then(res =>
                 (!res.ok)
@@ -43,6 +43,20 @@ const AnimationApiService = {
                     : res.json()
             )
     },
+    deleteAnimation(animationId) {
+        return fetch(`${config.API_ENDPOINT}/animations/${animationId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     updateAnimation(id, title, content) {
         return fetch(`${config.API_ENDPOINT}/animationss/${id}`, {
             method: 'PATCH',
@@ -62,6 +76,16 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-}
 
+    getProfile() {
+        return fetch(`${config.API_ENDPOINT}/profile/${TokenService.getUserName()}`, {
+            headers: { 'authorization': `bearer ${TokenService.getAuthToken()}` },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+}
 export default AnimationApiService
