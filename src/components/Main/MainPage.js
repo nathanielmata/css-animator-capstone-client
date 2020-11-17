@@ -36,8 +36,8 @@ export default class MainPage extends Component {
 				<section className='banner'>
 					<div className='Overlay'>
 						<h2>Animation Station</h2>
-						<p>Create and save CSS animatons right in your browser</p>
-						<p>Lets be creative today...</p>
+						<p>Create and save CSS animations right in your browser</p>
+						<p>Let's be creative today...</p>
 						<button onClick={() => this.switchPage('login')}>
 							Get started
 						</button>

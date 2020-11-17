@@ -57,7 +57,7 @@ export default class Header extends Component {
         <div className="main__header_options">
           <div style={{ paddingTop: 16 }}>
             <h1>
-              <Link to="/dashboard"> Animation Station</Link>
+              <Link to="/dashboard"> <span><img src="logo.svg"/></span>Animation Station</Link>
             </h1>
           </div>
           <div className="header__links">
@@ -73,7 +73,7 @@ export default class Header extends Component {
         {this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
 
         <span className="Header__tagline--narrow">
-          Lets be creative, make some animation.
+          Let's be creative, make some animation.
         </span>
       </div>
     );
