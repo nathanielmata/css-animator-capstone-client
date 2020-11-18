@@ -54,9 +54,8 @@ function AnimationControls(props) {
 				setMessage('')	
 				},5000)
 				setMessage
-
 					('Animation saved successfully')
-				
+				props.history.push(`/profile`)
 			})
       .catch(err => console.log(err));
   }
@@ -127,8 +126,19 @@ function AnimationControls(props) {
 
 		AnimationApiService.deleteAnimation(animationId)
 			.then(res => {
-				console.log(res)
+				setTimeout(function () {
+				setMessage('')	
+				},5000)
+				setMessage
+					('Animation delete successfully')	
+				/* console.log(res) */
+				
+				props.history.push((`/profile`)) 
 			})
+			/* .then(res => {
+				props.history.push((`/profile`),res)
+			})  */
+      .catch(err => console.log(err));
   };
   
 	const handleSave = (e) => {
