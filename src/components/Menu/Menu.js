@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import "./Menu.css";
 
@@ -12,13 +11,13 @@ const Menu = (props) => {
     return (
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <a href="/">Home</a>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <a href="/login">Login</a>
         </li>
         <li>
-          <Link to="/register">Register</Link>
+          <a href="/registration">Register</a>
         </li>
       </ul>
     );
@@ -28,15 +27,15 @@ const Menu = (props) => {
     return (
       <ul>
         <li>
-          <Link to="/login">Dashboard</Link>
+          <a href="/dashboard">Dashboard</a>
         </li>
         <li>
-          <Link to="/register">Editor</Link>
+          <a href="/editor">Editor</a>
         </li>
         <li>
-          <Link onClick={() => handleLogoutClick()} to="/">
+          <a onClick={() => handleLogoutClick()} to="/">
             Logout
-          </Link>
+          </a>
         </li>
       </ul>
     );

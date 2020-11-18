@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import "./Header.css";
 import UserContext from "../../context/UserContext";
-import Logo from "../Logo/Logo";
+import Menu from "../Menu/Menu";
 
 export default class Header extends Component {
   static contextType = UserContext;
@@ -27,8 +27,11 @@ export default class Header extends Component {
     return (
       <div className="header__container">
         <div className="Header__logged-in">
-          <Link id='user__name' to="/profile">{`${this.context.user_name}`}</Link>
-          <Link id='logout_button' onClick={this.handleLogoutClick} to="/">
+          <Link
+            id="user__name"
+            to="/dashboard"
+          >{`${this.context.user_name}`}</Link>
+          <Link id="logout_button" onClick={this.handleLogoutClick} to="/">
             Logout
           </Link>
         </div>
@@ -53,29 +56,34 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div className="Header">
-        <div className="main__header_options">
-          <div style={{ paddingTop: 16 }}>
-            <h1>
-              <Link to="/dashboard"> <span><img src="logo.svg"/></span>Animation Station</Link>
-            </h1>
-          </div>
-          <div className="header__links">
-            <div>
-              <Link to="/">Home</Link>
+      <>
+        <Menu />
+        <div className="Header">
+          <div className="main__header_options">
+            <div style={{ paddingTop: 10, paddingLeft: 20 }}>
+              <h1>
+                <Link to="/dashboard">
+                  <img src="logo.svg" style={{ height: 60 }} />
+                </Link>
+              </h1>
             </div>
-            <div>
-              <Link to="/contact">Contact</Link>
+            <div className="header__links">
+              <div>
+                <Link to="/">Home</Link>
+              </div>
+              <div>
+                <Link to="/contact">Contact</Link>
+              </div>
             </div>
           </div>
+
+          {this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
+
+          <span className="Header__tagline--narrow">
+            Let's be creative, make some animation.
+          </span>
         </div>
-
-        {this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
-
-        <span className="Header__tagline--narrow">
-          Let's be creative, make some animation.
-        </span>
-      </div>
+      </>
     );
   }
 }
