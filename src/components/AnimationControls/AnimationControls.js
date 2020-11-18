@@ -122,11 +122,13 @@ function AnimationControls(props) {
 		setTargetCss();
   };
   
-	const handleDelete = (animationId) => {
+	const handleDelete = (e, animationId) => {	
+		e.preventDefault();
+
 		AnimationApiService.deleteAnimation(animationId)
-    // Delete code should go here
-    // remove console log below
-    
+			.then(res => {
+				console.log(res)
+			})
   };
   
 	const handleSave = (e) => {
@@ -288,7 +290,7 @@ function AnimationControls(props) {
             <button>CODE</button>
           </div>
 					<div className='editor__preview--controls-one'>
-						<button onClick={(e) => handleDelete(e)}>DELETE</button>
+						<button onClick={(e) => handleDelete( e, props.match.params.id)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
             {message}
 					</div>
