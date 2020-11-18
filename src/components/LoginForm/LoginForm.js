@@ -97,7 +97,7 @@ export default class LoginForm extends Component {
 				<div className='link-to-register'>
 					<p>Don't have an account yet?</p>
 					<span>
-						<Link to='/register'>Register</Link>
+						<Link to='/registration'>Register</Link>
 					</span>
 				</div>
 			</div>

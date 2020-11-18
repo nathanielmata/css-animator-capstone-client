@@ -19,7 +19,8 @@
 	flex-grow: 1;
 	color: var(--main-highlight-one);
 	font-weight: 500;
-	z-index: 1;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .editor__container input {
@@ -199,7 +200,7 @@
 
 .editor__preview button {
 	padding: 10px 0;
-	border: none;
+  border: 1px solid var(--main-bg-two);
 }
 
 .editor__preview--controls {
@@ -229,8 +230,7 @@
 	color: var(--main-bg-one);
 }
 
-.editor__keyframe--list,
-.editor__css {
+.editor__slideout {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -239,22 +239,43 @@
 	justify-content: center;
 	top: 0;
 	bottom: 0;
-	right: 0%;
-	min-width: 320px;
+	right: -320px;
+	width: 320px;
+  background-color: var(--main-bg-one);
+}
+
+.editor__keyframe--list,
+.editor__css {
+  position: absolute;
+	display: flex;
+	flex-direction: column;
 	text-transform: uppercase;
 	font-size: 12px;
-	font-weight: bolder;
-	background-color: var(--main-bg-one);
+  font-weight: bolder;
+  padding: 0 30px;
+  color: var(--main-bg-two);
 }
 
 .editor__css {
-	right: -50%;
+  align-items: center;
+  text-align: left;
+  white-space: pre-wrap;
+  text-transform: none;
+  font-size: 15px;
+  line-height: 1.5em;
+  width: 100%;
+}
+
+.editor__css--inner {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--main-bg-two);
 }
 
 .editor__keyframe--list ul {
 	margin: 30px 0;
-	padding: 0 28px 0 30px;
-	overflow: scroll;
+	padding: 0 30px;
+	overflow: auto;
 }
 
 .editor__keyframe--list li {
@@ -281,6 +302,19 @@
 	color: var(--main-bg-one);
 }
 
+.editor__slideout--close-outer {
+  position: relative;
+  display: flex;
+  align-items: start;
+  top: 8px;
+  width: 100%;
+  padding: 0;
+}
+
+.editor__slideout--close-inner {
+  cursor: pointer;
+}
+
 .animation__target {
 	position: absolute;
 	display: flex;
@@ -293,9 +327,26 @@
 	transform: translate3d(0, 0, 0);
 }
 
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
 .animation__target svg {
 	width: auto;
 	height: auto;
+}
+
+@keyframes slide-options {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-320px);
+  }
 }
 
 @media (hover: hover) {
@@ -380,8 +431,7 @@
 		margin: 40px;
 	}
 
-	.editor__keyframe--list,
-	.editor__css {
+	.editor__slideout {
 		top: 15%;
 		bottom: 15%;
 	}

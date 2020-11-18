@@ -15,7 +15,8 @@ const UserContext = React.createContext({
   user_id: null,
   error: null,
   setError: () => {},
-  clearError: () => {},
+  clearError: () => { },
+  deleteAnimation: () =>{}
 });
 
 export default UserContext;
@@ -25,6 +26,7 @@ export class UserProvider extends React.Component {
     error: null,
     user: TokenService.getAuthToken(),
     user_name: localStorage.user_name,
+    animations:[]
   };
 
   setError = error => {
@@ -61,7 +63,9 @@ export class UserProvider extends React.Component {
     this.setState({ user });
     console.log(user)
   };
-
+  deleteAnimation = (animationId) => {
+   this.setState({animationId}) 
+  }
   render() {
     const value = {
       error: this.state.error,
@@ -80,6 +84,8 @@ export class UserProvider extends React.Component {
       full_name: this.state.full_name,
       setUser: this.setUser,
       user: this.state.user,
+      deleteAnimation: this.deleteAnimation,
+      
     };
 
     return (
