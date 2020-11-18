@@ -7,7 +7,9 @@ import './AnimationControls.css';
 
 function AnimationControls(props) {
 
-	const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
+  const [showSlideOut, setShowSlideOut] = useState('reverse');
+  const [showDrawer, setShowDrawer] = useState("");
 	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
@@ -48,18 +50,15 @@ function AnimationControls(props) {
   }
 
   const postAnimation = (animation) => {
-    AnimationApiService.postAnimation(animation)
-      .then(res => {
-				setTimeout(function () {
-				setMessage('')	
-				},5000)
-				setMessage
-
-					('Animation saved successfully')
-				
+		AnimationApiService.postAnimation(animation)
+			.then((res) => {
+				setTimeout(function() {
+					setMessage('');
+				}, 5000);
+				setMessage('Animation saved successfully');
 			})
-      .catch(err => console.log(err));
-  }
+			.catch((err) => console.log(err));
+	};
 
   // const updateAnimation = () => {}
 
@@ -82,10 +81,42 @@ function AnimationControls(props) {
 			an.iteration,
 			an.direction,
 			an.fill,
-		].join(' ');
+    ].join(' ');
 
 		getTarget().style.animation = css;
-	};
+  };
+  
+  const showHideSlideOut = async (e) => {
+    const target = document.querySelector(".editor__slideout");
+
+    target.style.animation = '';
+    void getTarget().offsetWidth;
+    
+    const options = showSlideOut === "normal" ? "reverse" : "normal";
+    const css = `slide-options 300ms ease-out 100ms 1 ${options} both`;
+    target.style.animation = css;
+
+    const name = e.target.name
+    // console.log(name);
+    // console.log(showDrawer);
+    if (name === showDrawer) {
+      await setShowSlideOut(options);
+      await setShowDrawer("");
+    }
+
+    if (name !== showDrawer) {
+      console.log(name);
+    console.log(showDrawer);
+      await setShowSlideOut(options);
+      await setShowSlideOut(options);
+      await setShowDrawer(e.target.name);
+    }
+
+    if (showDrawer !== "") {
+      await setShowSlideOut(options);
+      await setShowDrawer(e.target.name);
+    }
+  }
 
 	const setTargetKeyframesCss = (keyframeCss) => {
 		setAnimation({
@@ -148,30 +179,30 @@ function AnimationControls(props) {
 							onChange={(e) => handleInputChange(e)}
 						/>
 					</div>
-          
+
 					<div className='editor__form--inner'>
-            <div className='editor__form--target'>
-              <label htmlFor='target'>
-                <div className='label__title'>Target</div>
-                <div className='select__wrapper'>
-                  <select
-                    id='target'
-                    name='target'
-                    className='editor__form--select'
-                    value={animation.target}
-                    onChange={(e) => handleTargetChange(e)}
-                  >
-                    {Object.keys(svgTargets).map((target, idx) => {
-                      return (
-                        <option key={idx} value={target}>
-                          {target}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-              </label>
-            </div>
+						<div className='editor__form--target'>
+							<label htmlFor='target'>
+								<div className='label__title'>Target</div>
+								<div className='select__wrapper'>
+									<select
+										id='target'
+										name='target'
+										className='editor__form--select'
+										value={animation.target}
+										onChange={(e) => handleTargetChange(e)}
+									>
+										{Object.keys(svgTargets).map((target, idx) => {
+											return (
+												<option key={idx} value={target}>
+													{target}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+							</label>
+						</div>
 						<div className='editor__form--left'>
 							<label htmlFor='delay'>
 								<div className='label__title'>Delay</div>
@@ -271,9 +302,15 @@ function AnimationControls(props) {
 					</div>
 
 					<div className='editor__form--buttons'>
-						<button type="button" onClick={(e) => handlePause()}>PAUSE</button>
-						<button type="button" onClick={(e) => handleStop()}>STOP</button>
-						<button type="button" onClick={(e) => handlePlay()}>PLAY</button>
+						<button type='button' onClick={(e) => handlePause()}>
+							PAUSE
+						</button>
+						<button type='button' onClick={(e) => handleStop()}>
+							STOP
+						</button>
+						<button type='button' onClick={(e) => handlePlay()}>
+							PLAY
+						</button>
 					</div>
 				</form>
 			</div>
@@ -281,16 +318,17 @@ function AnimationControls(props) {
 			<div
 				id='editor__preview'
 				className='editor__preview'
-				style={{ backgroundColor: animationTarget.bg }}>
+				style={{ backgroundColor: animationTarget.bg }}
+			>
 				<div className='editor__preview--controls'>
-          <div className='editor__preview--controls-two'>
-            <button>OPTIONS</button>
-            <button>CODE</button>
-          </div>
+					<div className='editor__preview--controls-two'>
+						<button onClick={(e) => showHideSlideOut(e)} name="options">OPTIONS</button>
+						<button onClick={(e) => showHideSlideOut(e)} name="code">CODE</button>
+					</div>
 					<div className='editor__preview--controls-one'>
 						<button onClick={(e) => handleDelete(e)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
-            {message}
+						{message}
 					</div>
 				</div>
 				<div id='animation__target' className='animation__target'>
@@ -298,25 +336,40 @@ function AnimationControls(props) {
 				</div>
 			</div>
 
-			
-			<div className='editor__keyframe--list'>
-        <ul>
-          {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
-            return (
-              <li
-                key={idx}
-                className={key === Object.keys(animation.keyframe)[0] ? "active": ""}
-                onClick={() => setTargetKeyframesCss({ [key]: value })}>
-                {key}
-              </li>
-            );
-          })}
-        </ul>
+			<div className='editor__slideout'>
+				<div className={`editor__keyframe--list ${(showDrawer === "options") ? 'show' :  'hide'}`}>
+          <div className="editor__slideout--close-outer">
+            <div className="editor__slideout--close-inner">
+              <svgIcons.close.icon />
+            </div>
+          </div>
+          <ul>
+            {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
+              return (
+                <li
+                  key={idx}
+                  className={key === Object.keys(animation.keyframe)[0] ? "active": ""}
+                  onClick={() => setTargetKeyframesCss({ [key]: value })}>
+                  {key}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+				<div className={`editor__css ${showDrawer === "code" ? 'show' :  'hide'}`}>
+        <label htmlFor="editor__css--class">CLASS</label>
+					<div id='editor__css--class' className='editor__css--inner' contentEditable='true'>
+            css class goes here ...
+          </div>
+          <label htmlFor="editor__css--keyframes">KEYFRAMES</label>
+					<div id='editor__css--keyframes' className='editor__css--inner' contentEditable='true'>
+            {Object.values(animation.keyframe)[0]}
+          </div>
+				</div>
 			</div>
 
-      <div className='editor__css'></div>
-
-      {/* we apply the animation keyframes here */}
+			{/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>
 				{Object.values(animation.keyframe)[0]}
 			</style>

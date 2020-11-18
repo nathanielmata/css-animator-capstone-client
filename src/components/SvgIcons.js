@@ -32,8 +32,23 @@ const CssIcon = ({classVariant}) => (
   </SvgElement>
 );
 
+const CloseIcon = ({classVariant}) => (
+  <SvgElement 
+    viewBox="0 0 20 20"
+    width="20"
+    height="20"
+    fill="#fdb06a "
+    title="close"
+    ariaLabel="close"
+    classVariant={[classVariant]}>
+    <line x1="2" x2="18" y1="2" y2="18" stroke="#fdb06a" strokeWidth="5" />
+    <line x1="18" x2="2" y1="2" y2="18" stroke="#fdb06a" strokeWidth="5" />
+  </SvgElement>
+);
+
 const svgIcons = {
   css: {icon: CssIcon},
+  close: {icon: CloseIcon}
 }
 
 export default svgIcons;

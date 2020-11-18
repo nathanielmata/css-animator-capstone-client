@@ -44,7 +44,7 @@ export default class MainPage extends Component {
 					</div>
 				</section>
 
-				<footer>&#169; Animation Station 2020</footer>
+				<footer>&#169; Animation Station {new Date().getFullYear()}</footer>
 			</div>
 		);
 	}
