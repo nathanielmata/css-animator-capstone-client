@@ -9,7 +9,8 @@ function AnimationControls(props) {
 
   const [message, setMessage] = useState('');
   const [showSlideOut, setShowSlideOut] = useState('reverse');
-  const [showDrawer, setShowDrawer] = useState("");
+  const [showDrawer, setShowDrawer] = useState('');
+  const [cssOutput, setCssOutput] = useState('');
 	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
@@ -28,6 +29,12 @@ function AnimationControls(props) {
   );
 
   useEffect(() => {
+    (() => {
+      const css = generateTargetCss();
+      const cssClass = generateCssClass(css);
+      setCssOutput(cssClass);
+    })()
+
     const id = props.match.params.id ?? null;
     if (props.match.params.id) {
       getAnimation(id);
@@ -73,10 +80,10 @@ function AnimationControls(props) {
 	const clearTargetCss = () => {
 		getTarget().style.animation = '';
 		void getTarget().offsetWidth;
-	};
-
-	const setTargetCss = () => {
-		const an = animation;
+  };
+  
+  const generateTargetCss = () => {
+    const an = animation;
 		const css = [
 			Object.keys(an.keyframe)[0],
 			an.duration + 'ms',
@@ -87,6 +94,17 @@ function AnimationControls(props) {
 			an.fill,
     ].join(' ');
 
+    return css;
+  }
+
+  const generateCssClass = (css) => {
+    return `.${Object.keys(animation.keyframe)[0]} { animation: ${css} }`;
+  }
+
+	const setTargetCss = () => {
+    const css = generateTargetCss();
+    const cssClass = generateCssClass(css);
+    setCssOutput(cssClass);
 		getTarget().style.animation = css;
   };
   
@@ -101,24 +119,20 @@ function AnimationControls(props) {
     target.style.animation = css;
 
     const name = e.target.name
-    // console.log(name);
-    // console.log(showDrawer);
     if (name === showDrawer) {
-      await setShowSlideOut(options);
-      await setShowDrawer("");
+      setShowSlideOut(options);
+      setShowDrawer("");
     }
 
     if (name !== showDrawer) {
-      console.log(name);
-    console.log(showDrawer);
-      await setShowSlideOut(options);
-      await setShowSlideOut(options);
-      await setShowDrawer(e.target.name);
+      setShowSlideOut(options);
+      setShowSlideOut(options);
+      setShowDrawer(e.target.name);
     }
 
     if (showDrawer !== "") {
-      await setShowSlideOut(options);
-      await setShowDrawer(e.target.name);
+      setShowSlideOut(options);
+      setShowDrawer(e.target.name);
     }
   }
 
@@ -373,16 +387,29 @@ function AnimationControls(props) {
         </div>
 
 				<div className={`editor__css ${showDrawer === "code" ? 'show' :  'hide'}`}>
-        <label htmlFor="editor__css--class">CLASS</label>
-					<div id='editor__css--class' className='editor__css--inner' contentEditable='true'>
-            css class goes here ...
+          <div className="editor__slideout--close-outer">
+            <div className="editor__slideout--close-inner">
+              <svgIcons.close.icon />
+            </div>
           </div>
+
+          <label htmlFor="editor__css--class">CLASS</label>
+          <div 
+            id='editor__css--class' 
+            className='editor__css--inner' 
+            dangerouslySetInnerHTML={{ __html: cssOutput }}
+            contentEditable>
+          </div>
+
           <label htmlFor="editor__css--keyframes">KEYFRAMES</label>
-					<div id='editor__css--keyframes' className='editor__css--inner' contentEditable='true'>
-            {Object.values(animation.keyframe)[0]}
+          <div 
+            id='editor__css--keyframes' 
+            className='editor__css--inner' 
+            dangerouslySetInnerHTML={{ __html: Object.values(animation.keyframe)[0] }}
+            contentEditable>
           </div>
-				</div>
-			</div>
+        </div>
+      </div>
 
 			{/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>

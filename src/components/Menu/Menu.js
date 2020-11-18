@@ -27,7 +27,7 @@ const Menu = (props) => {
     return (
       <ul>
         <li>
-          <a href="/dashboard">Dashboard</a>
+          <a href="/profile">Dashboard</a>
         </li>
         <li>
           <a href="/editor">Editor</a>

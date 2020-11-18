@@ -2,7 +2,8 @@ import React from 'react';
 import UserInfo from '../../components/UserInfo';
 import TokenService from '../../services/token-service';
 import AnimationApiService from '../../services/animation-api-service';
-import AnimationList from '../../components/AnimationList';
+// import AnimationList from '../../components/AnimationList';
+import AnimationContainer from '../../components/AnimationContainer/AnimationContainer'
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
@@ -37,8 +38,6 @@ class ProfilePage extends React.Component {
 	render() {
 		return (
 			<section id='profile-page'>
-				<Menu />
-				<Link style={{backgroundColor: "white"}} to="/editor">New Animation</Link>
 				<UserInfo
 					username={`${this.context.user_name}`}
 					fullname={`${this.context.full_name}`}
@@ -53,17 +52,21 @@ class ProfilePage extends React.Component {
 					onClickDo={() => {}}
 						styles={{ width: 140, fontSize: 17 }}
 						color={colors.yellow}>
-						<Link to="/editor">New Animation</Link>
+						<Link to="/editor/new">New Animation</Link>
 					</CustomButton>
 				</div>
 				<div
-					className='profile__animation--container'
-					style={{ backgroundColor: colors.yellow }}>
-					{this.state.userAnimation.map(animation => {
-            return <Link to={`editor/${animation.id}`}>{animation.title}</Link>
-          })}
+					className='profile__animation--container'>
+            {this.state.userAnimation.map((animation, idx) => {
+              return (
+                <Link to={`editor/${animation.id}`} key={idx}>
+                  <AnimationContainer animation={animation}/>
+                </Link>
+                )
+              })
+            }
+
 				</div>
-				{/* <AnimationList></AnimationList> */}
 			</section>
 		);
 	}
