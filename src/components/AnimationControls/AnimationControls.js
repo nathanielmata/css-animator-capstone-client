@@ -52,7 +52,7 @@ function AnimationControls(props) {
       .then(res => {
 				setTimeout(function () {
 				setMessage('')	
-				},5000)
+				},1000)
 				setMessage
 					('Animation saved successfully')
 				props.history.push(`/profile`)
@@ -128,7 +128,7 @@ function AnimationControls(props) {
 			.then(res => {
 				setTimeout(function () {
 				setMessage('')	
-				},5000)
+				},1000)
 				setMessage
 					('Animation delete successfully')	
 				/* console.log(res) */
