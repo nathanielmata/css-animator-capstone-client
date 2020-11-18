@@ -27,8 +27,11 @@ export default class Header extends Component {
     return (
       <div className="header__container">
         <div className="Header__logged-in">
-          <Link id='user__name' to="/profile">{`${this.context.user_name}`}</Link>
-          <Link id='logout_button' onClick={this.handleLogoutClick} to="/">
+          <Link
+            id="user__name"
+            to="/profile"
+          >{`${this.context.user_name}`}</Link>
+          <Link id="logout_button" onClick={this.handleLogoutClick} to="/">
             Logout
           </Link>
         </div>
@@ -55,9 +58,11 @@ export default class Header extends Component {
     return (
       <div className="Header">
         <div className="main__header_options">
-          <div style={{ paddingTop: 16 }}>
+          <div style={{ paddingTop: 10, paddingLeft: 20 }}>
             <h1>
-              <Link to="/dashboard"> <span><img src="logo.svg"/></span>Animation Station</Link>
+              <Link to='/dashboard'>
+                <img src="logo.svg" style={{ height: 60 }} />
+              </Link>
             </h1>
           </div>
           <div className="header__links">
