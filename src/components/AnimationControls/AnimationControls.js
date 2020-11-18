@@ -50,12 +50,16 @@ function AnimationControls(props) {
   }
 
   const postAnimation = (animation) => {
-		AnimationApiService.postAnimation(animation)
-			.then((res) => {
-				setTimeout(function() {
-					setMessage('');
-				}, 5000);
-				setMessage('Animation saved successfully');
+
+    AnimationApiService.postAnimation(animation)
+      .then(res => {
+				setTimeout(function () {
+				setMessage('')	
+				},1000)
+				setMessage
+					('Animation saved successfully')
+				props.history.push(`/profile`)
+
 			})
 			.catch((err) => console.log(err));
 	};
@@ -153,11 +157,22 @@ function AnimationControls(props) {
 		setTargetCss();
   };
   
-	const handleDelete = (animationId) => {
+	const handleDelete = (e, animationId) => {	
+		e.preventDefault();
+
 		AnimationApiService.deleteAnimation(animationId)
-    // Delete code should go here
-    // remove console log below
-    
+			.then(res => {
+				setTimeout(function () {
+				setMessage('')	
+				},1000)
+				setMessage
+					('Animation delete successfully')	
+				/* console.log(res) */
+				
+				props.history.push((`/profile`)) 
+			})
+			 
+      .catch(err => console.log(err));
   };
   
 	const handleSave = (e) => {
@@ -326,7 +341,7 @@ function AnimationControls(props) {
 						<button onClick={(e) => showHideSlideOut(e)} name="code">CODE</button>
 					</div>
 					<div className='editor__preview--controls-one'>
-						<button onClick={(e) => handleDelete(e)}>DELETE</button>
+						<button onClick={(e) => handleDelete( e, props.match.params.id)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
 						{message}
 					</div>
