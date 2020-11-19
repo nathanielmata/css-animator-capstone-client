@@ -261,8 +261,9 @@
   text-align: left;
   white-space: pre-wrap;
   text-transform: none;
-  font-size: 15px;
-  line-height: 1.5em;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2em;
   width: 100%;
 }
 
@@ -303,10 +304,11 @@
 }
 
 .editor__slideout--close-outer {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: start;
-  top: 8px;
+  top: 24px;
+  left: 24px;
   width: 100%;
   padding: 0;
 }
