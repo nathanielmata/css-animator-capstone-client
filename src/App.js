@@ -31,10 +31,14 @@ class App extends React.Component {
 	componentDidMount() {
     IdleService.setIdleCallback(this.logoutFromIdle)
     if (TokenService.hasAuthToken()) {
-      IdleService.regiserIdleTimerResets()     
-      TokenService.queueCallbackBeforeExpiry(() => {
-        AuthApiService.postRefreshToken()
-      })
+      const token = TokenService.getAuthToken();
+      const expiry = TokenService._getMsUntilExpiry(token)
+      if (expiry > 0) {
+        IdleService.regiserIdleTimerResets()     
+        TokenService.queueCallbackBeforeExpiry(() => {
+          AuthApiService.postRefreshToken()
+        })
+      }
     }
   }
 
@@ -70,13 +74,6 @@ class App extends React.Component {
 								path={'/registration'}
 								component={RegistrationPage}
 							/>
-							{/* <Route
-								exact
-								path='/dashboard'
-								render={(props) => (
-									<PrivateRoute {...props} component={Dashboard} />
-								)}
-							/> */}
 							<Route
 								exact
 								path='/profile'
