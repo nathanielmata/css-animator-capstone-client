@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import svgTargets from '../SvgTargets';
 import './AnimationContainer.css';
 
@@ -16,14 +14,13 @@ function AnimationContainer(props) {
     keyframe,
 		target,
   } = props.animation;
-  
-  const history = useHistory();
 
-	const [title, setTitle] = useState(props.animation.title);
-	const [animationTarget, setAnimationTarget] = useState({
-		target: svgTargets[target].target,
-		bg: svgTargets[target].bg,
-	});
+	const animationTarget = (function () {
+    return {
+      target: svgTargets[target].target,
+      bg: svgTargets[target].bg,
+    }
+  })();
 
 	const getTarget = () => {
 		return document.querySelector(`#dashboard__animation--target${id}`);
@@ -35,7 +32,6 @@ function AnimationContainer(props) {
 	};
 
 	const setCss = () => {
-
 		const css = [
       Object.keys(JSON.parse(keyframe))[0],
 			duration + 'ms',
@@ -58,7 +54,7 @@ function AnimationContainer(props) {
 	return (
 		<div className='dashboard__container'>
 			<div className='dashboard__controls'>
-				<p>{title}</p>
+				<p>{props.animation.title}</p>
 
 				<div className='dashboard__form--buttons'>
 					<button>EDIT</button>
