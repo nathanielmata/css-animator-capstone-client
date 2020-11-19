@@ -1,14 +1,11 @@
 import React from 'react';
 import UserInfo from '../../components/UserInfo';
-import TokenService from '../../services/token-service';
 import AnimationApiService from '../../services/animation-api-service';
-// import AnimationList from '../../components/AnimationList';
 import AnimationContainer from '../../components/AnimationContainer/AnimationContainer'
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
 import './ProfilePage.css';
-import Menu from '../../components/Menu/Menu';
 import { Link } from 'react-router-dom'
 
 class ProfilePage extends React.Component {

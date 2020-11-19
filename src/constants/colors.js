@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
     primaryColor: '#64DEC7',
     purple: '#45274a',

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
 import Header from './components/Header/Header';
-import Dashboard from './routes/DashboardPage/Dashboard';
 import NotFound from './components/NotFound';
 import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
 import Menu from './components/Menu/Menu';
-import LandingPage from './routes/LandingPage/LandingPage';
 import MainPage from './components/Main/MainPage';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import ContactPage from './components/Contact/ContactPage';
 import AnimationControls from './components/AnimationControls/AnimationControls';
-import UserContext, { UserProvider } from './context/UserContext';
+import UserContext from './context/UserContext';
+import TokenService from '../src/services/token-service'
+import AuthApiService from '../src/services/animation-api-service'
+import IdleService from '../src/services/idle-service'
 import './App.css';
 
 class App extends React.Component {
@@ -28,10 +28,33 @@ class App extends React.Component {
 		console.error(error);
 		return { hasError: true };
 	}
+	componentDidMount() {
+    IdleService.setIdleCallback(this.logoutFromIdle)
+    if (TokenService.hasAuthToken()) {
+      IdleService.regiserIdleTimerResets()     
+      TokenService.queueCallbackBeforeExpiry(() => {
+        AuthApiService.postRefreshToken()
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    IdleService.unRegisterIdleResets()
+    TokenService.clearCallbackBeforeExpiry()
+  }
+
+  logoutFromIdle = () => { 
+    TokenService.clearAuthToken() 
+    TokenService.clearCallbackBeforeExpiry() 
+		IdleService.unRegisterIdleResets()
+		this.context.setUser(null)
+		this.context.setUserName(null)
+    this.forceUpdate()
+  }
 
 	render() {
 		return (
-			<UserProvider>
+		
 				<div className='App'>
 					<Header />
 					<main id='main__container' className='main__container'>
@@ -82,7 +105,7 @@ class App extends React.Component {
 					</main>
 					{/*  <footer>&#169; animation-station 2020</footer>  */}
 				</div>
-			</UserProvider>
+			
 		);
 	}
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
-import './Header.css';
+import IdleService from '../../services/idle-service';
 import UserContext from '../../context/UserContext';
 import Menu from '../Menu/Menu';
+import './Header.css';
 
 export default class Header extends Component {
 	static contextType = UserContext;
@@ -15,7 +16,9 @@ export default class Header extends Component {
 		},
 	};
 	handleLogoutClick = () => {
-		TokenService.clearAuthToken();
+    TokenService.clearAuthToken();
+    TokenService.clearCallbackBeforeExpiry()
+    IdleService.unRegisterIdleResets()
 		this.context.setUser(null);
 	};
 	handleProfilePage = () => {
@@ -46,7 +49,7 @@ export default class Header extends Component {
 					<Link id='login__Button' to='/login'>
 						Log in
 					</Link>
-					<Link id='register__button' to='/registration'>
+					<Link id='register__button' to='/registration' >
 						Register
 					</Link>
 				</div>
@@ -63,7 +66,7 @@ export default class Header extends Component {
 						<div style={{ paddingTop: 10, paddingLeft: 20 }}>
 							<h1>
 								<Link to='/profile'>
-									<img src='/logo.svg' style={{ height: 60 }} />
+									<img src='/logo.svg' alt='logo' style={{ height: 60 }} />
 								</Link>
 							</h1>
 						</div>
@@ -76,9 +79,7 @@ export default class Header extends Component {
 							</div>
 						</div>
 					</div>
-
 					{this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}
-
 					<span className='Header__tagline--narrow'>
 						Let's be creative, make some animation.
 					</span>
