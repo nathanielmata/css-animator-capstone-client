@@ -306,7 +306,7 @@
 .editor__slideout--close-outer {
   position: absolute;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   top: 24px;
   left: 24px;
   width: 100%;
@@ -435,7 +435,8 @@
 
 	.editor__slideout {
 		top: 15%;
-		bottom: 15%;
+    bottom: 15%;
+    min-height: 568px;
 	}
 
 	.animation__target {
