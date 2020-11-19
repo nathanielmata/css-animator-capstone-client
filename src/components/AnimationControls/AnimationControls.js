@@ -9,8 +9,12 @@ function AnimationControls(props) {
 
   const [message, setMessage] = useState('');
   const [showSlideOut, setShowSlideOut] = useState('reverse');
-  const [showDrawer, setShowDrawer] = useState('');
   const [cssOutput, setCssOutput] = useState('');
+  const [slideOut, setSlideOut] = useState({
+    content: '',
+    visible: false,
+
+  });
 	
 	const [animation, setAnimation] = useState({
 		title: 'Untitled',
@@ -98,7 +102,7 @@ function AnimationControls(props) {
   }
 
   const generateCssClass = (css) => {
-    return `.${Object.keys(animation.keyframe)[0]} { animation: ${css} }`;
+    return `.${Object.keys(animation.keyframe)[0]} {\n\tanimation: ${css}\n}`;
   }
 
 	const setTargetCss = () => {
@@ -107,33 +111,52 @@ function AnimationControls(props) {
     setCssOutput(cssClass);
 		getTarget().style.animation = css;
   };
-  
-  const showHideSlideOut = async (e) => {
-    const target = document.querySelector(".editor__slideout");
 
+  const closeSlideOut = () => {
+    const target = document.querySelector(".editor__slideout");
     target.style.animation = '';
-    void getTarget().offsetWidth;
-    
-    const options = showSlideOut === "normal" ? "reverse" : "normal";
-    const css = `slide-options 300ms ease-out 100ms 1 ${options} both`;
+    void target.offsetWidth;
+    const css = `slide-options 300ms ease-out 100ms 1 reverse both`;
     target.style.animation = css;
 
-    const name = e.target.name
-    if (name === showDrawer) {
-      setShowSlideOut(options);
-      setShowDrawer("");
+    setSlideOut({ ...slideOut, visible: false });
+  }
+  
+  const showHideSlideOut = (e) => {
+    const name = e.target.name;
+    const target = document.querySelector(".editor__slideout");
+
+    const cssOpen = `slide-options 300ms ease-out 100ms 1 normal both`;
+    const cssClose = `slide-options 300ms ease-out 100ms 1 reverse both`;
+
+    // clear animation css before reanimating
+    target.style.animation = '';
+    void target.offsetWidth;
+
+    // open if closed
+    if (slideOut.visible === false && name) {
+      target.style.animation = cssOpen;
+      setSlideOut({ content: name, visible: true });
     }
 
-    if (name !== showDrawer) {
-      setShowSlideOut(options);
-      setShowSlideOut(options);
-      setShowDrawer(e.target.name);
+    // close if open
+    if (slideOut.visible === true && name === slideOut.content) {
+      target.style.animation = cssClose;
+      setSlideOut({ content: name, visible: false });
     }
 
-    if (showDrawer !== "") {
-      setShowSlideOut(options);
-      setShowDrawer(e.target.name);
+    // if open and other button is clicked close then reopen with new content
+    if (slideOut.visible === true && name !== slideOut.content) {
+      target.style.animation = cssClose;
+
+      setTimeout(function () {
+        target.style.animation = '';
+        void target.offsetWidth;
+        target.style.animation = cssOpen;
+        setSlideOut({ content: name, visible: true });
+			}, 500);
     }
+  
   }
 
 	const setTargetKeyframesCss = (keyframeCss) => {
@@ -366,12 +389,7 @@ function AnimationControls(props) {
 			</div>
 
 			<div className='editor__slideout'>
-				<div className={`editor__keyframe--list ${(showDrawer === "options") ? 'show' :  'hide'}`}>
-          <div className="editor__slideout--close-outer">
-            <div className="editor__slideout--close-inner">
-              <svgIcons.close.icon />
-            </div>
-          </div>
+				<div className={`editor__keyframe--list ${(slideOut.content === "options") ? 'show' :  'hide'}`}>
           <ul>
             {Object.entries(AnimationKeyframes).map(([key, value], idx) => {
               return (
@@ -386,13 +404,7 @@ function AnimationControls(props) {
           </ul>
         </div>
 
-				<div className={`editor__css ${showDrawer === "code" ? 'show' :  'hide'}`}>
-          <div className="editor__slideout--close-outer">
-            <div className="editor__slideout--close-inner">
-              <svgIcons.close.icon />
-            </div>
-          </div>
-
+				<div className={`editor__css ${slideOut.content === "code" ? 'show' :  'hide'}`}>
           <label htmlFor="editor__css--class">CLASS</label>
           <div 
             id='editor__css--class' 
@@ -407,6 +419,16 @@ function AnimationControls(props) {
             className='editor__css--inner' 
             dangerouslySetInnerHTML={{ __html: Object.values(animation.keyframe)[0] }}
             contentEditable>
+          </div>
+        </div>
+
+        {/* close button */}
+        <div className="editor__slideout--close-outer">
+          <div
+            className="editor__slideout--close-inner"
+            onClick={(e) => closeSlideOut()}
+            name="close">
+            <svgIcons.close.icon />
           </div>
         </div>
       </div>
