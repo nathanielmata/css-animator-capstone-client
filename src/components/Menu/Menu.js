@@ -3,9 +3,6 @@ import TokenService from "../../services/token-service";
 import "./Menu.css";
 
 const Menu = (props) => {
-  const handleLogoutClick = () => {
-    TokenService.clearAuthToken();
-  };
 
   const renderNotAuthOptions = (props) => {
     return (
@@ -31,11 +28,6 @@ const Menu = (props) => {
         </li>
         <li>
           <a href="/editor">Editor</a>
-        </li>
-        <li>
-          <a onClick={() => handleLogoutClick()} to="/">
-            Logout
-          </a>
         </li>
       </ul>
     );

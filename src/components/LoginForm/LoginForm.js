@@ -36,20 +36,16 @@ export default class LoginForm extends Component {
 			password: password.value,
 		})
 			.then((res) => {
-				console.log('hello world');
 				email.value = '';
 				password.value = '';
 				this.context.setUser(res.authToken);
-				TokenService.saveAuthToken(res.authToken);
 				const user = TokenService.readJwtToken();
-        console.log(user);
         localStorage.user_name = user.user_name;
 				this.context.setUserName(user.user_name);
 				this.context.setUserFullName(user.full_name);
 				this.props.onLoginSuccess();
 			})
 			.catch((res) => {
-				console.log(res);
 				this.setState({ error: res.error });
 			});
 	};
@@ -61,9 +57,8 @@ export default class LoginForm extends Component {
 				<h1> Login</h1>
 				<form
 					className='form__login'
-					//onSubmit={this.handleSubmitBasicAuth}
 					onSubmit={this.handleSubmitJwtAuth}>
-					<div role='alert'>{error && <p className='red'>{error}</p>}</div>
+					<div role='alert'>{error && <p className='login_error'>{error}</p>}</div>
 					<div className='email'>
 						<label className='login-input-label' htmlFor='LoginForm__email'>
 							Email

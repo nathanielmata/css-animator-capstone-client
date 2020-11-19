@@ -61,7 +61,7 @@ export class UserProvider extends React.Component {
   }
   setUser = (user) => {
     this.setState({ user });
-    console.log(user)
+
   };
   deleteAnimation = (animationId) => {
    this.setState({animationId}) 

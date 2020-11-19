@@ -35,7 +35,7 @@ export default class RegistrationForm extends Component {
     const { error } = this.state;
     return (
       <form className="RegistrationForm" onSubmit={this.handleSubmit}>
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
+        <div role="alert">{error && <p className="registration_error">{error}</p>}</div>
         <div className="full_name">
           <label
             className="login-input-label"
