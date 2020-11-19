@@ -41,11 +41,6 @@ class ProfilePage extends React.Component {
 				/>
 				<div className='buttons-container'>
 					<CustomButton
-						styles={{ width: 140, fontSize: 17 }}
-						color={colors.yellow}>
-						Invite
-					</CustomButton>
-					<CustomButton
 					onClickDo={() => {}}
 						styles={{ width: 140, fontSize: 17 }}
 						color={colors.yellow}>
