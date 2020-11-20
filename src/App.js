@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound';
 import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
 import Menu from './components/Menu/Menu';
-import MainPage from './components/Main/MainPage';
+import Main from './components/Main/Main';
 import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import ContactPage from './components/Contact/ContactPage';
@@ -66,7 +66,7 @@ class App extends React.Component {
 						<p className='red'>There was an error! Oh no!</p>
 					)}
 					<Switch>
-						<Route exact path={'/'} component={MainPage} />
+						<Route exact path={'/'} component={Main} />
 						<Route exact path={'/contact'} component={ContactPage} />
 						<Route exact path={'/login'} component={LoginPage} />
 						<Route exact path={'/registration'} component={RegistrationPage} />

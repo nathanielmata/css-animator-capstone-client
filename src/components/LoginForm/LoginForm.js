@@ -69,6 +69,7 @@ export default class LoginForm extends Component {
 							required
 							name='email'
 							id='LoginForm__email'
+              autoComplete="email"
 						/>
 					</div>
 					<div className='password'>
@@ -77,11 +78,12 @@ export default class LoginForm extends Component {
 						</label>
 						<br />
 						<input
-							className='user-input'
-							required
-							name='password'
 							type='password'
 							id='LoginForm__password'
+							className='user-input'
+							name='password'
+              autoComplete="current-password"
+							required
 						/>
 					</div>
 					<button className='btn' type='submit'>

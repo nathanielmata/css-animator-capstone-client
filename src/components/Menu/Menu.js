@@ -30,10 +30,10 @@ const Menu = (props) => {
 		return (
 			<ul>
 				<li>
-					<a href='/profile'>Dashboard</a>
+					<a href='/profile'>Profile</a>
 				</li>
 				<li>
-					<a href='/editor'>Editor</a>
+					<a href='/editor/new'>Editor</a>
 				</li>
 				<li>
 					<a href='/' onClick={() => handleLogoutClick()} to='/'>

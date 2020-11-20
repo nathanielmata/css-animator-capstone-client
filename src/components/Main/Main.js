@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import './Main.css';
-export default class MainPage extends Component {
+export default class Main extends Component {
 	state = {
 		redirect: false,
 		where: '',
@@ -11,7 +11,7 @@ export default class MainPage extends Component {
 	//redirects the page clicked on
 	switchPage = (link) => {
 		if (link === 'login' && TokenService.hasAuthToken()) {
-			link = 'dashboard';
+			link = 'profile';
 		}
 
 		this.setState({
@@ -31,7 +31,7 @@ export default class MainPage extends Component {
 		}
 
 		return (
-			<div>
+			<div className="banner__outer">
 				<section className='banner'>
 					<div className='Overlay'>
 						<h2>Animation Station</h2>

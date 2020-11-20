@@ -41,7 +41,7 @@ export default class RegistrationForm extends Component {
             className="login-input-label"
             htmlFor="RegistrationForm__full_name"
           >
-            Full name <required />
+            Full name
           </label>
           <input
             className="user-input"
@@ -56,7 +56,7 @@ export default class RegistrationForm extends Component {
             className="login-input-label"
             htmlFor="RegistrationForm__user_name"
           >
-            User name <required />
+            User name
           </label>
           <input
             className="user-input"
@@ -78,6 +78,7 @@ export default class RegistrationForm extends Component {
               type="email"
               required
               id="RegistrationForm__email"
+              autoComplete="email"
             />
           </label>
         </div>
@@ -86,7 +87,7 @@ export default class RegistrationForm extends Component {
             className="login-input-label"
             htmlFor="RegistrationForm__password"
           >
-            Password <required />
+            Password
           </label>
           <input
             className="user-input"
@@ -94,6 +95,7 @@ export default class RegistrationForm extends Component {
             type="password"
             required
             id="RegistrationForm__password"
+            autoComplete="new-password"
           />
         </div>
         <button className="btn" type="submit">
