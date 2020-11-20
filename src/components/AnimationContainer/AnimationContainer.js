@@ -82,7 +82,7 @@ function AnimationContainer(props) {
 
 			{/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>
-        {Object.keys(JSON.parse(keyframe))[0]}
+        {Object.values(JSON.parse(keyframe))[0]}
       </style>
 		</div>
 	);
