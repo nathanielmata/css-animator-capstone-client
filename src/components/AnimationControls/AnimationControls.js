@@ -57,9 +57,10 @@ function AnimationControls(props) {
 		AnimationApiService.postAnimation(animation)
 			.then((res) => {
 				setTimeout(function () {
-					setMessage('');
+					setMessage(' ');
 				}, 1000);
 				setMessage('Animation saved successfully');
+				console.log(props.history)
 				props.history.push(`/profile`);
 			})
 			.catch((err) => console.log(err));

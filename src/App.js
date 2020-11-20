@@ -10,10 +10,11 @@ import LoginPage from './routes/LoginPage/LoginPage';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import ContactPage from './components/Contact/ContactPage';
 import AnimationControls from './components/AnimationControls/AnimationControls';
+import AnimationsList from './components/AnimationsList/AnimationsList';
 import UserContext from './context/UserContext';
-import TokenService from '../src/services/token-service'
-import AuthApiService from '../src/services/animation-api-service'
-import IdleService from '../src/services/idle-service'
+import TokenService from '../src/services/token-service';
+import AuthApiService from '../src/services/animation-api-service';
+import IdleService from '../src/services/idle-service';
 import './App.css';
 
 class App extends React.Component {
@@ -29,80 +30,81 @@ class App extends React.Component {
 		return { hasError: true };
 	}
 	componentDidMount() {
-    IdleService.setIdleCallback(this.logoutFromIdle)
-    if (TokenService.hasAuthToken()) {
-      const token = TokenService.getAuthToken();
-      const expiry = TokenService._getMsUntilExpiry(token)
-      if (expiry > 0) {
-        IdleService.regiserIdleTimerResets()     
-        TokenService.queueCallbackBeforeExpiry(() => {
-          AuthApiService.postRefreshToken()
-        })
-      }
-    }
-  }
+		IdleService.setIdleCallback(this.logoutFromIdle);
+		if (TokenService.hasAuthToken()) {
+			const token = TokenService.getAuthToken();
+			const expiry = TokenService._getMsUntilExpiry(token);
+			if (expiry > 0) {
+				IdleService.regiserIdleTimerResets();
+				TokenService.queueCallbackBeforeExpiry(() => {
+					AuthApiService.postRefreshToken();
+				});
+			}
+		}
+	}
 
-  componentWillUnmount() {
-    IdleService.unRegisterIdleResets()
-    TokenService.clearCallbackBeforeExpiry()
-  }
+	componentWillUnmount() {
+		IdleService.unRegisterIdleResets();
+		TokenService.clearCallbackBeforeExpiry();
+	}
 
-  logoutFromIdle = () => { 
-    TokenService.clearAuthToken() 
-    TokenService.clearCallbackBeforeExpiry() 
-		IdleService.unRegisterIdleResets()
-		this.context.setUser(null)
-		this.context.setUserName(null)
-    this.forceUpdate()
-  }
+	logoutFromIdle = () => {
+		TokenService.clearAuthToken();
+		TokenService.clearCallbackBeforeExpiry();
+		IdleService.unRegisterIdleResets();
+		this.context.setUser(null);
+		this.context.setUserName(null);
+		this.forceUpdate();
+	};
 
 	render() {
 		return (
-		
-				<div className='App'>
-					<Header />
-					<main id='main__container' className='main__container'>
-						{this.state.hasError && (
-							<p className='red'>There was an error! Oh no!</p>
-						)}
-						<Switch>
-							<Route exact path={'/'} component={MainPage} />
-							<Route exact path={'/contact'} component={ContactPage} />
-							<Route exact path={'/login'} component={LoginPage} />
-							<Route
-								exact
-								path={'/registration'}
-								component={RegistrationPage}
-							/>
-							<Route
-								exact
-								path='/profile'
-								render={(props) => (
-									<PrivateRoute {...props} component={ProfilePage} />
-								)}
-							/>
-							<Route
-								exact
-								path='/editor/new'
-								render={(props) => (
-									<PrivateRoute {...props} component={AnimationControls} />
-								)}
-							/>
-							<Route
-								exact
-								path='/editor/:id'
-								render={(props) => (
-									<PrivateRoute {...props} component={AnimationControls} />
-								)}
-							/>
+			<div className='App'>
+				<Header />
+				<main id='main__container' className='main__container'>
+					{this.state.hasError && (
+						<p className='red'>There was an error! Oh no!</p>
+					)}
+					<Switch>
+						<Route exact path={'/'} component={MainPage} />
+						<Route exact path={'/contact'} component={ContactPage} />
+						<Route exact path={'/login'} component={LoginPage} />
+						<Route exact path={'/registration'} component={RegistrationPage} />
+						<Route
+							exact
+							path='/profile'
+							render={(props) => (
+								<PrivateRoute {...props} component={ProfilePage} />
+							)}
+						/>
+						<Route
+							exact
+							path='/animations'
+							render={(props) => (
+								<PrivateRoute {...props} component={AnimationsList} />
+							)}
+						/>
+						<Route
+							exact
+							path='/editor/new'
+							render={(props) => (
+								<PrivateRoute {...props} component={AnimationControls} />
+							)}
+						/>
+						<Route
+							exact
+							path='/editor/:id'
+							render={(props) => (
+								<PrivateRoute {...props} component={AnimationControls} />
+							)}
+						/>
 
-							<Route component={NotFound} />
-							<Menu />
-						</Switch>
-					</main>
-					{/*  <footer>&#169; animation-station 2020</footer>  */}
-				</div>
-			
+						<Route component={NotFound} />
+						<Menu />
+					</Switch>
+				</main>
+				{/*  <footer>&#169; animation-station 2020</footer>  */}
+			</div>
 		);
 	}
 }

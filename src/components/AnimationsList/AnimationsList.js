@@ -5,16 +5,16 @@ import AnimationContainer from '../../components/AnimationContainer/AnimationCon
 import CustomButton from '../../components/CustomButton/CustomButton';
 import colors from '../../constants/colors';
 import UserContext from '../../context/UserContext';
-import './ProfilePage.css';
+import './AnimationsList.css';
 import { Link } from 'react-router-dom';
 
-class ProfilePage extends React.Component {
+class AnimationsList extends React.Component {
 	static contextType = UserContext;
 	state = {
 		user: {
 			fullname: '',
 			user_name: '',
-			id: '',
+			id: null,
 		},
 		userAnimation: [],
 	};
@@ -24,7 +24,6 @@ class ProfilePage extends React.Component {
 
 	setCards = () => {
 		AnimationApiService.getAnimations().then((res) => {
-			console.log(res);
 			this.setState({
 				userAnimation: res,
 			});
@@ -33,7 +32,7 @@ class ProfilePage extends React.Component {
 
 	render() {
 		return (
-			<section id='profile-page'>
+			<section id='animationList-page'>
 				<UserInfo
 					username={`${this.context.user_name}`}
 					fullname={`${this.context.full_name}`}
@@ -46,7 +45,7 @@ class ProfilePage extends React.Component {
 						<Link to='/editor/new'>New Animation</Link>
 					</CustomButton>
 				</div>
-				<div className='profile__animation--container'>
+				<div className='_animationList__animation--container'>
 					{this.state.userAnimation.map((animation, idx) => {
 						return (
 							<Link to={`editor/${animation.id}`} key={idx}>
@@ -59,4 +58,4 @@ class ProfilePage extends React.Component {
 		);
 	}
 }
-export default ProfilePage;
+export default AnimationsList;

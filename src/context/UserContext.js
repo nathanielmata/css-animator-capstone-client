@@ -26,6 +26,7 @@ export class UserProvider extends React.Component {
     error: null,
     user: TokenService.getAuthToken(),
     user_name: localStorage.user_name,
+    user_id: localStorage.user_id,
     animations:[]
   };
 

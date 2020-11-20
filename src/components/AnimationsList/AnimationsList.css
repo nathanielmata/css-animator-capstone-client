@@ -1,0 +1,57 @@
+.user-info-container{
+    width: 90%;
+    margin: 0 auto;
+    top: 100px;
+    position: relative;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.animation-title{
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.username-container{
+    font-size: 27px;
+    padding-left: 20px;
+    font-weight: 600;
+    color: white;
+
+}
+.user-name{
+    padding: 10px;
+}
+/* .animation-list-container{
+    display: flex;
+} */
+._animationList__animation--container {
+    height: unset;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-radius: 8px;
+    position: relative;
+    padding: 20px 20px 40px;
+    
+}
+/* .animation-list-header{
+    margin-top: 50px;
+} */
+#animationList-page{
+    background-color: var(--main-bg-one);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.buttons-container{
+    width: 90%;
+    padding-top: 110px;
+    justify-content: space-evenly;
+    display: flex;
+    margin: 0 auto;
+}
