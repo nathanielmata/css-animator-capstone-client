@@ -29,3 +29,10 @@ section:nth-of-type(1) {
 	flex-direction: column;
 	flex-grow: 1;
 }
+.notfound__homelink {
+text-decoration-color: black;
+
+}
+.notfound__homelink p {	
+font-weight: 1000;		
+}

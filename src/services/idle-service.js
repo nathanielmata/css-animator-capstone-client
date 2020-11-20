@@ -7,7 +7,7 @@ let _notIdleEvents = [
 	'scroll',
 	'touchstart',
 ];
-let _FIVE_MINUTES_IN_MS = 5* 60 * 1000;
+let _FIVE_MINUTES_IN_MS = 24* 60 * 1000;
 
 const IdleService = {
 	setIdleCallback(idleCallback) {
