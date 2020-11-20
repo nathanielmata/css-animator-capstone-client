@@ -66,7 +66,7 @@ export default class Header extends Component {
 						<div style={{ paddingTop: 10, paddingLeft: 20 }}>
 							<h1>
 								<Link to='/profile'>
-									<img src='/logo.svg' alt='logo' style={{ height: 60 }} />
+									<img src='/header_logo.svg' alt='logo' style={{ height: 60 }} />
 								</Link>
 							</h1>
 						</div>
