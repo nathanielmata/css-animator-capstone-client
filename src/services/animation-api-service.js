@@ -43,24 +43,20 @@ const AnimationApiService = {
                     : res.json()
             )
     },
-    updateAnimation(id, title, content) {
-        return fetch(`${config.API_ENDPOINT}/animationss/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`,
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                id,
-                title,
-                content,
-            }),
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
+    updateAnimation(id, updatedAnimation) {
+      return fetch(`${config.API_ENDPOINT}/animations/${id}`, {
+          method: 'PATCH',
+          headers: {
+              'authorization': `bearer ${TokenService.getAuthToken()}`,
+              'content-type': 'application/json',
+          },
+          body: JSON.stringify(updatedAnimation),
+      })
+      .then(res =>
+          (!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json()
+      )
     },
     deleteAnimation(animationId) {
         return fetch(`${config.API_ENDPOINT}/animations/${animationId}`, {

@@ -60,13 +60,37 @@ function AnimationControls(props) {
 					setMessage(' ');
 				}, 1000);
 				setMessage('Animation saved successfully');
-				console.log(props.history)
 				props.history.push(`/profile`);
 			})
 			.catch((err) => console.log(err));
 	};
 
-	// const updateAnimation = () => {}
+	const updateAnimation = (id, animation) => {
+    AnimationApiService.updateAnimation(id, animation)
+    .then((res) => {
+      setTimeout(function () {
+        setMessage(' ');
+      }, 1000);
+      setMessage('Animation saved successfully');
+      props.history.push(`/profile`);
+    })
+    .catch((err) => console.log(err));
+  }
+
+  const deleteAnimation = (e, animationId) => {
+    e.preventDefault();
+		AnimationApiService.deleteAnimation(animationId)
+			.then((res) => {
+				setTimeout(function () {
+					setMessage('');
+				}, 1000);
+				setMessage('Animation delete successfully');
+
+				props.history.push(`/profile`);
+			})
+
+			.catch((err) => console.log(err));
+	};
 
 	const getTarget = () => {
 		return document.querySelector('#animation__target');
@@ -188,25 +212,13 @@ function AnimationControls(props) {
 	};
 
   const handleSave = (e) => {
-    postAnimation(animation);
+    e.preventDefault();
+    if (props.match.path === "/editor/new") {
+      postAnimation(animation);
+    } else {
+      updateAnimation(props.match.params.id, animation);
+    }
   };
-
-	const handleDelete = (e, animationId) => {
-		e.preventDefault();
-
-		AnimationApiService.deleteAnimation(animationId)
-			.then((res) => {
-				setTimeout(function () {
-					setMessage('');
-				}, 1000);
-				setMessage('Animation delete successfully');
-
-				props.history.push(`/profile`);
-			})
-
-			.catch((err) => console.log(err));
-	};
-
 
 	return (
 		<div className='editor__container'>
@@ -368,7 +380,7 @@ function AnimationControls(props) {
 						</button>
 					</div>
 					<div className='editor__preview--controls-one'>
-						<button onClick={(e) => handleDelete(e, props.match.params.id)}>DELETE</button>
+						<button onClick={(e) => deleteAnimation(e, props.match.params.id)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
 						{message}
 					</div>

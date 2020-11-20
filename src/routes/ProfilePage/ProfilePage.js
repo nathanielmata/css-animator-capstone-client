@@ -24,7 +24,6 @@ class ProfilePage extends React.Component {
 
 	setCards = () => {
 		AnimationApiService.getAnimations().then((res) => {
-			console.log(res);
 			this.setState({
 				userAnimation: res,
 			});
