@@ -1,4 +1,5 @@
 import svgTargets from '../SvgTargets';
+import { AnimationKeyframes } from '../AnimationControls/AnimationControls.keyframes';
 import './AnimationContainer.css';
 
 function AnimationContainer(props) {
@@ -82,14 +83,27 @@ function AnimationContainer(props) {
 
 			{/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>
-        { " " ||  Object.values(JSON.parse(keyframe))[0] }
+        { typeof keyframe === 'string'
+          ? Object.values(JSON.parse(keyframe))[0]
+          : Object.values(keyframe)[0]}
       </style>
 		</div>
 	);
 }
 
 AnimationContainer.defaultProps = {
-	animation : {id : 1}
+	animation: {
+    title: 'Untitled',
+    delay: '100',
+    duration: '1000',
+    iteration: '1',
+    direction: 'normal',
+    timing: 'ease',
+    fill: 'forwards',
+    keyframe: { 'rotate-center': AnimationKeyframes['rotate-center'] },
+    target: 'hotdog',
+  }
 }
+
 
 export default AnimationContainer;

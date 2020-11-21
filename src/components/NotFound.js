@@ -9,7 +9,7 @@ const NotFound = () => (
 
 			<img src={notFound} alt='not found' />
 			<p style={{ textAlign: 'center', fontSize: '30px' }}>
-				<Link clssName='notfound__homelink' to='/'>
+				<Link className='notfound__homelink' to='/'>
 					Go to Home{' '}
 				</Link>
 			</p>

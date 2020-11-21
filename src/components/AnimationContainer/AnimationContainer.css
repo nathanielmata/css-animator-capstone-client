@@ -11,6 +11,10 @@
 	text-align: center;
 }
 
+.dashboard__container:hover {
+  border: 1px solid white;
+}
+
 .dashboard__preview{
   display: flex;
   flex-direction: column;

@@ -39,15 +39,22 @@
     padding: 20px 20px 40px;
     
 }
-/* .animation-list-header{
-    margin-top: 50px;
-} */
-#profile-page{
+
+#profile-page {
     background-color: var(--main-bg-one);
     height: 100%;
     width: 100%;
     text-align: center;
 }
+
+.profile-page a {
+  text-decoration: none;
+}
+
+.profile-page a:hover {
+  color: white;
+}
+
 .buttons-container{
     width: 90%;
     padding-top: 110px;

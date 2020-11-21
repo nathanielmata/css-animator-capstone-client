@@ -32,7 +32,7 @@ class ProfilePage extends React.Component {
 
 	render() {
 		return (
-			<section id='profile-page'>
+			<section id='profile-page' className='profile-page'>
 				<UserInfo
 					username={`${this.context.user_name}`}
 					fullname={`${this.context.full_name}`}
