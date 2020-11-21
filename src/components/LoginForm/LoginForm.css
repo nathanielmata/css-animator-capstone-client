@@ -74,3 +74,9 @@ font-size: 20px;
 text-align: center;
 font-weight: 800;
 }
+@media screen and (min-width: 820px) {
+    .form__login{
+        width: 40%;
+    }
+}
+
