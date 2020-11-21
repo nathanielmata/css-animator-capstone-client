@@ -1,32 +1,36 @@
 .banner__outer {
-  height: 100%;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
-.banner {
-	margin-top: 0;
-	background: url('https://images.unsplash.com/photo-1487552292919-eccbbd948cba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc1MjQyfQ&auto=format&fit=crop&w=3294&q=80')
-		no-repeat fixed;
-	/* background-size: 2250px 1500px; */
-	position: relative;
+.banner,
+.Overlay {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 	width: 100%;
 	height: 100%;
 	padding: 10px;
-	color: white;
+}
+
+.banner {
+	position: relative;
+	margin-top: 0;
+	background: url('https://images.unsplash.com/photo-1487552292919-eccbbd948cba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc1MjQyfQ&auto=format&fit=crop&w=3294&q=80')
+		no-repeat fixed;
 	overflow: hidden;
+	color: white;
 }
 
 .Overlay {
 	position: absolute;
-	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(0, 0, 0, 0.7);
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-	padding: 10px;
 }
 
 .banner h2 {
@@ -62,13 +66,13 @@
 /* FOOTER */
 
 footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	padding: 16px 16px 24px;
 	color: white;
-  text-align: center;
+	text-align: center;
 }
 
 @media screen and (max-width: 768px) {
