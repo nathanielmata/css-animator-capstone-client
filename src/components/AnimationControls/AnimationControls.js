@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import svgTargets from '../SvgTargets';
 import svgIcons from '../SvgIcons';
 import AnimationApiService from '../../services/animation-api-service';
-import AnimationKeyframes from './AnimationControls.keyframes';
+import { AnimationKeyframes, AnimationKeyframesNames } from './AnimationControls.keyframes';
 import './AnimationControls.css';
 
 function AnimationControls(props) {
 	const [message, setMessage] = useState('');
-	const [cssOutput, setCssOutput] = useState('');
 	const [slideOut, setSlideOut] = useState({ content: '', visible: false });
 
 	const [animation, setAnimation] = useState({
@@ -25,12 +24,6 @@ function AnimationControls(props) {
 	const [animationTarget, setAnimationTarget] = useState(svgTargets[animation.target]);
 
 	useEffect(() => {
-		(() => {
-			const css = generateTargetCss();
-			const cssClass = generateCssClass(css);
-			setCssOutput(cssClass);
-		})();
-
 		const id = props.match.params.id ?? null;
 		if (props.match.params.id) {
 			getAnimation(id);
@@ -48,7 +41,7 @@ function AnimationControls(props) {
 				const { title, delay, duration, direction, iteration, timing, fill, target } = res;
 				const data = { title, delay, duration, iteration, direction, timing, fill, target, keyframe };
 				setAnimation(data);
-				setAnimationTarget(svgTargets[data.target]);
+        setAnimationTarget(svgTargets[data.target]);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -102,7 +95,7 @@ function AnimationControls(props) {
 	};
 
 	const generateTargetCss = () => {
-		const an = animation;
+    const an = animation;
 		const css = [
 			Object.keys(an.keyframe)[0],
 			an.duration + 'ms',
@@ -117,14 +110,13 @@ function AnimationControls(props) {
   };
   
   // generate css output for the code slideout
-	const generateCssClass = (css) => {
+	const setCssClass = () => {
+    const css = generateTargetCss();
 		return `.${Object.keys(animation.keyframe)[0]} {\n\tanimation: ${css}\n}`;
 	};
 
 	const setTargetCss = () => {
 		const css = generateTargetCss();
-		const cssClass = generateCssClass(css);
-		setCssOutput(cssClass);
 		getTarget().style.animation = css;
   };
   
@@ -399,7 +391,7 @@ function AnimationControls(props) {
 									key={idx}
 									className={key === Object.keys(animation.keyframe)[0] ? 'active' : ''}
 									onClick={() => setTargetKeyframesCss({ [key]: value })}>
-									{key}
+									{AnimationKeyframesNames[key]}
 								</li>
 							);
 						})}
@@ -412,12 +404,12 @@ function AnimationControls(props) {
 						id='editor__css--class'
 						className='editor__css--inner'
 						contentEditable
-						dangerouslySetInnerHTML={{ __html: cssOutput }}></div>
+						dangerouslySetInnerHTML={{ __html: setCssClass() }}></div>
 
 					<label htmlFor='editor__css--keyframes'>KEYFRAMES</label>
 					<div
 						id='editor__css--keyframes'
-						className='editor__css--inner'
+						className='editor__css--inner editor__css--keyframes'
 						contentEditable
 						dangerouslySetInnerHTML={{ __html: Object.values(animation.keyframe)[0] }}></div>
 				</div>
@@ -435,7 +427,5 @@ function AnimationControls(props) {
 		</div>
 	);
 }
-
-
 
 export default AnimationControls;
