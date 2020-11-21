@@ -17,8 +17,8 @@ function AnimationContainer(props) {
 
 	const animationTarget = (function () {
     return {
-      target: svgTargets[target].target,
-      bg: svgTargets[target].bg,
+      target: svgTargets[target] === undefined ? svgTargets.square.target : svgTargets[target].target ,
+      bg: svgTargets[target] === undefined ? svgTargets.square.bg : svgTargets[target].bg ,
     }
   })();
 
@@ -82,10 +82,14 @@ function AnimationContainer(props) {
 
 			{/* we apply the animation keyframes here */}
 			<style id='keyframes__style'>
-        {Object.values(JSON.parse(keyframe))[0]}
+        { " " ||  Object.values(JSON.parse(keyframe))[0] }
       </style>
 		</div>
 	);
+}
+
+AnimationContainer.defaultProps = {
+	animation : {id : 1}
 }
 
 export default AnimationContainer;
