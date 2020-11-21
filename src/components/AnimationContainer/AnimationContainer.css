@@ -17,7 +17,8 @@
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-	padding: 10px;
+  padding: 10px;
+  perspective: 500px;
 }
 
 .dashboard__container button {
@@ -46,10 +47,13 @@
 }
 
 .dashboard__animation--target {
+  position: relative;
 	display: flex;
 	flex-direction: row;
 	width: 150px;
-	height: auto;
+  height: auto;
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0);
 }
 
 .dashboard__animation--target svg {

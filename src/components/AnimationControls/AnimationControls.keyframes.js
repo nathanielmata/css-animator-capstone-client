@@ -1,4 +1,4 @@
-const AnimationKeyframes = {  
+export const AnimationKeyframes = {  
   "slide-fwd-center": `
   @keyframes slide-fwd-center {
     0% {
@@ -71,29 +71,24 @@ const AnimationKeyframes = {
   "rotate-diagonal": `
   @keyframes rotate-diagonal {
     0% {
-      -webkit-transform: rotate3d(-1, 1, 0, 0deg);
-              transform: rotate3d(-1, 1, 0, 0deg);
+      transform: rotate3d(-1, 1, 0, 0deg);
     }
     50% {
-      -webkit-transform: rotate3d(-1, 1, 0, 180deg);
-              transform: rotate3d(-1, 1, 0, 180deg);
+      transform: rotate3d(-1, 1, 0, 180deg);
     }
     100% {
-      -webkit-transform: rotate3d(-1, 1, 0, 360deg);
-              transform: rotate3d(-1, 1, 0, 360deg);
+      transform: rotate3d(-1, 1, 0, 360deg);
     }
   }`,
 
   "scale-out-center": `
   @keyframes scale-out-center {
     0% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
+      transform: scale(1);
       opacity: 1;
     }
     100% {
-      -webkit-transform: scale(0);
-              transform: scale(0);
+      transform: scale(0);
       opacity: 1;
     }
   }`,
@@ -101,16 +96,24 @@ const AnimationKeyframes = {
   "slide-in-bck-center": `
   @keyframes slide-in-bck-center {
     0% {
-      -webkit-transform: translateZ(600px);
-              transform: translateZ(600px);
+      transform: translateZ(600px);
       opacity: 0;
     }
     100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
+      transform: translateZ(0);
       opacity: 1;
     }
   }`
 }
 
-export default AnimationKeyframes;
+export const AnimationKeyframesNames = {  
+  "slide-fwd-center": "Slide Fwd Center",
+  "rotate-center": "Rotate Center",
+  "scale-up-center": "Scale Up Center",
+  "slide-top": "Slide Top",
+  "rotate-scale-up": "Rotate Scale Up",
+  "flip-scale-2-hor-top": "Flip Scale",
+  "rotate-diagonal": "Rotate Diagonal",
+  "scale-out-center": "Scale Out Center",
+  "slide-in-bck-center": "Slide In Back",
+}

@@ -263,7 +263,7 @@
   text-transform: none;
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.2em;
+  line-height: 1.1em;
   width: 100%;
 }
 
@@ -271,6 +271,12 @@
   width: 100%;
   padding: 10px;
   border: 1px solid var(--main-bg-two);
+  margin: 8px 0;
+}
+
+.editor__css--keyframes {
+  overflow-x: scroll;
+  white-space: pre-line;
 }
 
 .editor__keyframe--list ul {
