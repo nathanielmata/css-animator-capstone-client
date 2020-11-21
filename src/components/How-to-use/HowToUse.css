@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:900|Asap&display=swap');
+
+div > .how-to {
+    margin-top: 40px;
+    min-height: 105vh;
+    height: auto;
+    text-align: left;
+}
+
+.how-to {
+    color: black;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.how-to h1 {
+    font-size: 4rem;
+    text-decoration: underline;
+    color: rgb(8, 8, 8);
+    padding: 30px 10px 30px 10px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.how-to p {
+    font-size: 2rem;
+    margin-left: 50px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.how-to ol {
+    margin-left: 125px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-family: 'Asap', sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+    .how-to p {
+        margin-left: 10px;
+        font-size: 1.7rem;
+    }
+
+    .how-to ol {
+        margin-left: 50px;
+        font-size: 1.0rem;
+    }
+}
