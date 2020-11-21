@@ -40,7 +40,7 @@ export default function HowToUser() {
 					<li>Click on the EDIT button you want to delete</li>
 					<li>Tap on DELETE button and it will be removed</li>
 				</ol>
-				<p>Login witha a test user</p>
+				<p>Login with a test user</p>
 				<ol>
 					<li>Email: test@animationstation.net</li>
 					<li>Password: Test2020@</li>
