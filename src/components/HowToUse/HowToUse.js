@@ -1,11 +1,9 @@
 import React from 'react';
 import './HowToUse.css';
-import Header from '../Header/Header';
 
 export default function HowToUser() {
 	return (
-		<div>
-			<Header />
+		<div className="how-to__outer">
 			<div className='how-to'>
 				<h1>How to use Animation Station:</h1>
 				
@@ -39,7 +37,7 @@ export default function HowToUser() {
 				</ol>
 			</div>
 
-			<footer>&#169; AnimationStation 2020</footer>
+      <footer>&#169; Animation Station {new Date().getFullYear()}</footer>
 		</div>
 	);
 }

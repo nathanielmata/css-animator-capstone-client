@@ -15,7 +15,7 @@ import UserContext from './context/UserContext';
 import TokenService from '../src/services/token-service';
 import AuthApiService from '../src/services/animation-api-service';
 import IdleService from '../src/services/idle-service';
-import HowToUse from './components/How-to-use/HowToUse'
+import HowToUse from './components/HowToUse/HowToUse'
 import './App.css';
 
 class App extends React.Component {
