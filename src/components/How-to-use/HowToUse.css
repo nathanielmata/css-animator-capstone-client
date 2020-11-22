@@ -1,0 +1,61 @@
+
+
+div > .how-to {
+    margin-top: 60px;
+    min-height: 105vh;
+    height: auto;
+    text-align: left;
+    margin: 0 auto;
+
+}
+
+.how-to {
+    color: black;
+    background-color: white;
+}
+
+.how-to h1 {
+    font-size: 3rem;
+    text-decoration: underline;
+    color: rgb(8, 8, 8);
+    padding: 60px 10px 10px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.how-to p {
+    font-size: 2rem;
+    margin-left: 50px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.how-to ol {
+    margin-left: 125px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-family: 'Asap', sans-serif;
+    line-height: 1.5;
+}
+#left{
+   margin-left: 25px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-family: 'Asap', sans-serif; 
+}
+@media screen and (max-width: 768px) {
+    .how-to p {
+        margin-left: 5px;
+        font-size: 1.7rem;
+    }
+    #left{
+        /* margin-left:10px; */
+        margin:0;
+    }
+    .how-to ol ul{
+        margin-left: 60px;
+        font-size: 1.1rem;
+    }
+}

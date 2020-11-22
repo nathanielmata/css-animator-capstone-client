@@ -52,6 +52,7 @@ export default class Header extends Component {
 					<Link id='register__button' to='/registration' >
 						Register
 					</Link>
+					
 				</div>
 			</div>
 		);
@@ -77,6 +78,9 @@ export default class Header extends Component {
 							<div>
 								<Link to='/contact'>Contact</Link>
 							</div>
+							<Link id='how-to__button' to='/how-to-use' >
+						How to Use
+					</Link>
 						</div>
 					</div>
 					{this.context.user ? this.renderLogoutLink() : this.renderLoginLink()}

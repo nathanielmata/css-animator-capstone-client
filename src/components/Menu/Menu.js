@@ -22,6 +22,9 @@ const Menu = (props) => {
 				<li>
 					<a href='/registration'>Register</a>
 				</li>
+				<li>
+					<a href='/how-to-use'>How to USe</a>
+				</li>
 			</ul>
 		);
 	};
