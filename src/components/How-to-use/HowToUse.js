@@ -7,43 +7,35 @@ export default function HowToUser() {
 		<div>
 			<Header />
 			<div className='how-to'>
-				<h1>How to get started</h1>
-				<p>Trying to post a new animation?</p>
+				<h1>How to use Animation Station:</h1>
+				
 				<ol>
-					<li>Sign Up</li>
-					<li>Sign In</li>
-					<li>Go to the editor page for adding new animation</li>
-					<li>Click the New Animation button to create new animation</li>
-					<li>Click the CODE button to see generated code for the animation</li>
-					<li>Click the Option button to add more option to the animation</li>
-					<li>Click the profile to see all saved animations</li>
-					<li>Click the Play button to see the animation</li>
-					<li>Click the profile to see all saved animations</li>
-
-					<li>
-						DONE! Easy as that. Now you can view your animation in your profile.
-					</li>
-				</ol>
-				<p>Trying to edit your posting?</p>
-				<ol>
-					<li>Go to your profile</li>
-					<li>Click on the Edit you want to edit</li>
-					<li>
-						Click on the "target" of your animation. *note: As of now you can
-						edit all field of your animation
-					</li>
-					<li>Hit SAVE button then your animation will be updated.</li>
-				</ol>
-				<p>Trying to delete a posting?</p>
-				<ol>
-					<li>Go to your profile</li>
-					<li>Click on the EDIT button you want to delete</li>
-					<li>Tap on DELETE button and it will be removed</li>
-				</ol>
-				<p>Login with a test user</p>
-				<ol>
-					<li>Email: test@animationstation.net</li>
-					<li>Password: Test2020@</li>
+					<li>Click “Get Started”</li>
+					<li>Register if you have not already, then Login</li>
+					<li>Click “New Animation” to create a new animation,<br />
+					
+					click “EDIT” next to any existing animation to edit that animation,<br />
+					 or click “PLAY” next to any existing animation to preview that animation</li>
+					<li>If you choose to create or edit an animation, an editor screen will open.</li>
+						<ol id = "left">
+						<li>On the left side of the editor, you can:</li>
+					
+						<ul>
+							<li>enter a title for your animation </li>
+							<li>enter a title for your animation</li>
+							<li>enter values for delay, duration, and iteration </li>
+							<li>select a direction, timing function, and fill</li>
+							<li>click on Pause, Stop, and Play to preview your animation</li>					
+						</ul>
+						<li>On the bottom of the editor, you can</li>
+						<ul>
+							<li>click OPTIONS to select amongst available keyframe transformations </li>
+							<li>click SAVE to save your new or updated animation</li>
+							<li>click DELETE to delete your animation </li>
+							<li>click CODE to access the code which will allow you to use the animation in an external CSS file.</li>					
+						</ul>
+						</ol>	
+					
 				</ol>
 			</div>
 
