@@ -105,7 +105,6 @@ class App extends React.Component {
 						<Menu />
 					</Switch>
 				</main>
-				{/*  <footer>&#169; animation-station 2020</footer>  */}
 			</div>
 		);
 	}

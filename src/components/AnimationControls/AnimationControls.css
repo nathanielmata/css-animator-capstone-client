@@ -207,12 +207,10 @@
 	position: absolute;
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr;
-	/* grid-gap: 8px; */
 	grid-gap: 1px;
 	top: 100%;
 	right: 0;
 	left: 0;
-	/* margin: 0 30px; */
 	margin-top: 1px;
 }
 
@@ -220,7 +218,6 @@
 .editor__preview--controls-two {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr;
-	/* grid-gap: 8px; */
 	grid-gap: 1px;
 }
 

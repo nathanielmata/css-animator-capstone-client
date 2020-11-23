@@ -1,8 +1,8 @@
 .how-to__outer {
-  position: relative;
+	position: relative;
 	display: flex;
-  flex-direction: column;
-  line-height: 1.3em;
+	flex-direction: column;
+	line-height: 1.3em;
 }
 
 .how-to {
@@ -10,7 +10,7 @@
 	background-color: white;
 	z-index: 999;
 	text-align: left;
-  margin: 0 20px;
+	margin: 0 20px;
 	margin-bottom: 80px;
 	z-index: 1;
 }
@@ -43,12 +43,12 @@
 }
 
 .how-to__outer > footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: black;
-  z-index: 2;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: black;
+	z-index: 2;
 }
 
 @media screen and (min-width: 768px) {
@@ -64,11 +64,8 @@
 		margin-left: 5px;
 		font-size: 1.7rem;
 	}
+
 	#left {
 		margin: 0;
 	}
-	/* .how-to ol ul {
-		margin-left: 60px;
-		font-size: 1.1rem;
-	} */
 }

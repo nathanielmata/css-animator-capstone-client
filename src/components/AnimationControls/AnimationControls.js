@@ -29,7 +29,12 @@ function AnimationControls(props) {
 			getAnimation(id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+  }, []);
+  
+  const successMessage = (ms, msg) => {
+    setTimeout(function() { setMessage(' ') }, ms);
+    setMessage(msg);
+  }
 
 	const getAnimation = (id) => {
 		AnimationApiService.getAnimationById(id)
@@ -44,44 +49,34 @@ function AnimationControls(props) {
         setAnimationTarget(svgTargets[data.target]);
 			})
 			.catch((err) => console.log(err));
-	};
+  };
 
-	const postAnimation = (animation) => {
+	const postAnimation = () => {
 		AnimationApiService.postAnimation(animation)
 			.then((res) => {
-				setTimeout(function () {
-					setMessage(' ');
-				}, 1000);
-				setMessage('Animation saved successfully');
+        successMessage(1000, 'Animation saved successfully');
 				props.history.push(`/profile`);
 			})
 			.catch((err) => console.log(err));
 	};
 
-	const updateAnimation = (id, animation) => {
+	const updateAnimation = () => {
+    const id = props.match.params.id;
     AnimationApiService.updateAnimation(id, animation)
     .then((res) => {
-      setTimeout(function () {
-        setMessage(' ');
-      }, 1000);
-      setMessage('Animation saved successfully');
+      successMessage(1000, 'Animation saved successfully');
       props.history.push(`/profile`);
     })
     .catch((err) => console.log(err));
   }
 
-  const deleteAnimation = (e, animationId) => {
-    e.preventDefault();
-		AnimationApiService.deleteAnimation(animationId)
+  const deleteAnimation = () => {
+    const id = props.match.params.id;
+		AnimationApiService.deleteAnimation(id)
 			.then((res) => {
-				setTimeout(function () {
-					setMessage('');
-				}, 1000);
-				setMessage('Animation delete successfully');
-
+        successMessage(1000, 'Animation delete successfully');
 				props.history.push(`/profile`);
 			})
-
 			.catch((err) => console.log(err));
 	};
 
@@ -108,21 +103,21 @@ function AnimationControls(props) {
 
 		return css;
   };
+
+  const setTargetCss = () => {
+    const css = generateTargetCss();
+    getTarget().style.animation = css;
+  };
+  
+  // set the keyframe css for the target when you hit play
+  const setTargetKeyframesCss = (keyframeCss) => {
+    setAnimation({ ...animation, keyframe: keyframeCss });
+  };
   
   // generate css output for the code slideout
 	const setCssClass = () => {
     const css = generateTargetCss();
 		return `.${Object.keys(animation.keyframe)[0]} {\n\tanimation: ${css}\n}`;
-	};
-
-	const setTargetCss = () => {
-		const css = generateTargetCss();
-		getTarget().style.animation = css;
-  };
-  
-  // set the keyframe css for the target when you hit play
-  const setTargetKeyframesCss = (keyframeCss) => {
-		setAnimation({ ...animation, keyframe: keyframeCss });
 	};
 
 	const slideOutCtrl = () => {
@@ -170,7 +165,7 @@ function AnimationControls(props) {
 		if (slideOut.visible === true && name !== slideOut.content) {
 			target.style.animation = ctrl.close;
 
-			setTimeout(function () {
+			setTimeout(function() {
 				ctrl.clear();
 				target.style.animation = ctrl.open;
 				setSlideOut({ content: name, visible: true });
@@ -201,14 +196,19 @@ function AnimationControls(props) {
 	const handlePlay = () => {
 		clearTargetCss();
 		setTargetCss();
-	};
+  };
+  
+  const handleDelete = (e) => {
+    e.preventDefault();
+    deleteAnimation();
+  }
 
   const handleSave = (e) => {
     e.preventDefault();
     if (props.match.path === "/editor/new") {
-      postAnimation(animation);
+      postAnimation();
     } else {
-      updateAnimation(props.match.params.id, animation);
+      updateAnimation();
     }
   };
 
@@ -372,7 +372,7 @@ function AnimationControls(props) {
 						</button>
 					</div>
 					<div className='editor__preview--controls-one'>
-						<button onClick={(e) => deleteAnimation(e, props.match.params.id)}>DELETE</button>
+						<button onClick={(e) => handleDelete(e)}>DELETE</button>
 						<button onClick={(e) => handleSave(e)}>SAVE</button>
 						{message}
 					</div>
