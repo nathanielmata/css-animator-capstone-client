@@ -127,7 +127,7 @@ Dashboard
 
 CSS Code
 :-------------------------:
-![CSS Code](./screenshots/css-code.png)
+![CSS Code](./screenshots/css-code-snip.png)
 
 Keyframe Options
 :-------------------------:
