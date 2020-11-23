@@ -131,9 +131,9 @@ CSS Code
 
 Keyframe Options
 :-------------------------:
-![Keyframe Options](./screenshots/keyframe-options.png)
+![Keyframe Options](./screenshots/keyframes.png)
 
-## Front-end Structure - React Components Map
+## Front-end Structure - React Components Map (later)
 
 - **Index.js** (stateless)
   - **App.js** (stateful)
@@ -142,7 +142,7 @@ Keyframe Options
       - **Register.js** (stateful) -
     - **Navbar.js** (stateless) -
 
-## Back-end Structure - Business Objects
+## Back-end Structure - Business Objects (later)
 
 - Users (database table)
   - id (auto-generated)
