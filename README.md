@@ -183,6 +183,7 @@ Use command line to navigate into the project folder and run the following in te
 - To run react (on port 3000) ===> npm start
 - To run tests ===> npm run test
 
+## Reflections
 
 ### Lessons Learned
 - It is crucial to work on features on their own branches separate from the master.  Merging conflicts can be a major hassle   if branches aren't properly segregated.
