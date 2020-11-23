@@ -103,7 +103,6 @@ User Menu
 ![User Menu](./wireframes/authenticated-user-menu.png)
 
 
-
 ## Screenshots
 
 Landing Page
@@ -134,9 +133,6 @@ Keyframe Options
 :-------------------------:
 ![Keyframe Options](./screenshots/keyframe-options.png)
 
-
-
-
 ## Front-end Structure - React Components Map
 
 - **Index.js** (stateless)
@@ -159,17 +155,18 @@ API Documentation details:
 
 - get all users
 
-## Responsive (done)
+## Responsive
 
 App is built to be usable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
 
-## Development Roadmap (later)
+## Development Roadmap
 
 This is v1.0 of the app, but future enhancements are expected to include:
 
-- add more functionality
+-  enable users to view and create animations without having to login
+-  a marketplace to see other users' animations
 
-## How to run it (done)
+## How to run it
 
 Use command line to navigate into the project folder and run the following in terminal
 
@@ -187,15 +184,8 @@ Use command line to navigate into the project folder and run the following in te
 - To run tests ===> npm run test
 
 
+### Lessons Learned
+- It is crucial to work on features on their own branches separate from the master.  Merging conflicts can be a major hassle   if branches aren't properly segregated.
 
-
-
-Lessons Learned: 
-- It is crucial to work on features on their own branches separate from the master.  Merging conflicts can be a major hassle if branches aren't properly segregated.
-
-What would I do differently:
+### What would I do differently
 -  I would have had the team agree to a set of guiding principles with respect to respository management, branching, and merging before we began building the application.
-
-Additional features to implement in the future:
--  enable users to view and create animations without having to login
--  a marketplace to see other users' animations
