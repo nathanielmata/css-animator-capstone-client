@@ -1,12 +1,44 @@
-#login-page{
-    background: var(--main-bg-one);
-    height: 100%;
-    width: 100%;
+#login-page {
+	background: var(--main-bg-one);
+	height: 100%;
+	width: 100%;
 }
-h2{
-    padding: 20px;
-    margin-top: 70px;
+
+.LoginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
-h3{
-    padding: 20px;
+
+.LoginPage h1 {
+  margin-top: 0;
+}
+
+.LoginPage h2 {
+	padding: 20px;
+	margin-top: 70px;
+}
+.LoginPage h3 {
+	padding: 20px;
+}
+
+.login__greeting {
+	display: block;
+	margin: 0 auto;
+  padding: 8px 8px 0;
+  max-width: 436px;
+}
+
+.login__greeting h4 {
+  text-decoration: underline;
+}
+
+.login_demo-creds {
+  display: block;
+	margin: 0 12px 12px;
+}
+
+.login_demo-creds strong {
+  text-decoration: underline;
 }

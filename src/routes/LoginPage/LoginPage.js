@@ -21,8 +21,10 @@ export default class LoginPage extends Component {
 		return (
 			<section className='LoginPage'>
 				<Menu />
-				<h2>Welcome Back!</h2>
-				<h3>Sign in to get back to work.</h3>
+        <div className="login__greeting">
+          <div className="login_demo-creds"><strong>demo email</strong>: demo@animate.com</div>
+          <div className="login_demo-creds"><strong>demo password</strong>: Sidetrack5!</div>
+        </div>
 				<LoginForm onLoginSuccess={this.handleLoginSuccess} />
 			</section>
 		);
