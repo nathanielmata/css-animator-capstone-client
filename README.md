@@ -195,6 +195,7 @@ Use command line to navigate into the project folder and run the following in te
 
 ### Local Server/Node scripts
 
+- clone repo https://github.com/SultanaK/AnimationStation-backend
 - To install the node project ===> npm install
 - To migrate the database ===> npm run migrate -- 1
 - To run Node server (on port 8000) ===> npm run dev
@@ -202,6 +203,7 @@ Use command line to navigate into the project folder and run the following in te
 
 ### Local Client/React scripts
 
+- clone repo https://github.com/nathanielmata/css-animator-capstone-client
 - To install the react project ===> npm install
 - To run react (on port 3000) ===> npm start
 - To run tests ===> npm run test
