@@ -52,7 +52,7 @@ This app is for two types of users: a REGISTERED USER and an UNREGISTERED USER
 
 ---
 
-#### User dasboard page
+#### User Dasboard page
 
 - As a REGISTERED user
     I want to access a list of my saved animations
