@@ -6,26 +6,32 @@ Nathaniel Mata
 
 # AnimationStation Capstone
 
-AnimationStation is an application that lets users create animations using a graphical interface and then save the corresponding CSS code.
+AnimationStation is an application that lets users create css animations using a graphical interface and then save the corresponding CSS code.
 
 # Features
 
 - Create a unique login
-- Choose a target item to manipulate with the GUI
+- Choose a target item to animate using the GUI
 - Choose from a variety of animation options
 - Preview the animation
 - Access the CSS code
-- Save the animation
+- Save the animation to your account
 
 ## Technology
 
 - Front-End: HTML5, CSS3, JavaScript ES6, React
-- Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints,Postgres
-- Development Environment: Heroku, Vercel
+- Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
+- Prodcution Environment: Heroku, Vercel
 
 ## Working Prototype
 
-You can access a working prototype of the React app here: https://css-animator-capstone-client.vercel.app/ and Node api app here: https://fast-temple-07151.herokuapp.com
+You can access a working prototype of the:
+
+  React(Client) app here:  
+    https://css-animator-capstone-client.vercel.app/  
+    
+  Node/Express(Server) API here:  
+    https://fast-temple-07151.herokuapp.com  
 
 ## User Stories
 
@@ -76,84 +82,101 @@ This app is for two types of users: a REGISTERED USER and an UNREGISTERED USER
 
 Landing Page  
 :-------------------------:
-![Landing Page](./wireframes/landing-wireframe.png)
+![Landing Page](./documentation/wireframes/landing-wireframe.png)
 
 Sign Up Page
 :-------------------------:
-![Sign Up Page](./wireframes/register-wireframe.png)
+![Sign Up Page](./documentation/wireframes/register-wireframe.png)
 
 Login Page  
 :-------------------------:
-![Login Page](./wireframes/login-wireframe.png)
+![Login Page](./documentation/wireframes/login-wireframe.png)
 
 Edit Animation Page  
 :-------------------------:
-![Edit Animation Page](./wireframes/editor-wireframe.png)
+![Edit Animation Page](./documentation/wireframes/editor-wireframe.png)
 
 Dashboard
 :-------------------------:
-![User Dashboard Page](./wireframes/latest-animations-wireframe.png)
+![User Dashboard Page](./documentation/wireframes/latest-animations-wireframe.png)
 
 Code Page
 :-------------------------:
-![Code Page](./wireframes/code-page-wireframe.png)
+![Code Page](./documentation/wireframes/code-page-wireframe.png)
 
 User Menu
 :-------------------------:
-![User Menu](./wireframes/authenticated-user-menu.png)
+![User Menu](./documentation/wireframes/authenticated-user-menu.png)
 
 
 ## Screenshots
 
 Landing Page
 :-------------------------:
-![Landing Page](./screenshots/landing-page.png)
+![Landing Page](./documentation/screenshots/landing-page.png)
 
 Sign Up Page
 :-------------------------:
-![Sign Up Page](./screenshots/register.png)
+![Sign Up Page](./documentation/screenshots/register.png)
 
 Login Page
 :-------------------------:
-![Login Page](./screenshots/login.png)
+![Login Page](./documentation/screenshots/login.png)
 
 Edit Animation Page  
 :-------------------------:
-![Edit Animation Page](./screenshots/editor.png)
+![Edit Animation Page](./documentation/screenshots/editor.png)
 
 Dashboard
 :-------------------------:
-![User Dashboard Page](./screenshots/dashboard.png)
+![User Dashboard Page](./documentation/screenshots/dashboard.png)
 
 CSS Code
 :-------------------------:
-![CSS Code](./screenshots/css-code-snip.png)
+![CSS Code](./documentation/screenshots/css-code-snip.png)
 
 Keyframe Options
 :-------------------------:
-![Keyframe Options](./screenshots/keyframes.png)
+![Keyframe Options](./documentation/screenshots/keyframes.png)
 
-## Front-end Structure - React Components Map (later)
 
-- **Index.js** (stateless)
-  - **App.js** (stateful)
-    - **LandingPage.js** (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the **App.js**
-      - **Login.js** (stateful) -
-      - **Register.js** (stateful) -
-    - **Navbar.js** (stateless) -
+## API Documentation 
 
-## Back-end Structure - Business Objects (later)
+POST /api/auth/login  
+- post's a user's credentials for login
 
-- Users (database table)
-  - id (auto-generated)
-  - username (email validation)
-  - password (at least 8 chars, at least one alpha and a special character validation)
+POST /api/auth/refresh  
+- refreshes a user jwt token requires a valid jwt  
 
-## API Documentation (later)
+GET /api/animations  
+- get a user's animations  
 
-API Documentation details:
+POST /api/animations  
+- post a new animation
 
-- get all users
+GET /api/animations/:id  
+- get an animation by id
+
+DELETE /api/animations/:id  
+- delete an animation by id
+
+PATCH /api/animations/:id  
+- update an animation by id
+
+GET /api/users  
+- get a user's data 
+
+POST /api/users  
+- this endpoint creates a new user at registration
+
+GET /api/users/:user_id  
+- get user info by id
+
+DELETE /api/users/:user_id  
+- delete a user by id
+
+PATCH /api/users/:user_id  
+- update a user by id
 
 ## Responsive
 
@@ -170,23 +193,15 @@ This is v1.0 of the app, but future enhancements are expected to include:
 
 Use command line to navigate into the project folder and run the following in terminal
 
-### Local Node scripts
+### Local Server/Node scripts
 
 - To install the node project ===> npm install
 - To migrate the database ===> npm run migrate -- 1
 - To run Node server (on port 8000) ===> npm run dev
 - To run tests ===> npm run test
 
-### Local React scripts
+### Local Client/React scripts
 
 - To install the react project ===> npm install
 - To run react (on port 3000) ===> npm start
 - To run tests ===> npm run test
-
-## Reflections
-
-### Lessons Learned
-- It is crucial to work on features on their own branches separate from the master.  Merging conflicts can be a major hassle   if branches aren't properly segregated.
-
-### What would I do differently
--  I would have had the team agree to a set of guiding principles with respect to respository management, branching, and merging before we began building the application.
